@@ -1,0 +1,2211 @@
+[
+  {
+    "id": 40041,
+    "name": "Angola",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776941/team_logos/angola.webp"
+  },
+  {
+    "id": 10001,
+    "name": "Albania",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776942/team_logos/albania.webp"
+  },
+  {
+    "id": 10002,
+    "name": "Andorra",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776942/team_logos/andorra.webp"
+  },
+  {
+    "id": 10003,
+    "name": "Armenia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776943/team_logos/armenia.webp"
+  },
+  {
+    "id": 10004,
+    "name": "Austria",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776944/team_logos/austria.webp"
+  },
+  {
+    "id": 10005,
+    "name": "Azerbaijan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776945/team_logos/azerbaijan.webp"
+  },
+  {
+    "id": 10006,
+    "name": "Belarus",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776946/team_logos/belarus.webp"
+  },
+  {
+    "id": 10007,
+    "name": "Belgium",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776947/team_logos/belgium.webp"
+  },
+  {
+    "id": 10008,
+    "name": "Bosnia and Herzegovina",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776948/team_logos/bosnia_and_herzegovina.webp"
+  },
+  {
+    "id": 10009,
+    "name": "Bulgaria",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776948/team_logos/bulgaria.webp"
+  },
+  {
+    "id": 10010,
+    "name": "Croatia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776949/team_logos/croatia.webp"
+  },
+  {
+    "id": 10011,
+    "name": "Cyprus",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776950/team_logos/cyprus.webp"
+  },
+  {
+    "id": 10012,
+    "name": "Czech Republic",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776951/team_logos/czech_republic.webp"
+  },
+  {
+    "id": 10013,
+    "name": "Denmark",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776952/team_logos/denmark.webp"
+  },
+  {
+    "id": 10014,
+    "name": "England",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776952/team_logos/england.webp"
+  },
+  {
+    "id": 10015,
+    "name": "Estonia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776953/team_logos/estonia.webp"
+  },
+  {
+    "id": 10016,
+    "name": "Faroe Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776954/team_logos/faroe_islands.webp"
+  },
+  {
+    "id": 10017,
+    "name": "Finland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776955/team_logos/finland.webp"
+  },
+  {
+    "id": 10018,
+    "name": "France",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776956/team_logos/france.webp"
+  },
+  {
+    "id": 10019,
+    "name": "Georgia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776957/team_logos/georgia.webp"
+  },
+  {
+    "id": 10020,
+    "name": "Germany",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776958/team_logos/germany.webp"
+  },
+  {
+    "id": 10021,
+    "name": "Gibraltar",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776958/team_logos/gibraltar.webp"
+  },
+  {
+    "id": 10022,
+    "name": "Greece",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776959/team_logos/greece.webp"
+  },
+  {
+    "id": 10023,
+    "name": "Hungary",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776960/team_logos/hungary.webp"
+  },
+  {
+    "id": 10024,
+    "name": "Iceland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776961/team_logos/iceland.webp"
+  },
+  {
+    "id": 10025,
+    "name": "Republic of Ireland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776962/team_logos/republic_of_ireland.webp"
+  },
+  {
+    "id": 10026,
+    "name": "Israel",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776963/team_logos/israel.webp"
+  },
+  {
+    "id": 10027,
+    "name": "Italy",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776964/team_logos/italy.webp"
+  },
+  {
+    "id": 10028,
+    "name": "Kazakhstan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776965/team_logos/kazakhstan.webp"
+  },
+  {
+    "id": 10029,
+    "name": "Kosovo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776966/team_logos/kosovo.webp"
+  },
+  {
+    "id": 10030,
+    "name": "Latvia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776966/team_logos/latvia.webp"
+  },
+  {
+    "id": 10031,
+    "name": "Lithuania",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776967/team_logos/lithuania.webp"
+  },
+  {
+    "id": 10032,
+    "name": "Luxembourg",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776968/team_logos/luxembourg.webp"
+  },
+  {
+    "id": 10033,
+    "name": "Malta",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776969/team_logos/malta.webp"
+  },
+  {
+    "id": 10034,
+    "name": "Moldova",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776970/team_logos/moldova.webp"
+  },
+  {
+    "id": 10035,
+    "name": "Montenegro",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776971/team_logos/montenegro.webp"
+  },
+  {
+    "id": 10036,
+    "name": "Netherlands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776972/team_logos/netherlands.webp"
+  },
+  {
+    "id": 10037,
+    "name": "North Macedonia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776973/team_logos/north_macedonia.webp"
+  },
+  {
+    "id": 10039,
+    "name": "Norway",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776974/team_logos/norway.webp"
+  },
+  {
+    "id": 10040,
+    "name": "Poland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776974/team_logos/poland.webp"
+  },
+  {
+    "id": 10041,
+    "name": "Portugal",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776975/team_logos/portugal.webp"
+  },
+  {
+    "id": 10042,
+    "name": "Romania",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776976/team_logos/romania.webp"
+  },
+  {
+    "id": 10043,
+    "name": "Russia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776977/team_logos/russia.webp"
+  },
+  {
+    "id": 10044,
+    "name": "San Marino",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776977/team_logos/san_marino.webp"
+  },
+  {
+    "id": 10045,
+    "name": "Scotland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776978/team_logos/scotland.webp"
+  },
+  {
+    "id": 10046,
+    "name": "Serbia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776979/team_logos/serbia.webp"
+  },
+  {
+    "id": 10047,
+    "name": "Slovakia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776980/team_logos/slovakia.webp"
+  },
+  {
+    "id": 10048,
+    "name": "Slovenia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776981/team_logos/slovenia.webp"
+  },
+  {
+    "id": 10049,
+    "name": "Spain",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776982/team_logos/spain.webp"
+  },
+  {
+    "id": 10050,
+    "name": "Sweden",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776983/team_logos/sweden.webp"
+  },
+  {
+    "id": 10051,
+    "name": "Switzerland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776983/team_logos/switzerland.webp"
+  },
+  {
+    "id": 10052,
+    "name": "Turkey",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776984/team_logos/turkey.webp"
+  },
+  {
+    "id": 10053,
+    "name": "Ukraine",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776985/team_logos/ukraine.webp"
+  },
+  {
+    "id": 10054,
+    "name": "Wales",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776986/team_logos/wales.webp"
+  },
+  {
+    "id": 20001,
+    "name": "Argentina",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776986/team_logos/argentina.webp"
+  },
+  {
+    "id": 20002,
+    "name": "Bolivia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776987/team_logos/bolivia.webp"
+  },
+  {
+    "id": 20003,
+    "name": "Brazil",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776988/team_logos/brazil.webp"
+  },
+  {
+    "id": 20004,
+    "name": "Chile",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776989/team_logos/chile.webp"
+  },
+  {
+    "id": 20005,
+    "name": "Colombia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776990/team_logos/colombia.webp"
+  },
+  {
+    "id": 20006,
+    "name": "Ecuador",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776991/team_logos/ecuador.webp"
+  },
+  {
+    "id": 20007,
+    "name": "Paraguay",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776991/team_logos/paraguay.webp"
+  },
+  {
+    "id": 20008,
+    "name": "Peru",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776992/team_logos/peru.webp"
+  },
+  {
+    "id": 20009,
+    "name": "Uruguay",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776993/team_logos/uruguay.webp"
+  },
+  {
+    "id": 20010,
+    "name": "Venezuela",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776994/team_logos/venezuela.webp"
+  },
+  {
+    "id": 30001,
+    "name": "Canada",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776994/team_logos/canada.webp"
+  },
+  {
+    "id": 30002,
+    "name": "Mexico",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776995/team_logos/mexico.webp"
+  },
+  {
+    "id": 30003,
+    "name": "United States",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776996/team_logos/united_states.webp"
+  },
+  {
+    "id": 30004,
+    "name": "Belize",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776997/team_logos/belize.webp"
+  },
+  {
+    "id": 30005,
+    "name": "Costa Rica",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776997/team_logos/costa_rica.webp"
+  },
+  {
+    "id": 30006,
+    "name": "El Salvador",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776998/team_logos/el_salvador.webp"
+  },
+  {
+    "id": 30007,
+    "name": "Guatemala",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757776999/team_logos/guatemala.webp"
+  },
+  {
+    "id": 30008,
+    "name": "Honduras",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777000/team_logos/honduras.webp"
+  },
+  {
+    "id": 30009,
+    "name": "Nicaragua",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777000/team_logos/nicaragua.webp"
+  },
+  {
+    "id": 30010,
+    "name": "Panama",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777001/team_logos/panama.webp"
+  },
+  {
+    "id": 30011,
+    "name": "Anguilla",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777002/team_logos/anguilla.webp"
+  },
+  {
+    "id": 30012,
+    "name": "Antigua and Barbuda",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777003/team_logos/antigua_and_barbuda.webp"
+  },
+  {
+    "id": 30013,
+    "name": "Aruba",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777003/team_logos/aruba.webp"
+  },
+  {
+    "id": 30014,
+    "name": "Bahamas",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777004/team_logos/bahamas.webp"
+  },
+  {
+    "id": 30015,
+    "name": "Barbados",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777005/team_logos/barbados.webp"
+  },
+  {
+    "id": 30016,
+    "name": "Bermuda",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777006/team_logos/bermuda.webp"
+  },
+  {
+    "id": 30017,
+    "name": "Bonaire",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777006/team_logos/bonaire.webp"
+  },
+  {
+    "id": 30018,
+    "name": "British Virgin Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777007/team_logos/british_virgin_islands.webp"
+  },
+  {
+    "id": 30019,
+    "name": "Cayman Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777008/team_logos/cayman_islands.webp"
+  },
+  {
+    "id": 30020,
+    "name": "Cuba",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777009/team_logos/cuba.webp"
+  },
+  {
+    "id": 30021,
+    "name": "Curacao",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777009/team_logos/curacao.webp"
+  },
+  {
+    "id": 30022,
+    "name": "Dominica",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777010/team_logos/dominica.webp"
+  },
+  {
+    "id": 30023,
+    "name": "Dominican Republic",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777011/team_logos/dominican_republic.webp"
+  },
+  {
+    "id": 30024,
+    "name": "Grenada",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777012/team_logos/grenada.webp"
+  },
+  {
+    "id": 30025,
+    "name": "Guyana",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777013/team_logos/guyana.webp"
+  },
+  {
+    "id": 30026,
+    "name": "Haiti",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777013/team_logos/haiti.webp"
+  },
+  {
+    "id": 30027,
+    "name": "Jamaica",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777014/team_logos/jamaica.webp"
+  },
+  {
+    "id": 30028,
+    "name": "Puerto Rico",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777015/team_logos/puerto_rico.webp"
+  },
+  {
+    "id": 30029,
+    "name": "Saint Kitts and Nevis",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777016/team_logos/saint_kitts_and_nevis.webp"
+  },
+  {
+    "id": 30030,
+    "name": "St Lucia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777016/team_logos/st_lucia.webp"
+  },
+  {
+    "id": 30031,
+    "name": "St Vincent and the Grenadines",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777018/team_logos/st_vincent_and_the_grenadines.webp"
+  },
+  {
+    "id": 30032,
+    "name": "Suriname",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777018/team_logos/suriname.webp"
+  },
+  {
+    "id": 30033,
+    "name": "Trinidad and Tobago",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777019/team_logos/trinidad_and_tobago.webp"
+  },
+  {
+    "id": 30034,
+    "name": "Turks and Caicos",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777020/team_logos/turks_and_caicos.webp"
+  },
+  {
+    "id": 30035,
+    "name": "Virgin Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777021/team_logos/virgin_islands.webp"
+  },
+  {
+    "id": 40001,
+    "name": "Algeria",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777022/team_logos/algeria.webp"
+  },
+  {
+    "id": 40002,
+    "name": "Egypt",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777023/team_logos/egypt.webp"
+  },
+  {
+    "id": 40003,
+    "name": "Libya",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777024/team_logos/libya.webp"
+  },
+  {
+    "id": 40004,
+    "name": "Morocco",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777024/team_logos/morocco.webp"
+  },
+  {
+    "id": 40005,
+    "name": "Tunisia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777025/team_logos/tunisia.webp"
+  },
+  {
+    "id": 40006,
+    "name": "Cape Verde",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777026/team_logos/cape_verde.webp"
+  },
+  {
+    "id": 40007,
+    "name": "Gambia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777026/team_logos/gambia.webp"
+  },
+  {
+    "id": 40008,
+    "name": "Guinea",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777027/team_logos/guinea.webp"
+  },
+  {
+    "id": 40009,
+    "name": "Guinea-Bissau",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777028/team_logos/guinea_bissau.webp"
+  },
+  {
+    "id": 40010,
+    "name": "Liberia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777029/team_logos/liberia.webp"
+  },
+  {
+    "id": 40011,
+    "name": "Mali",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777030/team_logos/mali.webp"
+  },
+  {
+    "id": 40012,
+    "name": "Mauritania",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777031/team_logos/mauritania.webp"
+  },
+  {
+    "id": 40013,
+    "name": "Senegal",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777031/team_logos/senegal.webp"
+  },
+  {
+    "id": 40014,
+    "name": "Sierra Leone",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777032/team_logos/sierra_leone.webp"
+  },
+  {
+    "id": 40015,
+    "name": "Benin",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777033/team_logos/benin.webp"
+  },
+  {
+    "id": 40016,
+    "name": "Burkina Faso",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777034/team_logos/burkina_faso.webp"
+  },
+  {
+    "id": 40017,
+    "name": "Ghana",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777034/team_logos/ghana.webp"
+  },
+  {
+    "id": 40018,
+    "name": "Ivory Coast",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777035/team_logos/ivory_coast.webp"
+  },
+  {
+    "id": 40019,
+    "name": "Niger",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777036/team_logos/niger.webp"
+  },
+  {
+    "id": 40020,
+    "name": "Nigeria",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777037/team_logos/nigeria.webp"
+  },
+  {
+    "id": 40021,
+    "name": "Togo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777038/team_logos/togo.webp"
+  },
+  {
+    "id": 40022,
+    "name": "Cameroon",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777039/team_logos/cameroon.webp"
+  },
+  {
+    "id": 40023,
+    "name": "Central African Republic",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777039/team_logos/central_african_republic.webp"
+  },
+  {
+    "id": 40024,
+    "name": "Chad",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777040/team_logos/chad.webp"
+  },
+  {
+    "id": 40025,
+    "name": "Republic of the Congo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777041/team_logos/republic_of_the_congo.webp"
+  },
+  {
+    "id": 40026,
+    "name": "Democratic Republic of Congo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777042/team_logos/democratic_republic_of_congo.webp"
+  },
+  {
+    "id": 40027,
+    "name": "Equatorial Guinea",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777043/team_logos/equatorial_guinea.webp"
+  },
+  {
+    "id": 40028,
+    "name": "Gabon",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777044/team_logos/gabon.webp"
+  },
+  {
+    "id": 40029,
+    "name": "Sao Tome and Prince",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777044/team_logos/sao_tome_and_prince.webp"
+  },
+  {
+    "id": 40030,
+    "name": "Burundi",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777045/team_logos/burundi.webp"
+  },
+  {
+    "id": 40031,
+    "name": "Djibouti",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777046/team_logos/djibouti.webp"
+  },
+  {
+    "id": 40032,
+    "name": "Eritrea",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777047/team_logos/eritrea.webp"
+  },
+  {
+    "id": 40033,
+    "name": "Ethiopia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777048/team_logos/ethiopia.webp"
+  },
+  {
+    "id": 40034,
+    "name": "Kenya",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777048/team_logos/kenya.webp"
+  },
+  {
+    "id": 40035,
+    "name": "Rwanda",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777049/team_logos/rwanda.webp"
+  },
+  {
+    "id": 40036,
+    "name": "Somalia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777050/team_logos/somalia.webp"
+  },
+  {
+    "id": 40037,
+    "name": "South Sudan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777051/team_logos/south_sudan.webp"
+  },
+  {
+    "id": 40038,
+    "name": "Sudan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777052/team_logos/sudan.webp"
+  },
+  {
+    "id": 40039,
+    "name": "Tanzania",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777053/team_logos/tanzania.webp"
+  },
+  {
+    "id": 40040,
+    "name": "Uganda",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777054/team_logos/uganda.webp"
+  },
+  {
+    "id": 40042,
+    "name": "Botswana",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777054/team_logos/botswana.webp"
+  },
+  {
+    "id": 40043,
+    "name": "Comoros",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777055/team_logos/comoros.webp"
+  },
+  {
+    "id": 40044,
+    "name": "Swaziland",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777056/team_logos/swaziland.webp"
+  },
+  {
+    "id": 40045,
+    "name": "Lesotho",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777057/team_logos/lesotho.webp"
+  },
+  {
+    "id": 40046,
+    "name": "Madagascar",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777058/team_logos/madagascar.webp"
+  },
+  {
+    "id": 40047,
+    "name": "Malawi",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777058/team_logos/malawi.webp"
+  },
+  {
+    "id": 40048,
+    "name": "Mauritius",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777059/team_logos/mauritius.webp"
+  },
+  {
+    "id": 40049,
+    "name": "Mozambique",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777060/team_logos/mozambique.webp"
+  },
+  {
+    "id": 40050,
+    "name": "Namibia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777061/team_logos/namibia.webp"
+  },
+  {
+    "id": 40051,
+    "name": "Seychelles",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777062/team_logos/seychelles.webp"
+  },
+  {
+    "id": 40052,
+    "name": "South Africa",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777063/team_logos/south_africa.webp"
+  },
+  {
+    "id": 40053,
+    "name": "Zambia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777063/team_logos/zambia.webp"
+  },
+  {
+    "id": 40054,
+    "name": "Zimbabwe",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777064/team_logos/zimbabwe.webp"
+  },
+  {
+    "id": 50001,
+    "name": "Australia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777065/team_logos/australia.webp"
+  },
+  {
+    "id": 50002,
+    "name": "Brunei",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777067/team_logos/brunei.webp"
+  },
+  {
+    "id": 50003,
+    "name": "Cambodia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777069/team_logos/cambodia.webp"
+  },
+  {
+    "id": 50004,
+    "name": "Indonesia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777070/team_logos/indonesia.webp"
+  },
+  {
+    "id": 50005,
+    "name": "Laos",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777072/team_logos/laos.webp"
+  },
+  {
+    "id": 50006,
+    "name": "Malaysia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777073/team_logos/malaysia.webp"
+  },
+  {
+    "id": 50007,
+    "name": "Myanmar",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777073/team_logos/myanmar.webp"
+  },
+  {
+    "id": 50008,
+    "name": "Philippines",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777075/team_logos/philippines.webp"
+  },
+  {
+    "id": 50009,
+    "name": "Singapore",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777076/team_logos/singapore.webp"
+  },
+  {
+    "id": 50010,
+    "name": "Thailand",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777076/team_logos/thailand.webp"
+  },
+  {
+    "id": 50011,
+    "name": "East Timor",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777077/team_logos/east_timor.webp"
+  },
+  {
+    "id": 50012,
+    "name": "Vietnam",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777078/team_logos/vietnam.webp"
+  },
+  {
+    "id": 50013,
+    "name": "China PR",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777079/team_logos/china_pr.webp"
+  },
+  {
+    "id": 50014,
+    "name": "Taiwan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777080/team_logos/taiwan.webp"
+  },
+  {
+    "id": 50015,
+    "name": "Guam",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777080/team_logos/guam.webp"
+  },
+  {
+    "id": 50016,
+    "name": "Hong Kong",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777081/team_logos/hong_kong.webp"
+  },
+  {
+    "id": 50017,
+    "name": "Japan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777082/team_logos/japan.webp"
+  },
+  {
+    "id": 50018,
+    "name": "North Korea",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777083/team_logos/north_korea.webp"
+  },
+  {
+    "id": 50019,
+    "name": "South Korea",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777083/team_logos/south_korea.webp"
+  },
+  {
+    "id": 50020,
+    "name": "Macao",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777084/team_logos/macao.webp"
+  },
+  {
+    "id": 50021,
+    "name": "Mongolia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777085/team_logos/mongolia.webp"
+  },
+  {
+    "id": 50022,
+    "name": "Northern Marianas Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777086/team_logos/northern_marianas_islands.webp"
+  },
+  {
+    "id": 50023,
+    "name": "Afghanistan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777086/team_logos/afghanistan.webp"
+  },
+  {
+    "id": 50024,
+    "name": "Iran",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777087/team_logos/iran.webp"
+  },
+  {
+    "id": 50025,
+    "name": "Kyrgyzstan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777088/team_logos/kyrgyzstan.webp"
+  },
+  {
+    "id": 50026,
+    "name": "Tajikistan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777089/team_logos/tajikistan.webp"
+  },
+  {
+    "id": 50027,
+    "name": "Turkmenistan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777089/team_logos/turkmenistan.webp"
+  },
+  {
+    "id": 50028,
+    "name": "Uzbekistan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777090/team_logos/uzbekistan.webp"
+  },
+  {
+    "id": 50029,
+    "name": "Bahrain",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777091/team_logos/bahrain.webp"
+  },
+  {
+    "id": 50030,
+    "name": "Iraq",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777092/team_logos/iraq.webp"
+  },
+  {
+    "id": 50031,
+    "name": "Jordan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777092/team_logos/jordan.webp"
+  },
+  {
+    "id": 50032,
+    "name": "Kuwait",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777093/team_logos/kuwait.webp"
+  },
+  {
+    "id": 50033,
+    "name": "Lebanon",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777094/team_logos/lebanon.webp"
+  },
+  {
+    "id": 50034,
+    "name": "Oman",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777094/team_logos/oman.webp"
+  },
+  {
+    "id": 50035,
+    "name": "Palestine",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777095/team_logos/palestine.webp"
+  },
+  {
+    "id": 50036,
+    "name": "Qatar",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777096/team_logos/qatar.webp"
+  },
+  {
+    "id": 50037,
+    "name": "Saudi Arabia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777097/team_logos/saudi_arabia.webp"
+  },
+  {
+    "id": 50038,
+    "name": "Syria",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777098/team_logos/syria.webp"
+  },
+  {
+    "id": 50039,
+    "name": "United Arab Emirates",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777098/team_logos/united_arab_emirates.webp"
+  },
+  {
+    "id": 50040,
+    "name": "Yemen",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777099/team_logos/yemen.webp"
+  },
+  {
+    "id": 50041,
+    "name": "Bangladesh",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777100/team_logos/bangladesh.webp"
+  },
+  {
+    "id": 50042,
+    "name": "Bhutan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777101/team_logos/bhutan.webp"
+  },
+  {
+    "id": 50043,
+    "name": "India",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777102/team_logos/india.webp"
+  },
+  {
+    "id": 50044,
+    "name": "Maldives",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777103/team_logos/maldives.webp"
+  },
+  {
+    "id": 50045,
+    "name": "Nepal",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777104/team_logos/nepal.webp"
+  },
+  {
+    "id": 50046,
+    "name": "Pakistan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777104/team_logos/pakistan.webp"
+  },
+  {
+    "id": 50047,
+    "name": "Sri Lanka",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777105/team_logos/sri_lanka.webp"
+  },
+  {
+    "id": 50048,
+    "name": "Cook Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777106/team_logos/cook_islands.webp"
+  },
+  {
+    "id": 50049,
+    "name": "Fiji",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777107/team_logos/fiji.webp"
+  },
+  {
+    "id": 50050,
+    "name": "New Zealand",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777108/team_logos/new_zealand.webp"
+  },
+  {
+    "id": 50051,
+    "name": "Papua New Guinea",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777109/team_logos/papua_new_guinea.webp"
+  },
+  {
+    "id": 50052,
+    "name": "Samoa",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777109/team_logos/samoa.webp"
+  },
+  {
+    "id": 50053,
+    "name": "Solomon Islands",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777110/team_logos/solomon_islands.webp"
+  },
+  {
+    "id": 50054,
+    "name": "French Polynesia",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777111/team_logos/french_polynesia.webp"
+  },
+  {
+    "id": 50055,
+    "name": "Tonga",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777111/team_logos/tonga.webp"
+  },
+  {
+    "id": 50056,
+    "name": "Tuvalu",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777112/team_logos/tuvalu.webp"
+  },
+  {
+    "id": 50057,
+    "name": "Vanuatu",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777113/team_logos/vanuatu.webp"
+  },
+  {
+    "id": 3900,
+    "name": "AFC Bournemouth",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777114/team_logos/afc_bournemouth.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3901,
+    "name": "Arsenal FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777115/team_logos/arsenal_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3902,
+    "name": "Aston Villa FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777115/team_logos/aston_villa_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3903,
+    "name": "Brentford FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777116/team_logos/brentford_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3904,
+    "name": "Brighton & Hove Albion FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777117/team_logos/brighton_hove_albion_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3905,
+    "name": "Burnley FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777118/team_logos/burnley_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3906,
+    "name": "Chelsea FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777118/team_logos/chelsea_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3907,
+    "name": "Crystal Palace FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777119/team_logos/crystal_palace_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3908,
+    "name": "Everton FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777120/team_logos/everton_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3909,
+    "name": "Fulham FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777121/team_logos/fulham_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3910,
+    "name": "Leeds United AFC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777122/team_logos/leeds_united_afc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3911,
+    "name": "Liverpool FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777122/team_logos/liverpool_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3912,
+    "name": "Manchester City FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777124/team_logos/manchester_city_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3913,
+    "name": "Manchester United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777125/team_logos/manchester_united_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3914,
+    "name": "Newcastle United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777126/team_logos/newcastle_united_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3915,
+    "name": "Nottingham Forest FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777127/team_logos/nottingham_forest_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3916,
+    "name": "Sunderland AFC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777127/team_logos/sunderland_afc.webp",
+    "leagueId": 39
+  },
+  {
+    "id": 3917,
+    "name": "Tottenham Hotspur FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777128/team_logos/tottenham_hotspur_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3918,
+    "name": "West Ham United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777129/team_logos/west_ham_united_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3919,
+    "name": "Wolverhampton Wanderers FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777130/team_logos/wolverhampton_wanderers_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3920,
+    "name": "Birmingham City FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777131/team_logos/birmingham_city_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3921,
+    "name": "Blackburn Rovers FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777132/team_logos/blackburn_rovers_fc.webp",
+    "leagueId": 39
+  },
+  {
+    "id": 3922,
+    "name": "Bristol City FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777132/team_logos/bristol_city_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3923,
+    "name": "Charlton Athletic FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777133/team_logos/charlton_athletic_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3924,
+    "name": "Coventry City FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777134/team_logos/coventry_city_fc.webp",
+    "leagueId": 39
+  },
+  {
+    "id": 3925,
+    "name": "Derby County FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777135/team_logos/derby_county_fc.webp",
+    "leagueId": 39
+  },
+  {
+    "id": 3926,
+    "name": "Hull City AFC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777136/team_logos/hull_city_afc.webp",
+    "leagueId": 39
+  },
+  {
+    "id": 3927,
+    "name": "Ipswich Town FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777137/team_logos/ipswich_town_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 3928,
+    "name": "Leicester City FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777137/team_logos/leicester_city_fc.png",
+    "leagueId": 39
+  },
+  {
+    "id": 14000,
+    "name": "Athletic Club de Bilbao",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777138/team_logos/athletic_club_de_bilbao.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14001,
+    "name": "CA Osasuna",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777139/team_logos/ca_osasuna.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14002,
+    "name": "Real Oviedo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777140/team_logos/real_oviedo.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14003,
+    "name": "Club Atlético Madrid",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777141/team_logos/club_atl_tico_madrid.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14004,
+    "name": "Deportivo Alavés",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777141/team_logos/deportivo_alav_s.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14005,
+    "name": "Elche CdF",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777142/team_logos/elche_cdf.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14006,
+    "name": "FC Barcelona",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777143/team_logos/fc_barcelona.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14007,
+    "name": "Getafe CF SAD",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777144/team_logos/getafe_cf_sad.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14008,
+    "name": "Girona FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777145/team_logos/girona_fc.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14009,
+    "name": "Rayo Vallecano de Madrid",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777146/team_logos/rayo_vallecano_de_madrid.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14010,
+    "name": "RC Celta de Vigo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777146/team_logos/rc_celta_de_vigo.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14011,
+    "name": "RCD Espanyol de Barcelona",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777147/team_logos/rcd_espanyol_de_barcelona.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14012,
+    "name": "RCD Mallorca",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777149/team_logos/rcd_mallorca.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14013,
+    "name": "Real Betis Balompié",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777150/team_logos/real_betis_balompi_.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14014,
+    "name": "Real Madrid",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777150/team_logos/real_madrid.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14015,
+    "name": "Real Sociedad",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777151/team_logos/real_sociedad.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14016,
+    "name": "Sevilla FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777152/team_logos/sevilla_fc.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14017,
+    "name": "Valencia CF",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777153/team_logos/valencia_cf.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14018,
+    "name": "Villareal CF",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777154/team_logos/villareal_cf.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14019,
+    "name": "Granada CF",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777155/team_logos/granada_cf.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14020,
+    "name": "Real Valladolid CdF",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777155/team_logos/real_valladolid_cdf.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14021,
+    "name": "Real Zaragoza",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777156/team_logos/real_zaragoza.png",
+    "leagueId": 140
+  },
+  {
+    "id": 14022,
+    "name": "SD Eibar",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777157/team_logos/sd_eibar.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 14023,
+    "name": "UD Almería",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777158/team_logos/ud_almer_a.webp",
+    "leagueId": 140
+  },
+  {
+    "id": 13500,
+    "name": "AC Milan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777158/team_logos/ac_milan.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13501,
+    "name": "FC Inter Milan",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777159/team_logos/fc_inter_milan.webp",
+    "leagueId": 135
+  },
+  {
+    "id": 13502,
+    "name": "Juventus FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777160/team_logos/juventus_fc.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13503,
+    "name": "SSC Napoli",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777161/team_logos/ssc_napoli.webp",
+    "leagueId": 135
+  },
+  {
+    "id": 13504,
+    "name": "AS Roma",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777161/team_logos/as_roma.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13505,
+    "name": "SS Lazio",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777162/team_logos/ss_lazio.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13506,
+    "name": "ACF Fiorentina",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777163/team_logos/acf_fiorentina.webp",
+    "leagueId": 135
+  },
+  {
+    "id": 13507,
+    "name": "Atalanta Bergamo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777163/team_logos/atalanta_bergamo.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13508,
+    "name": "Bologna FC 1909",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777164/team_logos/bologna_fc_1909.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13509,
+    "name": "Cagliari Calcio",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777165/team_logos/cagliari_calcio.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13510,
+    "name": "Genoa CFC 1893",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777166/team_logos/genoa_cfc_1893.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13511,
+    "name": "AC Monza 1912",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777166/team_logos/ac_monza_1912.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13512,
+    "name": "Empoli FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777167/team_logos/empoli_fc.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13513,
+    "name": "US Sassuolo",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777168/team_logos/us_sassuolo.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13514,
+    "name": "US Lecce 1908",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777169/team_logos/us_lecce_1908.webp",
+    "leagueId": 135
+  },
+  {
+    "id": 13515,
+    "name": "Torino FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777170/team_logos/torino_fc.webp",
+    "leagueId": 135
+  },
+  {
+    "id": 13516,
+    "name": "ASD Como 1907",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777171/team_logos/asd_como_1907.webp",
+    "leagueId": 135
+  },
+  {
+    "id": 13517,
+    "name": "UC Sampdoria",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777171/team_logos/uc_sampdoria.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13518,
+    "name": "US Cremonese 1903",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777172/team_logos/us_cremonese_1903.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13519,
+    "name": "Frosinone Calcio",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777173/team_logos/frosinone_calcio.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13520,
+    "name": "AC Reggiana 1919",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777174/team_logos/ac_reggiana_1919.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13521,
+    "name": "Udinese Calcio",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777174/team_logos/udinese_calcio.png",
+    "leagueId": 135
+  },
+  {
+    "id": 13522,
+    "name": "Palermo Calcio",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777175/team_logos/palermo_calcio.png",
+    "leagueId": 135
+  },
+  {
+    "id": 7800,
+    "name": "FC Bayern München",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777176/team_logos/fc_bayern_m_nchen.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7801,
+    "name": "BV Borussia Dortmund",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777177/team_logos/bv_borussia_dortmund.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7802,
+    "name": "Bayer Leverkusen",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777178/team_logos/bayer_leverkusen.webp",
+    "leagueId": 78
+  },
+  {
+    "id": 7803,
+    "name": "RB Leipzig",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777179/team_logos/rb_leipzig.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7804,
+    "name": "VFB Stuttgart",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777180/team_logos/vfb_stuttgart.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7805,
+    "name": "Eintracht Frankfurt",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777180/team_logos/eintracht_frankfurt.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7806,
+    "name": "VFL Wolfsburg",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777181/team_logos/vfl_wolfsburg.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7807,
+    "name": "SC Freiburg",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777182/team_logos/sc_freiburg.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7808,
+    "name": "TSG 1899 Hoffenheim",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777183/team_logos/tsg_1899_hoffenheim.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7809,
+    "name": "FC Augsburg",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777183/team_logos/fc_augsburg.webp",
+    "leagueId": 78
+  },
+  {
+    "id": 7810,
+    "name": "FSV Mainz",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777184/team_logos/fsv_mainz.webp",
+    "leagueId": 78
+  },
+  {
+    "id": 7811,
+    "name": "SV Werder Bremen",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777185/team_logos/sv_werder_bremen.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7812,
+    "name": "FC Union Berlin",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777186/team_logos/fc_union_berlin.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7813,
+    "name": "FC Heidenheim 1846",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777186/team_logos/fc_heidenheim_1846.webp",
+    "leagueId": 78
+  },
+  {
+    "id": 7814,
+    "name": "FC Köln",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777187/team_logos/fc_k_ln.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7815,
+    "name": "VfL Bochum",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777188/team_logos/vfl_bochum.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7816,
+    "name": "FC Schalke 04",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777189/team_logos/fc_schalke_04.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7817,
+    "name": "Hertha BSC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777189/team_logos/hertha_bsc.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7818,
+    "name": "Hamburger SV",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777191/team_logos/hamburger_sv.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7819,
+    "name": "FC Sankt Pauli",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777192/team_logos/fc_sankt_pauli.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7820,
+    "name": "FC Nürnberg",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777192/team_logos/fc_n_rnberg.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7821,
+    "name": "FC Kaiserslautern",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777193/team_logos/fc_kaiserslautern.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7822,
+    "name": "Hannover 96",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777194/team_logos/hannover_96.png",
+    "leagueId": 78
+  },
+  {
+    "id": 7823,
+    "name": "Eintracht Braunschweig",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777195/team_logos/eintracht_braunschweig.png",
+    "leagueId": 78
+  },
+  {
+    "id": 6100,
+    "name": "Paris Saint-Germain",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777195/team_logos/paris_saint_germain.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6101,
+    "name": "Angers",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777196/team_logos/angers.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6102,
+    "name": "Auxerre",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777197/team_logos/auxerre.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6103,
+    "name": "Brest",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777198/team_logos/brest.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6104,
+    "name": "Le Havre AC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777198/team_logos/le_havre_ac.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6105,
+    "name": "RC Lens",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777199/team_logos/rc_lens.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6106,
+    "name": "Lille",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777200/team_logos/lille.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6107,
+    "name": "Lyon",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777201/team_logos/lyon.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6108,
+    "name": "Marseille",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777202/team_logos/marseille.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6109,
+    "name": "AS Monaco",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777203/team_logos/as_monaco.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6110,
+    "name": "Montpellier",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777204/team_logos/montpellier.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6111,
+    "name": "Nantes",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777204/team_logos/nantes.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6112,
+    "name": "Nice",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777205/team_logos/nice.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6113,
+    "name": "Stade de Reims",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777205/team_logos/stade_de_reims.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6114,
+    "name": "Rennes",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777206/team_logos/rennes.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6115,
+    "name": "AS Saint-Étienne",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777207/team_logos/as_saint_tienne.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6116,
+    "name": "RC Strasbourg Alsace",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777208/team_logos/rc_strasbourg_alsace.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6117,
+    "name": "Toulouse",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777208/team_logos/toulouse.png",
+    "leagueId": 61
+  },
+  {
+    "id": 6118,
+    "name": "FC Metz",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777209/team_logos/fc_metz.png",
+    "leagueId": 61
+  },
+  {
+    "id": 25300,
+    "name": "Accra Hearts of OAK SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777210/team_logos/accra_hearts_of_oak_sc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25301,
+    "name": "Accra Lions FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777211/team_logos/accra_lions_fc.png",
+    "leagueId": 253
+  },
+  {
+    "id": 25302,
+    "name": "Aduana Stars FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777212/team_logos/aduana_stars_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25303,
+    "name": "Asante Kotoko SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777212/team_logos/asante_kotoko_sc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25304,
+    "name": "Basake Holy Stars FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777213/team_logos/basake_holy_stars_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25305,
+    "name": "Bechem United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777214/team_logos/bechem_united_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25306,
+    "name": "Berekum Chelsea FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777215/team_logos/berekum_chelsea_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25307,
+    "name": "Bibiani Goldstars FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777216/team_logos/bibiani_goldstars_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25308,
+    "name": "Dreams FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777217/team_logos/dreams_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25309,
+    "name": "FC Samartex",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777218/team_logos/fc_samartex.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25310,
+    "name": "Heart of Lions FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777218/team_logos/heart_of_lions_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25311,
+    "name": "Karela United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777219/team_logos/karela_united_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25312,
+    "name": "Legon Cities FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777220/team_logos/legon_cities_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25313,
+    "name": "Medeama FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777221/team_logos/medeama_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25314,
+    "name": "Nations FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777222/team_logos/nations_fc.png",
+    "leagueId": 253
+  },
+  {
+    "id": 25315,
+    "name": "Nsoatream FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777222/team_logos/nsoatream_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25316,
+    "name": "Vision FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777223/team_logos/vision_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25317,
+    "name": "Young Apostles FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777224/team_logos/young_apostles_fc.webp",
+    "leagueId": 253
+  },
+  {
+    "id": 25400,
+    "name": "Atalanta United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777225/team_logos/atalanta_united_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25401,
+    "name": "Charlotte FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777225/team_logos/charlotte_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25402,
+    "name": "Chicago Fire FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777226/team_logos/chicago_fire_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25403,
+    "name": "FC Montreal",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777227/team_logos/fc_montreal.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25404,
+    "name": "Inter Miami",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777228/team_logos/inter_miami.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25405,
+    "name": "Columbus Crew SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777229/team_logos/columbus_crew_sc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25406,
+    "name": "DC United",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777230/team_logos/dc_united.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25407,
+    "name": "FC Cincinnati",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777231/team_logos/fc_cincinnati.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25408,
+    "name": "Nashville SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777231/team_logos/nashville_sc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25409,
+    "name": "New England Revolution",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777232/team_logos/new_england_revolution.webp",
+    "leagueId": 254
+  },
+  {
+    "id": 25410,
+    "name": "New York City FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777233/team_logos/new_york_city_fc.webp",
+    "leagueId": 254
+  },
+  {
+    "id": 25411,
+    "name": "New York Red Bulls",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777234/team_logos/new_york_red_bulls.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25412,
+    "name": "Orlando City",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777234/team_logos/orlando_city.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25413,
+    "name": "Philadelphia Union",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777235/team_logos/philadelphia_union.webp",
+    "leagueId": 254
+  },
+  {
+    "id": 25414,
+    "name": "Toronto FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777236/team_logos/toronto_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25415,
+    "name": "Austin FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777237/team_logos/austin_fc.webp",
+    "leagueId": 254
+  },
+  {
+    "id": 25416,
+    "name": "Colorado Rapids",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777238/team_logos/colorado_rapids.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25417,
+    "name": "FC Dallas",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777238/team_logos/fc_dallas.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25418,
+    "name": "Houston Dynamo FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777239/team_logos/houston_dynamo_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25419,
+    "name": "LA Galaxy",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777240/team_logos/la_galaxy.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25420,
+    "name": "Los Angeles FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777241/team_logos/los_angeles_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25421,
+    "name": "Minnesota United FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777241/team_logos/minnesota_united_fc.webp",
+    "leagueId": 254
+  },
+  {
+    "id": 25422,
+    "name": "Portland Timbers",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777242/team_logos/portland_timbers.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25423,
+    "name": "Real Salt Lake",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777243/team_logos/real_salt_lake.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25424,
+    "name": "San Diego FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777244/team_logos/san_diego_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25425,
+    "name": "San Jose Earthquakes",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777245/team_logos/san_jose_earthquakes.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25426,
+    "name": "Seattle Sounders FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777245/team_logos/seattle_sounders_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25427,
+    "name": "Sporting Kansas City",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777246/team_logos/sporting_kansas_city.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25428,
+    "name": "St. Louis City SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777247/team_logos/st_louis_city_sc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 25429,
+    "name": "Vancouver Whitecaps FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777248/team_logos/vancouver_whitecaps_fc.png",
+    "leagueId": 254
+  },
+  {
+    "id": 30700,
+    "name": "Al Ettifaq FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777248/team_logos/al_ettifaq_fc.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30701,
+    "name": "Al Fayha FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777249/team_logos/al_fayha_fc.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30702,
+    "name": "Al Hilal Saudi FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777250/team_logos/al_hilal_saudi_fc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30703,
+    "name": "Al Ittihad FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777251/team_logos/al_ittihad_fc.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30704,
+    "name": "Al Khaleej Club",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777252/team_logos/al_khaleej_club.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30705,
+    "name": "Al Nassr FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777252/team_logos/al_nassr_fc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30706,
+    "name": "AL Shabab FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777254/team_logos/al_shabab_fc.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30707,
+    "name": "Al Taawoun FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777255/team_logos/al_taawoun_fc.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30708,
+    "name": "Al-Ahli Saudi FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777256/team_logos/al_ahli_saudi_fc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30709,
+    "name": "Al-Fateh SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777256/team_logos/al_fateh_sc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30710,
+    "name": "Al-Hazem SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777257/team_logos/al_hazem_sc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30711,
+    "name": "Al-Kholood Club",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777258/team_logos/al_kholood_club.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30712,
+    "name": "Al-Najmah FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777259/team_logos/al_najmah_fc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30713,
+    "name": "Al-Okhdood Club",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777260/team_logos/al_okhdood_club.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30714,
+    "name": "Al-Qadisiyah FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777261/team_logos/al_qadisiyah_fc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30715,
+    "name": "Al-Riyadh FC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777261/team_logos/al_riyadh_fc.webp",
+    "leagueId": 307
+  },
+  {
+    "id": 30716,
+    "name": "Damac Club",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777262/team_logos/damac_club.png",
+    "leagueId": 307
+  },
+  {
+    "id": 30717,
+    "name": "Neom SC",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777263/team_logos/neom_sc.png",
+    "leagueId": 307
+  },
+  {
+    "id": 200,
+    "name": "FC Porto",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777264/team_logos/fc_porto.webp",
+    "leagueId": 2
+  },
+  {
+    "id": 201,
+    "name": "SL Benfica",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777265/team_logos/sl_benfica.webp",
+    "leagueId": 2
+  },
+  {
+    "id": 202,
+    "name": "Sporting CP",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777266/team_logos/sporting_cp.png",
+    "leagueId": 2
+  },
+  {
+    "id": 203,
+    "name": "SC Braga",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777266/team_logos/sc_braga.webp",
+    "leagueId": 2
+  },
+  {
+    "id": 204,
+    "name": "AFC Ajax",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777267/team_logos/afc_ajax.png",
+    "leagueId": 2
+  },
+  {
+    "id": 205,
+    "name": "PSV Eindhoven",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777268/team_logos/psv_eindhoven.webp",
+    "leagueId": 2
+  },
+  {
+    "id": 206,
+    "name": "Feyenoord",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777269/team_logos/feyenoord.png",
+    "leagueId": 2
+  },
+  {
+    "id": 207,
+    "name": "AZ Alkmaar",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777269/team_logos/az_alkmaar.png",
+    "leagueId": 2
+  },
+  {
+    "id": 217,
+    "name": "AFC Wimbledon",
+    "logo": "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757777270/team_logos/afc_wimbledon.webp",
+    "leagueId": 2
+  }
+]

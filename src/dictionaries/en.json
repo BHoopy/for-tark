@@ -1,0 +1,512 @@
+
+{
+  "none": "",
+  "pages": {
+    "homepage": "Homepage",
+    "your-tournaments": "Your tournaments",
+    "my-tournaments": "My Tournaments",
+    "my-favorites": "My Favorites",
+    "support": "Support",
+    "privacy-policy": "Privacy Policy",
+    "profile": "Profile"
+  },
+  "navbar": {
+    "go-back": "Go back",
+    "welcome": "PlayChamp Simplified",
+    "welcome-login": "Welcome!",
+    "welcome-signup": "Create an account",
+    "welcome-user": "Welcome back",
+    "login": "Login",
+    "sign-up": "Sign Up",
+    "login-or-signup": "Login or Sign Up",
+    "login-signup-description": "Use a provider below to sign in or create your account.",
+    "signup-description": "Use a provider below to create your account.",
+    "login-google": "Continue with Google",
+    "signup-google": "Sign up with Google",
+    "login-email": "Continue with Email",
+    "signup-email": "Sign up with Email",
+    "login-description": "Use a provider below to sign in to your account.",
+    "log-out": "Log out",
+    "no-account": "Don't have an account?",
+    "has-account": "Already have an account?",
+    "menu": "Menu",
+    "add-tournament": "My Tournaments"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "me": {
+    "pronouns": "she/her",
+    "description": "Mobile & Frontend dev crafting sleek, fun user experiences.\nUI/UX enthusiast from France !",
+    "joined": "Joined September 28, 2020"
+  },
+  "language": {
+    "title": "Language",
+    "french": "French",
+    "english": "English"
+  },
+  "organizer": {
+    "profile-title": "Organizer Profile",
+    "tournaments-by": "Tournaments by",
+    "view-profile": "View profile"
+  },
+  "tournament": {
+    "your-tournaments": "Your tournaments",
+    "tournaments-description": "You can create tournaments here and find your previous ones.",
+    "search-pool": "Search for a tournament...",
+    "add": "Organize Tournaments",
+    "add-description": "You can create your own tournament here.",
+    "created-by": "Created by : ",
+    "edit-information": "Edit tournament's information",
+    "edit": "Edit",
+    "edit-description": "You can edit your tournament here.",
+    "title": "This tournament charts",
+    "description": "Here you can see the different charts for this tournaments.",
+    "fixtures": "Fixtures",
+    "round": "Round",
+    "round-of": "Round of {count}",
+    "final": "Final",
+    "semi-finals": "Semi-Finals",
+    "quarter-finals": "Quarter-Finals",
+    "add-edit-teams": "Add/Edit Teams",
+    "organizers": "Organizers",
+    "organizer": "Organizer",
+    "format": "Format",
+    "match-type-full": "Match Type",
+    "create-new": "Create",
+    "get-started": "Get started by creating your first tournament.",
+    "generate-fixtures": "Generate Fixtures",
+    "generate-knockout": "Generate Knockout Stage",
+    "regenerate-fixtures": "Regenerate Fixtures",
+    "generating-fixtures": "Generating...",
+    "add-more-teams": "You need at least 2 teams to generate fixtures.",
+    "add-some-favorites": "Add some tournaments to your favorites to see them here.",
+    "champion": "Champion",
+    "third-place": "3rd Place",
+    "third-place-match": "3rd Place Match",
+    "third-place-ranking": "Best Third-Placed Teams Ranking",
+    "tabs": {
+      "overview": "Overview",
+      "teams": "Teams",
+      "fixtures": "Fixtures",
+      "standings": "Standings",
+      "tournaments": "Tournaments",
+      "organizers": "Organizers"
+    },
+    "standings": {
+      "pos": "Pos",
+      "p": "P",
+      "team": "Team",
+      "pts": "PTS",
+      "w": "W",
+      "d": "D",
+      "l": "L",
+      "gf": "GF",
+      "ga": "GA",
+      "gd": "GD",
+      "bye": "Bye",
+      "group": "Group"
+    },
+    "standings_definitions": {
+      "legend": "Legend",
+      "played": "Played",
+      "wins": "Wins",
+      "draws": "Draws",
+      "losses": "Losses",
+      "goals_for": "Goals For",
+      "goals_against": "Goals Against",
+      "goal_difference": "Goal Difference",
+      "points": "Points"
+    }
+  },
+  "forms": {
+    "profile": {
+      "title": "Profile",
+      "edit-title": "Edit Profile",
+      "edit-description": "Update your profile information.",
+      "picture": "Profile Picture",
+      "picture-description": "Upload a new profile picture.",
+      "cover-image": "Cover Image",
+      "update": "Update Profile",
+      "social-handles": "Social Handles",
+      "name": "Display Name",
+      "whatsapp": "WhatsApp",
+      "x": "X (Twitter)",
+      "facebook": "Facebook",
+      "phone": "Phone",
+      "discord": "Discord",
+      "email": "Email"
+    },
+    "tournament": {
+      "share-list": "Share List",
+      "name": "Tournament Name",
+      "name-description": "Your tournament name",
+      "description-title": "Description",
+      "description-placeholder": "Enter a short description for your tournament",
+      "rules-title": "Rules",
+      "rules-placeholder": "Enter the rules for your tournament",
+      "roster": "Roster (comma-separated)",
+      "roster-placeholder": "e.g., Player1, Player2, Player3",
+      "format": "Tournament Format",
+      "format-placeholder": "Select a format",
+      "match-type": "Match Type",
+      "match-type-placeholder": "Select match type",
+      "single_leg": "Single Leg",
+      "two_leg": "Two Legs (Home/Away)",
+      "league": "League",
+      "knockout": "Knockout",
+      "group_stage": "Group Stage",
+      "round_robin": "Round Robin",
+      "group_then_knockout": "Group Stage+Knockout",
+      "number-of-teams": "Number of Teams",
+      "number-of-teams-placeholder": "Select the total number of teams",
+      "knockout-team-notice": "For a knockout tournament, the number of teams must match the selected total to generate the bracket.",
+      "group-generation-notice": "You need at least {required} teams to generate a group stage. You currently have {count}.",
+      "knockout-generation-notice": "Please use the 'Edit' button to ensure you have selected the number of Teams for this tournament before generating fixtures.",
+      "knockout-team-mismatch": "You need to have {totalTeams} teams to generate fixtures for this knockout tournament. You currently have {teamCount}.",
+      "knockout-team-mismatch-too-many": "You have too many teams. Please remove {teamCount, plural, =1 {# team} other {# teams}} to match the required {totalTeams}.",
+      "team-number-description": "Your number of teams",
+      "name-color": "Name and Color",
+      "teams": "Teams",
+      "team-name": "Team name",
+      "create": "Create a tournament",
+      "update": "Update",
+      "delete": "Delete",
+      "deleting": "Deleting...",
+      "save-changes": "Save Changes",
+      "saving": "Saving...",
+      "delete-title": "Delete ",
+      "delete-description": "Are you sure you want to delete this tournament? This action is irreversible.",
+      "confirm-delete": "Confirm Delete",
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "add-team": "Add team",
+      "edit-team": "Edit Team",
+      "color": "Color",
+      "cover-image": "Tournament Cover Image",
+      "cover-image-description": "Upload a new cover image for your tournament.",
+      "regenerate-title": "Regenerate Fixtures?",
+      "regenerate-description": "Are you sure you want to regenerate the fixtures? All existing scores will be reset. This action cannot be undone.",
+      "preset-teams": "Preset",
+      "custom-team": "Custom",
+      "add-preset-team": "Add Team from Presets",
+      "search-add-team": "Search for a team to add to your tournament.",
+      "search-teams-placeholder": "Search teams...",
+      "add-custom-team": "Add Custom Team",
+      "change-logo": "Change Logo",
+      "update-logo": "Update Team Logo",
+      "save-list": "Save current list",
+      "save-list-title": "Save Team List",
+      "save-list-description": "Save the current list of teams for future use.",
+      "list-name": "List Name",
+      "list-name-placeholder": "e.g., My Favorite Teams",
+      "save": "Save",
+      "load-list": "Load from list",
+      "load-list-title": "Load a Team List",
+      "load-list-description": "Choose a saved list to load teams into the tournament.",
+      "load-list-button": "Load",
+      "manage-moderators": "Manage Moderators",
+      "moderator-description": "Add or remove users who can help you manage the tournament by updating scores.",
+      "current-moderators": "Current Moderators",
+      "no-moderators": "There are no moderators for this tournament yet.",
+      "add-moderator": "Add a Moderator",
+      "search-by-email": "Search by user email...",
+      "no-users-found": "No users found with that email."
+    },
+    "score": {
+      "update": "Update Score",
+      "team1-score": "Score Team 1",
+      "team2-score": "Score Team 2",
+      "submit": "Submit",
+      "leg": "Leg",
+      "leg1": "1st Leg",
+      "leg2": "2nd Leg",
+      "final-score": "Final Score",
+      "agg": "Agg.",
+      "set-scores": "Set Score"
+    },
+    "login": {
+      "email-label": "Email",
+      "email-placeholder": "your@email.com",
+      "password-label": "Password",
+      "password-placeholder": "Your password",
+      "username-label": "Username",
+      "username-placeholder": "Your username"
+    },
+    "comment": {
+      "title": "Comments",
+      "placeholder": "Add a comment...",
+      "submit": "Post Comment",
+      "submitting": "Posting...",
+      "none": "Be the first to comment!",
+      "error-loading": "Could not load comments."
+    }
+  },
+  "no": {
+    "yet": "No tournaments yet !",
+    "yours": "You have no tournaments yet!",
+    "no-points": "This tournament has no points set yet !",
+    "fixtures": "No fixtures generated for this tournament yet.",
+    "knockout-fixtures": "Knockout fixtures have not been generated.",
+    "knockout-fixtures-yet": "Knockout fixtures have not been generated yet.",
+    "group-stage-complete": "Group stage must be complete before generating the knockout stage.",
+    "description": "No description provided.",
+    "rules": "No rules provided.",
+    "roster": "No players on roster.",
+    "teams": "No teams have been added yet.",
+    "added-yet": "No teams added yet.",
+    "saved-lists": "You have no saved team lists.",
+    "favorites": "You have no favorite tournaments yet."
+  },
+  "theme": {
+    "span": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "privacy-policy": {
+    "title": "Privacy Policy",
+    "last-updated": "Last updated : ",
+    "small-description-1": "The website PlayChamp Simplified (",
+    "small-description-2": ") is operated and maintained by Lisa Glaziou.",
+    "small-description-3": "This page informs you of our policies regarding the collection,\nuse, and disclosure of personal information we receive from users\nof the website.",
+    "1": "1. Information Collection and Use",
+    "1-1": "We collect information using OAuth 2.0 authentication with GitHub.\nWhen you log in or sign up via GitHub, we access certain\ninformation associated with your GitHub account, such as:",
+    "1-2": "• Personal Information: Your GitHub username, email\naddress, and profile picture (if provided).",
+    "1-3": "• Public Information: Any public repositories or\nprojects linked to your GitHub account.",
+    "1-4": "This information is used to create and manage your account, and\npersonalize your experience on our platform. Additionally, we use\nVercel Analytics to collect performance and user interaction data.\nThis includes but is not limited to page views, session duration,\nand user interactions to help improve our platform’s performance\nand user experience.",
+    "2": "2. Cookies",
+    "2-1": "Cookies are files containing a small amount of data, which may\ninclude an anonymous unique identifier. Cookies are sent to your\nbrowser from a website and stored on your computer’s hard drive.\nYou can configure your browser to refuse all cookies or to\nindicate when a cookie is sent. This site only uses cookies\nnecessary for its proper functioning. These cookies are not used\nfor tracking purposes. You are required to accept these cookies to\nuse our site.",
+    "3": "3. Security",
+    "3-1": "The security of your personal information is important to us.\nDevelopment time has been dedicated to ensuring maximum security\nfor all our users through the use of secure services. Please keep\nin mind that no method of transmission over the Internet or method\nof electronic storage is 100% secure. While we strive to use\ncommercially acceptable means to protect your personal\ninformation, we cannot guarantee its absolute security.",
+    "4": "4. Changes to this Privacy Policy",
+    "4-1": "This privacy policy is effective as of the date above and will\nremain in effect. Any modifications to its provisions will be\nimmediately applied after being published on this page. We reserve\nthe right to update or change our privacy policy at any time, and\nyou should periodically review this policy. Your continued use of\nthe service after we have posted changes to the privacy policy on\nthis page will constitute your acceptance of those changes and\nyour consent to abide by and be bound by the updated privacy\npolicy.",
+    "5": "5. Contact Us",
+    "5-1": "If you have any questions regarding this privacy policy, please\ncontact the lead developer via email at "
+  },
+  "support": {
+    "title": "Frequently asked questions",
+    "description-1": "These are the most commonly asked questions about PlayChamp Simplified. ",
+    "description-2": "Can't find what you're looking for ? ",
+    "description-3": "Chat to our friendly team !",
+    "Q1": {
+      "title": "What is PlayChamp Simplified ?",
+      "response": "This PlayChamp Simplified is a tournament management platform designed to streamline the creation and management of tournaments. It enables users to create tournaments, link teams, and add points to their respective teams. Additionally, the platform automatically generates charts based on the data, providing a dynamic and visual representation of team standings and performance throughout the tournament."
+    },
+    "Q2": {
+      "title": "What are the main features of the platform?",
+      "response-1": "• Tournament Creation: Easily set up tournaments with linked teams.",
+      "response-2": "• Point Management: Assign and update points for teams.",
+      "response-3": "• Chart Generation: Automatically display team standings and performance with dynamic charts."
+    },
+    "Q3": {
+      "title": "How do I log in to PlayChamp Simplified?",
+      "response-1": "Logging in is simple and secure with GitHub's two-factor authentication:",
+      "response-2": "1. Click on the 'Login with GitHub' button on the loginpage.",
+      "response-3": "2. Enter your GitHub credentials if prompted.",
+      "response-4": "3. Complete the two-factor authentication process by entering the code sent to your authenticator app or email.",
+      "response-5": "4. Once authenticated, you’ll be redirected to the platform's dashboard."
+    },
+    "Q4": {
+      "title": "How do I create a tournament?",
+      "response-1": "Creating a tournament is quick and intuitive:",
+      "response-2": "1. Navigate to the 'Create Tournament' section in your dashboard.",
+      "response-3": "2. Fill in the tournament details:",
+      "response-4": "   - Title: Enter the name of the tournament.",
+      "response-5": "   - Number of Teams: Select between 2 and 5 teams.",
+      "response-6": "   - Team Names and Colors: Assign a unique name and color to each team for easy identification.",
+      "response-7": "3. Review your entries and click 'Create.'",
+      "response-8": "4. Your tournament is now set up, and you can start managing points or viewing standings."
+    },
+    "Q5": {
+      "title": "What is the purpose of the /show/ID page?",
+      "response": "The /show/ID page is a public, read-only view of the tournament. It automatically displays team standings and points based on the latest data. Users can see the results and performance charts without any interaction or manual updates."
+    },
+    "Q6": {
+      "title": "What is the purpose of the /user/tournament/ID page?",
+      "response": "The /user/tournament/ID page is for managing the tournament. Authorized users can update details, add points, and make changes to the tournament data. These updates reflect immediately on the /show/ID page."
+    }
+  },
+  "toast": {
+    "favorite-add-success": {
+      "title": "Added to favorites!",
+      "description": "This tournament has been added to your favorites."
+    },
+    "favorite-add-fail": {
+      "title": "Failed to add favorite",
+      "description": "Could not add this tournament to your favorites."
+    },
+    "favorite-remove-success": {
+      "title": "Removed from favorites!",
+      "description": "This tournament has been removed from your favorites."
+    },
+    "favorite-remove-fail": {
+      "title": "Failed to remove favorite",
+      "description": "Could not remove this tournament from your favorites."
+    },
+    "profile-update-success": {
+      "title": "Profile updated!",
+      "description": "Your profile picture has been updated successfully."
+    },
+    "profile-update-fail": {
+      "title": "Update failed",
+      "description": "Could not update your profile picture. Please try again."
+    },
+    "cover-image-update-success": {
+      "title": "Cover image updated!",
+      "description": "Your cover image has been updated successfully."
+    },
+    "cover-image-update-fail": {
+      "title": "Update failed",
+      "description": "Could not update your cover image. Please try again."
+    },
+    "login-success": {
+      "title": "Welcome Back!",
+      "description": "You’ve successfully logged in."
+    },
+    "signup-success": {
+      "title": "Welcome!",
+      "description": "Your account has been created successfully."
+    },
+    "login-fail": {
+      "title": "Login Failed:",
+      "description": "An error occurred during sign-in. Please try again."
+    },
+    "logout-success": {
+      "title": "See You Soon!",
+      "description": "You’ve been logged out of your account."
+    },
+    "logout-fail": {
+      "title": "Logout Failed:",
+      "description": "An error occurred during sign-out. Please try again."
+    },
+    "email-sent": {
+      "title": "Check your email",
+      "description": "A sign in link has been sent to your email address."
+    },
+    "score-update-success": {
+      "title": "Score updated successfully!",
+      "description": "You've successfully updated the match score."
+    },
+    "score-update-fail": {
+      "title": "Couldn't update score",
+      "description": "An error occurred while updating the score."
+    },
+    "create-tournament-success": {
+      "title": "Creation successful !",
+      "description": "You’ve successfully created a tournament."
+    },
+    "create-tournament-fail": {
+      "title": "Couldn't create a tournament.",
+      "description": "An error occurred during the creation of a tournament."
+    },
+    "delete-tournament-success": {
+      "title": "Deleted successfully !",
+      "description": "You’ve successfully deleted the tournament."
+    },
+    "delete-tournament-fail": {
+      "title": "Couldn't delete the tournaments",
+      "description": "An error occurred during the suppression of the tournaments."
+    },
+    "edit-tournament-success": {
+      "title": "Updated successfully !",
+      "description": "You’ve successfully updated the tournament."
+    },
+    "edit-tournament-fail": {
+      "title": "Couldn't update the tournaments",
+      "description": "An error occurred during the update of the tournaments."
+    },
+    "add-comment-success": {
+      "title": "Comment posted!",
+      "description": "Your comment has been successfully posted."
+    },
+    "add-comment-fail": {
+      "title": "Failed to post comment",
+      "description": "An error occurred while posting your comment."
+    },
+    "generate-fixtures-success": {
+      "title": "Fixtures Generated!",
+      "description": "The tournament schedule has been created."
+    },
+    "generate-fixtures-fail": {
+      "title": "Generation Failed",
+      "description": "Could not generate fixtures. Please try again."
+    },
+    "team-add-success": {
+      "title": "Team added!",
+      "description": "The new team has been added to the tournament."
+    },
+    "team-add-fail": {
+      "title": "Failed to add team",
+      "description": "An error occurred while adding the team."
+    },
+    "team-update-success": {
+      "title": "Team updated!",
+      "description": "The team details have been updated."
+    },
+    "team-update-fail": {
+      "title": "Failed to update team",
+      "description": "An error occurred while updating the team."
+    },
+    "team-delete-success": {
+      "title": "Team deleted!",
+      "description": "The team has been removed from the tournament."
+    },
+    "team-delete-fail": {
+      "title": "Failed to delete team",
+      "description": "An error occurred while deleting the team."
+    },
+    "team-logo-update-success": {
+      "title": "Logo updated!",
+      "description": "The team logo has been updated successfully."
+    },
+    "team-logo-update-fail": {
+      "title": "Update failed",
+      "description": "Could not update the team logo. Please try again."
+    },
+    "save-team-list-success": {
+      "title": "List saved!",
+      "description": "Your team list has been saved."
+    },
+    "save-team-list-fail": {
+      "title": "Save failed",
+      "description": "Could not save your team list."
+    },
+    "load-team-list-success": {
+      "title": "Teams loaded!",
+      "description": "Teams from the list have been added."
+    },
+    "load-team-list-fail": {
+      "title": "Load failed",
+      "description": "Could not load teams from the list."
+    },
+    "team-list-delete-success": {
+      "title": "List deleted!",
+      "description": "The team list has been successfully deleted."
+    },
+    "team-list-delete-fail": {
+      "title": "Deletion failed",
+      "description": "Could not delete the team list."
+    },
+    "moderator-add-success": {
+      "title": "Moderator Added",
+      "description": "The user can now update scores for this tournament."
+    },
+    "moderator-add-fail": {
+      "title": "Failed to Add Moderator",
+      "description": "An error occurred. Please try again."
+    },
+    "moderator-remove-success": {
+      "title": "Moderator Removed",
+      "description": "The user can no longer update scores."
+    },
+    "moderator-remove-fail": {
+      "title": "Failed to Remove Moderator",
+      "description": "An error occurred. Please try again."
+    }
+  }
+}

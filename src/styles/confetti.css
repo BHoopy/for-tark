@@ -1,0 +1,54 @@
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+.confetti-container > div {
+  position: absolute;
+  width: 8px;
+  height: 16px;
+  background: #f2d74e;
+  top: -10%;
+  opacity: 1;
+  animation: drop 4s linear infinite;
+}
+
+@for $i from 0 through 150 {
+  .confetti-#{$i} {
+    $x-position: random(100) * 1vw;
+    $delay: random(4000) * -1ms;
+    $duration: 3000ms + random(1000) * 1ms;
+    $rotation: random(360) + deg;
+    $hue: random(360);
+
+    left: $x-position;
+    animation-delay: $delay;
+    animation-duration: $duration;
+    background-color: hsl($hue, 100%, 50%);
+    transform: rotate3d(1, 1, 1, $rotation);
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(0vh) rotateZ(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotateZ(360deg);
+    opacity: 0;
+  }
+}

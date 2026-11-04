@@ -1,0 +1,68 @@
+/**
+ * @fileoverview Firestore Security Rules for the 'Hello Next' application.
+ *
+ * Core Philosophy:
+ * This ruleset allows public read access to all greetings while restricting write access to only allow authorized users to create, update, or delete greetings. Authorization is based on an ownership model, where the creator of a greeting has full control over it.
+ *
+ * Data Structure:
+ * All greetings are stored in the top-level `/greetings/{greetingId}` collection.
+ *
+ * Key Security Decisions:
+ * - Public read access is granted for all greetings.
+ * - Only the creator of a greeting can modify or delete it.
+ * - The rules do not currently enforce a data schema beyond the presence of an 'id' field.
+ *
+ * Denormalization for Authorization:
+ * The rules rely on an `id` field within the `/greetings/{greetingId}` document that must match the authenticated user's UID for write access. This avoids costly `get()` operations.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Grants public read access to greetings and restricts write access to the creator of the greeting.
+     * @path /greetings/{greetingId}
+     * @allow (get, list): Any user can read greetings.
+     * @allow (create): User with auth can create a greeting where the id matches their auth uid.
+     * @allow (update, delete): User with auth can update or delete a greeting where the id matches their auth uid and the document exists.
+     * @deny (create): User attempts to create a greeting with an ID that does not match their auth uid.
+     * @principle Enforces document ownership for writes, allows public reads.
+     */
+    match /greetings/{greetingId} {
+      allow get: if true;
+      allow list: if true;
+
+      allow create: if isSignedIn() && request.resource.data.id == request.auth.uid;
+      allow update: if isSignedIn() && isExistingOwner(request.auth.uid);
+      allow delete: if isSignedIn() && isExistingOwner(request.auth.uid);
+    }
+
+    // ----- Helper functions -----
+
+    /**
+     * @description Checks if the user is signed in.
+     * @return {boolean} True if the user is signed in, false otherwise.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the user is the owner of the document.
+     * @param {string} userId The user ID to check against the document's ID.
+     * @return {boolean} True if the user is the owner, false otherwise.
+     */
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    /**
+     * @description Checks if the user is the owner of the document and the document exists.
+     * @param {string} userId The user ID to check against the document's ID.
+     * @return {boolean} True if the user is the owner and the document exists, false otherwise.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "Greeting": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Greeting",
+      "type": "object",
+      "description": "Represents a customizable greeting message.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the greeting."
+        },
+        "message": {
+          "type": "string",
+          "description": "The text of the greeting."
+        },
+        "sentiment": {
+          "type": "string",
+          "description": "The sentiment associated with the greeting (Positive, Neutral, Negative).",
+          "format": "string"
+        },
+        "overrideTone": {
+          "type": "string",
+          "description": "User-defined tone override for LLM elaboration (e.g., enthusiastic, questioning, hostile)."
+        }
+      },
+      "required": [
+        "id",
+        "message",
+        "sentiment"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/greetings/{greetingId}",
+        "definition": {
+          "entityName": "Greeting",
+          "schema": {
+            "$ref": "#/backend/entities/Greeting"
+          },
+          "description": "Stores customizable greeting messages. Includes fields for the message content, sentiment, and optional tone override. The greeting ID is used as a unique identifier.",
+          "params": [
+            {
+              "name": "greetingId",
+              "description": "Unique identifier for the greeting message."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to store and manage greeting messages, focusing on customizability and AI-driven enhancements. Given that the application is named 'Hello Next' and handles customizable greetings, I recommend a structure that allows users to manage their greetings and the application to manage the 'default' greeting for new users.\n\nTo achieve Authorization Independence (CRITICAL), the greetings documents themselves contain all the necessary data for access control. Since all greetings are customizable and there are no explicit roles or collaboration requirements, we can store all greetings within a greetings collection.\n\nThis structure effectively supports the required QAPs because there are no complex authorization rules to filter during list operations. All documents in the greetings collection share the same security posture, as they are all designed to be customizable by the user."
+  }
+}

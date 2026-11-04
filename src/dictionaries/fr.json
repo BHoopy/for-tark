@@ -1,0 +1,486 @@
+
+{
+  "none": "",
+  "pages": {
+    "homepage": "Page d'accueil",
+    "your-page": "Vos tournois",
+    "my-tournaments": "Mes Tournois",
+    "my-favorites": "Mes Favoris",
+    "support": "Support",
+    "privacy-policy": "Politique de confidentialité",
+    "profile": "Profil"
+  },
+  "navbar": {
+    "go-back": "Retour",
+    "welcome": "PlayChamp Simplified",
+    "welcome-login": "Bienvenue !",
+    "welcome-signup": "Créer un compte",
+    "welcome-user": "Bon retour",
+    "login": "Se connecter",
+    "sign-up": "S'inscrire",
+    "login-or-signup": "Connexion ou Inscription",
+    "login-signup-description": "Utilisez un fournisseur ci-dessous pour vous connecter ou créer votre compte.",
+    "signup-description": "Utilisez un fournisseur ci-dessous pour créer votre compte.",
+    "login-google": "Continuer avec Google",
+    "signup-google": "S'inscrire avec Google",
+    "login-email": "Continuer avec un Email",
+    "signup-email": "S'inscrire avec un Email",
+    "login-description": "Utilisez un fournisseur ci-dessous pour vous connecter à votre compte.",
+    "log-out": "Déconnexion",
+    "no-account": "Vous n'avez pas de compte ?",
+    "has-account": "Vous avez déjà un compte ?",
+    "menu": "Menu"
+  },
+  "pagination": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "footer": {
+    "rights": "Tous droits réservés"
+  },
+  "me": {
+    "pronouns": "elle",
+    "description": "Développeuse Mobile et Frontend créant des expériences utilisateur élégantes et amusantes.\nPassionnée de UI/UX en provenance de France !",
+    "joined": "Rejoint le 28 septembre 2020"
+  },
+  "language": {
+    "title": "Langue",
+    "french": "Français",
+    "english": "Anglais"
+  },
+  "organizer": {
+    "view-profile": "Voir le profil"
+  },
+  "tournament": {
+    "your-tournaments": "Vos tournois ?",
+    "tournaments-description": "Vous pouvez créer des tournois ici et retrouver vos précédents.",
+    "search-pool": "Recherchez un tournoi...",
+    "add": "Ajoutez un tournoi",
+    "add-description": "Vous pouvez créer vos propres tournois ici.",
+    "created-by": "Créé par : ",
+    "edit-information": "Modifier les informations du tournoi",
+    "edit": "Modifier",
+    "edit-description": "Vous pouvez modifier votre tournoi ici.",
+    "title": "Les graphiques de ce tournoi",
+    "description": "Ici, vous pouvez voir les différents graphiques pour ce tournoi.",
+    "fixtures": "Calendrier",
+    "round": "Tour",
+    "round-of": "Huitième de finale de {count}",
+    "final": "Finale",
+    "semi-finals": "Demi-finales",
+    "quarter-finals": "Quarts de finale",
+    "add-edit-teams": "Ajouter/Modifier les équipes",
+    "organizers": "Organisateurs",
+    "organizer": "Organisateur",
+    "match-type-full": "Type de match",
+    "generate-fixtures": "Générer les matchs",
+    "generate-knockout": "Générer la phase à élimination directe",
+    "regenerate-fixtures": "Régénérer les matchs",
+    "generating-fixtures": "Génération...",
+    "add-more-teams": "Vous avez besoin d'au moins 2 équipes pour générer les matchs.",
+    "add-some-favorites": "Ajoutez des tournois à vos favoris pour les voir ici.",
+    "champion": "Champion",
+    "third-place": "3ème Place",
+    "third-place-match": "Match pour la 3ème Place",
+    "third-place-ranking": "Classement des Meilleurs Troisièmes",
+    "tabs": {
+      "overview": "Aperçu",
+      "teams": "Équipes",
+      "fixtures": "Matchs",
+      "standings": "Classement",
+      "tournaments": "Tournois"
+    },
+    "standings": {
+      "pos": "Pos",
+      "p": "J",
+      "team": "Équipe",
+      "pts": "PTS",
+      "w": "V",
+      "d": "N",
+      "l": "D",
+      "gf": "BP",
+      "ga": "BC",
+      "gd": "DIFF",
+      "bye": "Exempt",
+      "group": "Groupe"
+    },
+    "standings_definitions": {
+      "legend": "Légende",
+      "played": "Joués",
+      "wins": "Victoires",
+      "draws": "Nuls",
+      "losses": "Défaites",
+      "goals_for": "Buts Pour",
+      "goals_against": "Buts Contre",
+      "goal_difference": "Différence de buts",
+      "points": "Points"
+    }
+  },
+  "forms": {
+    "profile": {
+      "title": "Profil",
+      "edit-title": "Modifier le profil",
+      "edit-description": "Mettez à jour vos informations de profil.",
+      "picture": "Photo de profil",
+      "picture-description": "Téléchargez une nouvelle photo de profil.",
+      "update": "Mettre à jour le profil",
+      "social-handles": "Réseaux sociaux",
+      "name": "Nom d'affichage",
+      "whatsapp": "WhatsApp",
+      "x": "X (Twitter)",
+      "facebook": "Facebook",
+      "phone": "Téléphone",
+      "discord": "Discord"
+    },
+    "tournament": {
+      "share-list": "Partager la liste",
+      "name": "Nom du tournoi",
+      "name-description": "Le nom de votre tournoi",
+      "description-title": "Description",
+      "description-placeholder": "Entrez une courte description pour votre tournoi",
+      "rules-title": "Règles",
+      "rules-placeholder": "Entrez les règles de votre tournoi",
+      "roster": "Liste des joueurs (séparés par des virgules)",
+      "roster-placeholder": "ex: Joueur1, Joueur2, Joueur3",
+      "format": "Format du tournoi",
+      "format-placeholder": "Sélectionnez un format",
+      "match-type": "Type de match",
+      "match-type-placeholder": "Sélectionnez le type de match",
+      "single_leg": "Match unique",
+      "two_leg": "Match Aller/Retour",
+      "league": "Ligue",
+      "knockout": "Élimination directe",
+      "group_stage": "Phase de Groupes",
+      "round_robin": "Round Robin",
+      "group_then_knockout": "Phase de Groupes+Élimination directe",
+      "number-of-teams": "Nombre d'équipes",
+      "number-of-teams-placeholder": "Sélectionnez le nombre total d'équipes",
+      "knockout-team-notice": "Pour un tournoi à élimination directe, le nombre d'équipes doit correspondre au total sélectionné pour générer le tableau.",
+      "group-generation-notice": "Vous avez besoin d'au moins {required} équipes pour générer une phase de groupes. Vous en avez actuellement {count}.",
+      "knockout-generation-notice": "Veuillez utiliser le bouton 'Modifier' pour vous assurer d'avoir sélectionné le nombre d'équipes pour ce tournoi avant de générer les rencontres.",
+      "knockout-team-mismatch": "Vous devez avoir {totalTeams} équipes pour générer les matchs de ce tournoi à élimination directe. Vous en avez actuellement {teamCount}.",
+      "knockout-team-mismatch-too-many": "Vous avez trop d'équipes. Veuillez en retirer {teamCount, plural, =1 {# équipe} other {# équipes}} pour correspondre aux {totalTeams} requises.",
+      "team-number-description": "Le nombre de vos team",
+      "name-color": "Nom et Couleur",
+      "teams": "Équipes",
+      "team-name": "Nom de la Team",
+      "create": "Créer un tournoi",
+      "update": "Mettre à jour",
+      "delete": "Supprimer",
+      "deleting": "Suppression...",
+      "save-changes": "Enregistrer",
+      "saving": "Enregistrement...",
+      "delete-title": "Supprimer ",
+      "delete-description": "Êtes-vous sûr de vouloir supprimer ce tournoi ? Cette action est irréversible.",
+      "confirm-delete": "Confirmer la suppression",
+      "cancel": "Annuler",
+      "continue": "Continuer",
+      "add-team": "Ajouter une équipe",
+      "edit-team": "Modifier l'équipe",
+      "color": "Couleur",
+      "cover-image": "Image de couverture du tournoi",
+      "cover-image-description": "Téléchargez une nouvelle image de couverture pour votre tournoi.",
+      "regenerate-title": "Régénérer les matchs ?",
+      "regenerate-description": "Êtes-vous sûr de vouloir régénérer les matchs ? Tous les scores existants seront réinitialisés. Cette action est irréversible.",
+      "preset-teams": "Prédéfinies",
+      "custom-team": "Personnalisée",
+      "add-preset-team": "Ajouter une Équipe Prédéfinie",
+      "search-add-team": "Recherchez une équipe à ajouter à votre tournoi.",
+      "search-teams-placeholder": "Rechercher des équipes...",
+      "add-custom-team": "Ajouter une Équipe Personnalisée",
+      "change-logo": "Changer le Logo",
+      "update-logo": "Mettre à jour le Logo",
+      "save-list": "Sauvegarder la liste",
+      "save-list-title": "Sauvegarder la Liste d'Équipes",
+      "save-list-description": "Sauvegardez la liste actuelle d'équipes pour une utilisation future.",
+      "list-name": "Nom de la liste",
+      "list-name-placeholder": "Ex: Mes équipes favorites",
+      "save": "Sauvegarder",
+      "load-list": "Charger une liste",
+      "load-list-title": "Charger une Liste d'Équipes",
+      "load-list-description": "Choisissez une liste sauvegardée pour charger les équipes dans le tournoi.",
+      "load-list-button": "Charger",
+      "manage-moderators": "Gérer les modérateurs",
+      "moderator-description": "Ajoutez ou supprimez des utilisateurs qui peuvent vous aider à gérer le tournoi en mettant à jour les scores.",
+      "current-moderators": "Modérateurs actuels",
+      "no-moderators": "Il n'y a pas encore de modérateur pour ce tournoi.",
+      "add-moderator": "Ajouter un modérateur",
+      "search-by-email": "Rechercher par e-mail...",
+      "no-users-found": "Aucun utilisateur trouvé avec cet e-mail."
+    },
+    "score": {
+      "update": "Mettre à jour le score",
+      "team1-score": "Score Équipe 1",
+      "team2-score": "Score Équipe 2",
+      "submit": "Valider",
+      "leg": "Manche",
+      "leg1": "Match Aller",
+      "leg2": "Match Retour",
+      "final-score": "Score Final",
+      "agg": "Agg.",
+      "set-scores": "Définir les scores"
+    },
+    "login": {
+      "email-label": "Email",
+      "email-placeholder": "votre@email.com",
+      "password-label": "Mot de passe",
+      "password-placeholder": "Votre mot de passe",
+      "username-label": "Nom d'utilisateur",
+      "username-placeholder": "Votre nom d'utilisateur"
+    },
+    "comment": {
+      "title": "Commentaires",
+      "placeholder": "Ajouter un commentaire...",
+      "submit": "Publier",
+      "submitting": "Publication...",
+      "none": "Soyez le premier à commenter !",
+      "error-loading": "Impossible de charger les commentaires."
+    }
+  },
+  "no": {
+    "yet": "Pas encore de tournois !",
+    "yours": "Vous n'avez pas encore de tournois !",
+    "no-points": "Ce tournoi n'a pas encore de points !",
+    "fixtures": "Aucun match n'a encore été généré pour ce tournoi.",
+    "knockout-fixtures": "Les matchs à élimination directe n'ont pas été générés.",
+    "knockout-fixtures-yet": "Les matchs à élimination directe n'ont pas encore été générés.",
+    "group-stage-complete": "La phase de groupes doit être terminée avant de générer la phase à élimination directe.",
+    "description": "Aucune description fournie.",
+    "rules": "Aucune règle fournie.",
+    "roster": "Aucun joueur sur la liste.",
+    "teams": "Aucune équipe n'a encore été ajoutée.",
+    "added-yet": "Aucune équipe n'a encore été ajoutée.",
+    "saved-lists": "Vous n'avez aucune liste d'équipes sauvegardée.",
+    "favorites": "Vous n'avez pas encore de tournois favoris."
+  },
+  "theme": {
+    "span": "Changer de thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "privacy-policy": {
+    "last-updated": "Dernière mise à jour : ",
+    "small-description-1": "Le site web PlayChamp Simplified (",
+    "small-description-2": ") est exploité et maintenu par Lisa Glaziou.",
+    "small-description-3": "Cette page vous informe de nos politiques concernant la collecte,\nl'utilisation et la divulgation des informations personnelles que nous recevons des utilisateurs\ndu site web.",
+    "1": "1. Collecte et utilisation des informations",
+    "1-1": "Nous collectons des informations en utilisant l'authentification OAuth 2.0 avec GitHub.\nLorsque vous vous connectez ou vous inscrivez via GitHub, nous accédons à certaines\ninformations associées à votre compte GitHub, telles que :",
+    "1-2": "• Informations personnelles : Votre nom d'utilisateur GitHub, adresse email\net photo de profil (si fournie).",
+    "1-3": "• Informations publiques : Tous les dépôts publics ou\nprojets liés à votre compte GitHub.",
+    "1-4": "Ces informations sont utilisées pour créer et gérer votre compte et\npersonnaliser votre expérience sur notre plateforme. De plus, nous utilisons\nVercel Analytics pour collecter des données sur les performances et les interactions des utilisateurs.\nCela inclut, mais sans s'y limiter, les vues de pages, la durée des sessions\net les interactions des utilisateurs afin d'améliorer les performances\nde notre plateforme et l'expérience utilisateur.",
+    "2": "2. Cookies",
+    "2-1": "Les cookies sont des fichiers contenant une petite quantité de données, pouvant\ninclure un identifiant unique anonyme. Les cookies sont envoyés à votre\nnavigateur par un site web et stockés sur le disque dur de votre ordinateur.\nVous pouvez configurer votre navigateur pour refuser tous les cookies ou pour\nindiquer quand un cookie est envoyé. Ce site n'utilise que des cookies\nnécessaires à son bon fonctionnement. Ces cookies ne sont pas utilisés\nà des fins de suivi. Vous devez accepter ces cookies pour\nutiliser notre site.",
+    "3": "3. Sécurité",
+    "3-1": "La sécurité de vos informations personnelles est importante pour nous.\nDu temps de développement a été consacré à garantir une sécurité maximale\npour tous nos utilisateurs grâce à l'utilisation de services sécurisés. Veuillez noter\nqu'aucune méthode de transmission sur Internet ou méthode\nde stockage électronique n'est sécurisée à 100 %. Bien que nous nous efforçions d'utiliser\nles moyens commercialement acceptables pour protéger vos informations\npersonnelles, nous ne pouvons garantir leur sécurité absolue.",
+    "4": "4. Modifications de cette politique de confidentialité",
+    "4-1": "Cette politique de confidentialité est en vigueur à partir de la date indiquée ci-dessus et\nrestera en vigueur. Toute modification de ses dispositions sera\nimmédiatement appliquée après sa publication sur cette page. Nous nous réservons\nle droit de mettre à jour ou de modifier notre politique de confidentialité à tout moment, et\nvous devriez consulter cette politique périodiquement. Votre utilisation continue\ndu service après que nous ayons publié des modifications à la politique de confidentialité sur\ncette page constituera votre acceptation de ces modifications et\nvotre consentement à respecter et à être lié par la politique de confidentialité mise à jour.",
+    "5": "5. Nous contacter",
+    "5-1": "Si vous avez des questions concernant cette politique de confidentialité, veuillez\ncontacter le développeur principal par email à "
+  },
+  "support": {
+    "title": "Questions fréquentes",
+    "description-1": "Voici les questions les plus fréquemment posées à propos de PlayChamp Simplified. ",
+    "description-2": "Vous n'arrivez pas à trouver ce que vous cherchez ? ",
+    "description-3": "Discutez avec notre équipe !",
+    "Q1": {
+      "title": "Qu'est ce que PlayChamp Simplified ?",
+      "response": "PlayChamp Simplified est une plateforme de gestion de tournois conçue pour simplifier la création et la gestion des tournois. Elle permet aux utilisateurs de créer des tournois, de lier des équipes et d'ajouter des points aux équipes respectives. De plus, la plateforme génère automatiquement des graphiques basés sur les données, offrant une représentation dynamique et visuelle des classements des équipes et de leurs performances tout au long du tournoi."
+    },
+    "Q2": {
+      "title": "Quelles sont les principales fonctionnalités de la plateforme ?",
+      "response-1": "• Création de tournoi : Créez facilement des tournois avec des équipes liées.",
+      "response-2": "• Gestion des points : Assignez et mettez à jour les points des équipes.",
+      "response-3": "• Génération de graphiques : Affichez automatiquement les classements des équipes et leurs performances à l'aide de graphiques dynamiques."
+    },
+    "Q3": {
+      "title": "Comment me connecter à PlayChamp Simplified ?",
+      "response-1": "La connexion est simple et sécurisée grâce à l'authentification à deux facteurs de GitHub :",
+      "response-2": "1. Cliquez sur le bouton 'Se connecter avec GitHub' sur la page de connexion.",
+      "response-3": "2. Saisissez vos identifiants GitHub si nécessaire.",
+      "response-4": "3. Complétez le processus d'authentification à deux facteurs en entrant le code envoyé à votre application d'authentification ou à votre e-mail.",
+      "response-5": "4. Une fois authentifié, vous serez redirigé vers le tableau de bord de la plateforme."
+    },
+    "Q4": {
+      "title": "Comment créer un tournoi ?",
+      "response-1": "La création d'un tournoi est rapide et intuitive :",
+      "response-2": "1. Allez dans la section 'Créer un tournoi' dans votre tableau de bord.",
+      "response-3": "2. Remplissez les détails du tournoi :",
+      "response-4": "   - Titre : Entrez le nom du tournoi.",
+      "response-5": "   - Nombre d'équipes : Sélectionnez entre 2 et 5 équipes.",
+      "response-6": "   - Noms et couleurs des équipes : Attribuez un nom et une couleur uniques à chaque équipe pour une identification facile.",
+      "response-7": "3. Vérifiez vos entrées et cliquez sur 'Créer'.",
+      "response-8": "4. Votre tournoi est maintenant créé, et vous pouvez commencer à gérer les points ou afficher les classements."
+    },
+    "Q5": {
+      "title": "À quoi sert la page /show/ID ?",
+      "response": "La page /show/ID est une vue publique en lecture seule du tournoi. Elle affiche automatiquement les classements et les points des équipes en fonction des dernières données. Les utilisateurs peuvent voir les résultats et les graphiques de performance sans interaction ou mise à jour manuelle."
+    },
+    "Q6": {
+      "title": "À quoi sert la page /user/tournament/ID ?",
+      "response": "La page /user/tournament/ID est destinée à la gestion du tournoi. Les utilisateurs autorisés peuvent mettre à jour les détails, ajouter des points et apporter des modifications aux données du tournoi. Ces mises à jour sont immédiatement reflétées sur la page /show/ID."
+    }
+  },
+  "toast": {
+    "favorite-add-success": {
+      "title": "Ajouté aux favoris !",
+      "description": "Ce tournoi a été ajouté à vos favoris."
+    },
+    "favorite-add-fail": {
+      "title": "Échec de l'ajout aux favoris",
+      "description": "Impossible d'ajouter ce tournoi à vos favoris."
+    },
+    "favorite-remove-success": {
+      "title": "Retiré des favoris !",
+      "description": "Ce tournoi a été retiré de vos favoris."
+    },
+    "favorite-remove-fail": {
+      "title": "Échec de la suppression des favoris",
+      "description": "Impossible de retirer ce tournoi de vos favoris."
+    },
+    "profile-update-success": {
+      "title": "Profil mis à jour !",
+      "description": "Votre photo de profil a été mise à jour avec succès."
+    },
+    "profile-update-fail": {
+      "title": "Échec de la mise à jour",
+      "description": "Impossible de mettre à jour votre photo de profil. Veuillez réessayer."
+    },
+    "login-success": {
+      "title": "Bon retour parmi nous !",
+      "description": "Vous vous êtes connecté avec succès."
+    },
+    "signup-success": {
+      "title": "Bienvenue !",
+      "description": "Votre compte a été créé avec succès."
+    },
+    "login-fail": {
+      "title": "Échec de la connexion :",
+      "description": "Une erreur s'est produite lors de la connexion. Veuillez réessayer."
+    },
+    "email-sent": {
+      "title": "Vérifiez votre email",
+      "description": "Un lien de connexion a été envoyé à votre adresse e-mail."
+    },
+    "score-update-success": {
+      "title": "Score mis à jour avec succès !",
+      "description": "Vous avez mis à jour le score du match avec succès."
+    },
+    "score-update-fail": {
+      "title": "Impossible de mettre à jour le score",
+      "description": "Une erreur s'est produite lors de la mise à jour du score."
+    },
+    "create-tournament-success": {
+      "title": "Création réussie !",
+      "description": "Vous avez créé un tournoi avec succès."
+    },
+    "create-tournament-fail": {
+      "title": "Impossible de créer un tournoi.",
+      "description": "Une erreur s'est produite lors de la création du tournoi."
+    },
+    "delete-tournament-success": {
+      "title": "Supprimé avec succès !",
+      "description": "Vous avez supprimé le tournoi avec succès."
+    },
+    "delete-tournament-fail": {
+      "title": "Impossible de supprimer le tournoi",
+      "description": "Une erreur s'est produite lors de la suppression du tournoi."
+    },
+    "edit-tournament-success": {
+      "title": "Mis à jour avec succès !",
+      "description": "Vous avez mis à jour le tournoi avec succès."
+    },
+    "edit-tournament-fail": {
+      "title": "Impossible de mettre à jour le tournoi",
+      "description": "Une erreur s'est produite lors de la mise à jour du tournoi."
+    },
+    "add-comment-success": {
+      "title": "Commentaire publié !",
+      "description": "Votre commentaire a été publié avec succès."
+    },
+    "add-comment-fail": {
+      "title": "Échec de la publication du commentaire",
+      "description": "Une erreur est survenue lors de la publication de votre commentaire."
+    },
+    "generate-fixtures-success": {
+      "title": "Matchs générés !",
+      "description": "Le calendrier du tournoi a été créé."
+    },
+    "generate-fixtures-fail": {
+      "title": "Échec de la génération",
+      "description": "Impossible de générer les matchs. Veuillez réessayer."
+    },
+    "team-add-success": {
+      "title": "Équipe ajoutée !",
+      "description": "La nouvelle équipe a été ajoutée au tournoi."
+    },
+    "team-add-fail": {
+      "title": "Échec de l'ajout de l'équipe",
+      "description": "Une erreur est survenue lors de l'ajout de l'équipe."
+    },
+    "team-update-success": {
+      "title": "Équipe mise à jour !",
+      "description": "Les détails de l'équipe ont été mis à jour."
+    },
+    "team-update-fail": {
+      "title": "Échec de la mise à jour de l'équipe",
+      "description": "Une erreur est survenue lors de la mise à jour de l'équipe."
+    },
+    "team-delete-success": {
+      "title": "Équipe supprimée !",
+      "description": "L'équipe a été retirée du tournoi."
+    },
+    "team-delete-fail": {
+      "title": "Échec de la suppression de l'équipe",
+      "description": "Une erreur est survenue lors de la suppression de l'équipe."
+    },
+    "team-logo-update-success": {
+      "title": "Logo mis à jour !",
+      "description": "Le logo de l'équipe a été mis à jour avec succès."
+    },
+    "team-logo-update-fail": {
+      "title": "Échec de la mise à jour",
+      "description": "Impossible de mettre à jour le logo de l'équipe. Veuillez réessayer."
+    },
+    "save-team-list-success": {
+      "title": "Liste sauvegardée !",
+      "description": "Votre liste d'équipes a été sauvegardée."
+    },
+    "save-team-list-fail": {
+      "title": "Échec de la sauvegarde",
+      "description": "Impossible de sauvegarder votre liste d'équipes."
+    },
+    "load-team-list-success": {
+      "title": "Équipes chargées !",
+      "description": "Les équipes de la liste ont été ajoutées."
+    },
+    "load-team-list-fail": {
+      "title": "Échec du chargement",
+      "description": "Impossible de charger les équipes depuis la liste."
+    },
+    "team-list-delete-success": {
+      "title": "Liste supprimée !",
+      "description": "La liste d'équipes a été supprimée avec succès."
+    },
+    "team-list-delete-fail": {
+      "title": "Échec de la suppression",
+      "description": "Impossible de supprimer la liste d'équipes."
+    },
+     "moderator-add-success": {
+      "title": "Modérateur ajouté",
+      "description": "L'utilisateur peut maintenant mettre à jour les scores de ce tournoi."
+    },
+    "moderator-add-fail": {
+      "title": "Échec de l'ajout du modérateur",
+      "description": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "moderator-remove-success": {
+      "title": "Modérateur supprimé",
+      "description": "L'utilisateur ne peut plus mettre à jour les scores."
+    },
+    "moderator-remove-fail": {
+      "title": "Échec de la suppression du modérateur",
+      "description": "Une erreur est survenue. Veuillez réessayer."
+    }
+  }
+}
