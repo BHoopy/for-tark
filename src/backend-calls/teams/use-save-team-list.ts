@@ -1,12 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  addDoc,
-  collection,
-  getFirestore,
-  serverTimestamp,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { usersQueryKeys } from "../users";
@@ -20,7 +13,6 @@ interface SaveTeamListProps {
 export function useSaveTeamList() {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const saveTeamListFn = async ({
     userId,
@@ -29,13 +21,13 @@ export function useSaveTeamList() {
   }: SaveTeamListProps) => {
     if (!userId) throw new Error("User not authenticated.");
 
-    const teamListsCollectionRef = collection(db, "users", userId, "teamLists");
-    const listData = {
-      name: listName,
-      teams: teams,
-      createdAt: serverTimestamp(),
-    };
-    return await addDoc(teamListsCollectionRef, listData);
+    const sql = getSql();
+    const id = crypto.randomUUID();
+    await sql`
+      INSERT INTO team_lists (id, name, teams)
+      VALUES (${id}, ${listName}, ${JSON.stringify(teams)}::jsonb)
+    `;
+    return { id };
   };
 
   return useMutation({

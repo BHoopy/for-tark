@@ -1,19 +1,9 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { tournamentsQueryKeys } from "@/backend-calls";
 import { toast } from "@/hooks/use-toast";
 import { Fixture, tournamentBody, Match } from "@/types/types";
 import { useTranslations } from "next-intl";
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  getFirestore,
-  writeBatch,
-  collection,
-  getDocs,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 
 interface Props {
   tournamentId: string;
@@ -38,39 +28,43 @@ interface UpdateKnockoutScoreProps {
 export function useUpdateScore({ tournamentId, matchType }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const updateScoreFn = async (
     props: UpdateRoundRobinScoreProps | UpdateKnockoutScoreProps,
   ) => {
+    const sql = getSql();
+
     // --- Knockout Score Update ---
     if ("match" in props) {
       const { match, newScores } = props;
-      const tournamentDoc = await getDoc(
-        doc(db, "tournaments", tournamentId),
-      );
-      const tournamentData = tournamentDoc.data() as tournamentBody;
-      const is48TeamTournament = tournamentData.numberOfTeams === 48;
+      const tournamentRows = (await sql`
+        SELECT number_of_teams, format
+        FROM tournaments
+        WHERE id = ${tournamentId}
+        LIMIT 1
+      `) as any[];
+      const tournamentData = tournamentRows[0] ?? {};
+      const is48TeamTournament = tournamentData.number_of_teams === 48;
       const totalRounds = is48TeamTournament
         ? 5
         : tournamentData.format === "group_then_knockout"
-          ? Math.ceil(Math.log2((tournamentData.numberOfTeams ?? 0) / 2))
-          : Math.ceil(Math.log2(tournamentData.numberOfTeams ?? 0));
+          ? Math.ceil(Math.log2((tournamentData.number_of_teams ?? 0) / 2))
+          : Math.ceil(Math.log2(tournamentData.number_of_teams ?? 0));
       const isFinal = match.round === totalRounds;
 
-      const batch = writeBatch(db);
       const effectiveMatchType =
         match.isBronzeMatch || isFinal ? "single_leg" : matchType;
 
       // 1. Update the current match
-      const currentMatchRef = doc(
-        db,
-        "tournaments",
-        tournamentId,
-        "matches",
-        match.id,
-      );
-      batch.update(currentMatchRef, { ...newScores, status: "completed" });
+      await sql`
+        UPDATE matches
+        SET score1_leg1 = ${newScores.score1_leg1},
+            score2_leg1 = ${newScores.score2_leg1},
+            score1_leg2 = ${newScores.score1_leg2},
+            score2_leg2 = ${newScores.score2_leg2},
+            status = 'completed'
+        WHERE id = ${match.id} AND tournament_id = ${tournamentId}
+      `;
 
       // 2. Determine winner and loser
       let winnerId: string | null = null;
@@ -89,7 +83,6 @@ export function useUpdateScore({ tournamentId, matchType }: Props) {
           winnerId = match.team2Id;
           loserId = match.team1Id;
         } else {
-          // Aggregate scores are equal, check away goals
           const awayGoals1 = newScores.score1_leg2 ?? 0;
           const awayGoals2 = newScores.score2_leg1 ?? 0;
           if (awayGoals1 > awayGoals2) {
@@ -109,72 +102,75 @@ export function useUpdateScore({ tournamentId, matchType }: Props) {
           }
         }
       } else {
-        // single_leg logic
         if ((newScores.score1_leg1 ?? 0) > (newScores.score2_leg1 ?? 0)) {
           winnerId = match.team1Id;
           loserId = match.team2Id;
         } else if ((newScores.score2_leg1 ?? 0) > (newScores.score1_leg1 ?? 0)) {
           winnerId = match.team2Id;
           loserId = match.team1Id;
-        } else {
-          // Draw in a single leg knockout match
         }
       }
 
       // 3. Advance winner to the next match
       if (winnerId && match.nextMatchId) {
-        const nextMatchRef = doc(
-          db,
-          "tournaments",
-          tournamentId,
-          "matches",
-          match.nextMatchId,
-        );
         const isTeam1Slot = match.matchNumber % 2 !== 0;
         if (isTeam1Slot) {
-          batch.update(nextMatchRef, { team1Id: winnerId });
+          await sql`
+            UPDATE matches
+            SET team1_id = ${winnerId}
+            WHERE id = ${match.nextMatchId} AND tournament_id = ${tournamentId}
+          `;
         } else {
-          batch.update(nextMatchRef, { team2Id: winnerId });
+          await sql`
+            UPDATE matches
+            SET team2_id = ${winnerId}
+            WHERE id = ${match.nextMatchId} AND tournament_id = ${tournamentId}
+          `;
         }
       }
 
       // 4. Advance loser of semi-final to bronze match
       if (match.round === totalRounds - 1 && loserId) {
         const bronzeMatchId = `r${totalRounds}_m_bronze`;
-        const bronzeMatchRef = doc(
-          db,
-          "tournaments",
-          tournamentId,
-          "matches",
-          bronzeMatchId,
-        );
-        const isTeam1Slot = match.matchNumber === 1; // SF1 loser
+        const isTeam1Slot = match.matchNumber === 1;
         if (isTeam1Slot) {
-          batch.update(bronzeMatchRef, { team1Id: loserId });
+          await sql`
+            UPDATE matches
+            SET team1_id = ${loserId}
+            WHERE id = ${bronzeMatchId} AND tournament_id = ${tournamentId}
+          `;
         } else {
-          batch.update(bronzeMatchRef, { team2Id: loserId });
+          await sql`
+            UPDATE matches
+            SET team2_id = ${loserId}
+            WHERE id = ${bronzeMatchId} AND tournament_id = ${tournamentId}
+          `;
         }
       }
 
-      return await batch.commit();
+      return;
     }
 
     // --- Round Robin Score Update ---
     const { fixture, newScores } = props;
-    const tournamentRef = doc(db, "tournaments", tournamentId);
-    const tournamentDoc = await getDoc(tournamentRef);
+    const tournamentRows = (await sql`
+      SELECT fixtures
+      FROM tournaments
+      WHERE id = ${tournamentId}
+      LIMIT 1
+    `) as any[];
 
-    if (!tournamentDoc.exists()) {
+    if (!tournamentRows || tournamentRows.length === 0) {
       throw new Error("Tournament not found");
     }
 
-    const tournamentData = tournamentDoc.data() as tournamentBody;
-    const fixtures = tournamentData.fixtures ?? [];
+    const tournamentData = tournamentRows[0] as tournamentBody;
+    const fixtures = (tournamentData.fixtures as any) ?? [];
 
-    const fixtureIndex = fixtures.findIndex(
-      (f) =>
+    const fixtureIndex = (fixtures as any[]).findIndex(
+      (f: any) =>
         f.round === fixture.round &&
-        f.team1.name === fixture.team1.name &&
+        f.team1?.name === fixture.team1?.name &&
         f.team2?.name === fixture.team2?.name,
     );
 
@@ -189,9 +185,11 @@ export function useUpdateScore({ tournamentId, matchType }: Props) {
       score2: newScores.score2,
     };
 
-    return await updateDoc(tournamentRef, {
-      fixtures: updatedFixtures,
-    });
+    await sql`
+      UPDATE tournaments
+      SET fixtures = ${JSON.stringify(updatedFixtures)}, updated_at = now()
+      WHERE id = ${tournamentId}
+    `;
   };
 
   return useMutation({

@@ -1,13 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  doc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-  getFirestore,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { usersQueryKeys } from "./users-query-keys";
@@ -24,22 +16,31 @@ interface UpdateFavoritesParams {
 export function useUpdateFavorites({ userId }: UseUpdateFavoritesProps) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const updateFavoritesFn = async ({
     tournamentId,
     action,
   }: UpdateFavoritesParams) => {
-    const userRef = doc(db, "users", userId);
+    const sql = getSql();
 
     if (action === "add") {
-      return updateDoc(userRef, {
-        favoriteTournaments: arrayUnion(tournamentId),
-      });
+      await sql`
+        UPDATE users
+        SET favorite_tournaments = CASE
+          WHEN ${tournamentId} = ANY(COALESCE(favorite_tournaments, '{}'))
+            THEN favorite_tournaments
+          ELSE array_append(COALESCE(favorite_tournaments, '{}'), ${tournamentId})
+        END,
+            updated_at = NOW()
+        WHERE uid = ${userId} OR id = ${userId}
+      `;
     } else {
-      return updateDoc(userRef, {
-        favoriteTournaments: arrayRemove(tournamentId),
-      });
+      await sql`
+        UPDATE users
+        SET favorite_tournaments = array_remove(COALESCE(favorite_tournaments, '{}'), ${tournamentId}),
+            updated_at = NOW()
+        WHERE uid = ${userId} OR id = ${userId}
+      `;
     }
   };
 

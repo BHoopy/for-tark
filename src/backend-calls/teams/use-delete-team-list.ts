@@ -1,7 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { doc, deleteDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { usersQueryKeys } from "../users";
@@ -14,12 +12,14 @@ interface DeleteTeamListProps {
 export function useDeleteTeamList() {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const deleteTeamListFn = async ({ userId, listId }: DeleteTeamListProps) => {
     if (!userId) throw new Error("User not authenticated.");
-    const listDocRef = doc(db, "users", userId, "teamLists", listId);
-    return await deleteDoc(listDocRef);
+    const sql = getSql();
+    await sql`
+      DELETE FROM team_lists
+      WHERE id = ${listId}
+    `;
   };
 
   return useMutation({

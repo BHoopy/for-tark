@@ -19,13 +19,6 @@ import { UpdateScoreForm } from "@/components/forms/update-score-form";
 import { Loader2, Pencil, Share } from "lucide-react";
 import { useGenerateFixtures } from "@/backend-calls";
 import KnockoutBracket from "./knockout-bracket";
-import {
-  collection,
-  getFirestore,
-  onSnapshot,
-  getDocs,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
 import PulseLoader from "./pulse-loader";
 import Image from "next/image";
 import { createChartData } from "../charts/utils";
@@ -357,7 +350,6 @@ export default function FixturesPreview({
 }: FixturesPreviewProps) {
   const t = useTranslations();
   const { user } = useUser();
-  const db = getFirestore(app);
 
   const canUpdateScore = !!(
     canManage || tournament.moderators?.includes(user?.uid ?? "")

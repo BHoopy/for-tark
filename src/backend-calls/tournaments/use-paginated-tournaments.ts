@@ -1,22 +1,7 @@
-
 import { tournamentsQueryKeys } from "@/backend-calls";
 import { useQuery } from "@tanstack/react-query";
 import { tournamentBody } from "@/types/types";
-import {
-  collection,
-  getCountFromServer,
-  getDocs,
-  getFirestore,
-  limit,
-  orderBy,
-  query,
-  startAfter,
-  DocumentSnapshot,
-  DocumentData,
-  Query,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
-import { processFirestoreDocs } from "@/lib/firestore-helpers";
+import { getSql } from "@/lib/neon";
 
 type Props = {
   page: number;
@@ -28,63 +13,39 @@ type Response = {
   totalPages: number;
 };
 
-const pageCache: { [key: number]: DocumentSnapshot<DocumentData> } = {};
-
 export function usePaginatedTournaments({ page, pageLimit }: Props) {
-  const db = getFirestore(app);
-
   async function getPaginatedTournamentsFn(
     page: number,
   ): Promise<Response> {
-    const tournamentsCollection = collection(db, "tournaments");
+    const sql = getSql();
 
-    const countSnapshot = await getCountFromServer(tournamentsCollection);
-    const totalCount = countSnapshot.data().count;
+    const countRows = (await sql`SELECT COUNT(*)::int AS count FROM tournaments`) as any[];
+    const totalCount = Number(countRows[0]?.count ?? 0);
     const totalPages = Math.ceil(totalCount / pageLimit);
 
-    let q: Query<DocumentData>;
+    const offset = (page - 1) * pageLimit;
+    const rows = (await sql`
+      SELECT id, name, description, rules, format, match_type, status, created_by, created_at, updated_at, cover_image_url, number_of_teams, moderators, fixtures
+      FROM tournaments
+      ORDER BY created_at DESC
+      LIMIT ${pageLimit} OFFSET ${offset}
+    `) as any[];
 
-    if (page === 1) {
-      q = query(
-        tournamentsCollection,
-        limit(pageLimit),
-      );
-    } else {
-      const lastVisibleDoc = pageCache[page - 1];
-      if (!lastVisibleDoc) {
-        // This case can happen if the cache is cleared or if the user jumps pages.
-        // A more robust solution might fetch pages sequentially to fill the cache.
-        // For now, we'll just log a warning and fetch from the beginning.
-        console.warn(`No cached document for page ${page - 1}. Fetching from start.`);
-        q = query(
-          tournamentsCollection,
-          limit(pageLimit * (page -1) + 1)
-        );
-      } else {
-         q = query(
-          tournamentsCollection,
-          startAfter(lastVisibleDoc),
-          limit(pageLimit),
-        );
-      }
-    }
-
-    const tournamentsData = await getDocs(q);
-
-    if (!tournamentsData.empty) {
-      pageCache[page] = tournamentsData.docs[tournamentsData.docs.length - 1];
-    }
-    
-    // Invalidate future page caches if we are on the first page
-    if (page === 1) {
-      Object.keys(pageCache).forEach(key => {
-        if(parseInt(key) > 1) {
-          delete pageCache[parseInt(key)];
-        }
-      })
-    }
-
-    const tournaments = processFirestoreDocs(tournamentsData);
+    const tournaments = rows.map((r: any) => ({
+      id: r.id,
+      name: r.name,
+      description: r.description,
+      rules: r.rules,
+      format: r.format,
+      matchType: r.match_type,
+      status: r.status,
+      createdBy: r.created_by,
+      createdAt: r.created_at ? new Date(r.created_at) : new Date(),
+      coverImageUrl: r.cover_image_url,
+      numberOfTeams: r.number_of_teams,
+      moderators: r.moderators ?? [],
+      fixtures: r.fixtures ?? [],
+    })) as tournamentBody[];
 
     return { tournaments, totalPages };
   }
@@ -93,6 +54,6 @@ export function usePaginatedTournaments({ page, pageLimit }: Props) {
     queryKey: tournamentsQueryKeys.pagination(page),
     queryFn: () => getPaginatedTournamentsFn(page),
     refetchOnWindowFocus: false,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 }

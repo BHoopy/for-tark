@@ -1,10 +1,7 @@
-
 import { tournamentsQueryKeys } from "@/backend-calls";
 import { useQuery } from "@tanstack/react-query";
 import { tournamentBody } from "@/types/types";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
-import { firestoreTimestampToDate } from "@/lib/firestore-helpers";
+import { getSql } from "@/lib/neon";
 
 type Props = {
   id: string;
@@ -12,20 +9,34 @@ type Props = {
 };
 
 export function useTournamentsById({ id, refetchInterval }: Props) {
-  const db = getFirestore(app);
   async function getTournamentsByIdFn(id: string) {
-    const tournamentRef = doc(db, "tournaments", id);
-    const tournamentDoc = await getDoc(tournamentRef);
+    const sql = getSql();
+    const rows = (await sql`
+      SELECT id, name, description, rules, format, match_type, status, created_by, created_at, updated_at, cover_image_url, number_of_teams, moderators, fixtures
+      FROM tournaments
+      WHERE id = ${id}
+      LIMIT 1
+    `) as any[];
 
-    if (!tournamentDoc.exists()) {
+    if (!rows || rows.length === 0) {
       throw new Error("Tournament not found");
     }
 
-    const data = tournamentDoc.data() as tournamentBody;
+    const r = rows[0];
     const tournament = {
-      id: tournamentDoc.id,
-      ...data,
-      createdAt: firestoreTimestampToDate(data.createdAt as any),
+      id: r.id,
+      name: r.name,
+      description: r.description,
+      rules: r.rules,
+      format: r.format,
+      matchType: r.match_type,
+      status: r.status,
+      createdBy: r.created_by,
+      createdAt: r.created_at ? new Date(r.created_at) : new Date(),
+      coverImageUrl: r.cover_image_url,
+      numberOfTeams: r.number_of_teams,
+      moderators: r.moderators ?? [],
+      fixtures: r.fixtures ?? [],
     };
     return tournament as tournamentBody;
   }

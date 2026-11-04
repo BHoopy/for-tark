@@ -1,7 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { teamBody } from "@/types/types";
@@ -14,22 +12,23 @@ interface Props {
 export function useAddTeam({ tournamentId }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const addTeamFn = async (team: Omit<teamBody, "id">) => {
     if (!tournamentId) throw new Error("Tournament ID is missing.");
-    const teamsCollectionRef = collection(
-      db,
-      "tournaments",
-      tournamentId,
-      "teams",
-    );
-    const teamData = {
-      name: team.name,
-      logo: team.logo || "/Play.png", // Ensure logo is passed and has a fallback
-      roster: [],
-    };
-    return await addDoc(teamsCollectionRef, teamData);
+    const sql = getSql();
+    const id = crypto.randomUUID();
+    await sql`
+      INSERT INTO teams (id, tournament_id, name, color, roster, logo)
+      VALUES (
+        ${id},
+        ${tournamentId},
+        ${team.name},
+        ${team.color ?? null},
+        ${team.roster ?? []},
+        ${team.logo || "/Play.png"}
+      )
+    `;
+    return { id };
   };
 
   return useMutation({

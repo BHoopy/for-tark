@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -25,7 +24,7 @@ import ReactCrop, {
   PixelCrop,
 } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { getSql } from "@/lib/neon";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -99,7 +98,6 @@ export function UpdateProfileForm({ setOpen }: UpdateProfileFormProps) {
   const t = useTranslations();
   const { user } = useUser();
   const auth = getAuth(app);
-  const db = getFirestore(app);
   const form = useForm();
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -156,11 +154,16 @@ export function UpdateProfileForm({ setOpen }: UpdateProfileFormProps) {
 
       // Update Firebase Auth profile
       await updateProfile(user, { photoURL: secure_url });
-      
-      // Update Firestore user document
-      const userDocRef = doc(db, "users", user.uid);
-      await setDoc(userDocRef, { photoURL: secure_url }, { merge: true });
 
+      // Update Neon user document
+      const sql = getSql();
+      await sql`
+        INSERT INTO users (id, uid, photo_url)
+        VALUES (${user.uid}, ${user.uid}, ${secure_url})
+        ON CONFLICT (uid) DO UPDATE SET
+          photo_url = EXCLUDED.photo_url,
+          updated_at = NOW()
+      `;
 
       toast({
         title: t("toast.profile-update-success.title"),

@@ -1,17 +1,9 @@
-
 "use client";
 
 import { useTranslations } from "next-intl";
 import { Card, CardContent } from "./card";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  limit,
-  query,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import React from "react";
 import { UserProfile } from "@/types/types";
 import PulseLoader from "./pulse-loader";
@@ -25,17 +17,31 @@ export default function OrganizersGrid() {
   const router = useRouter();
   const [organizers, setOrganizers] = React.useState<UserProfile[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const db = getFirestore(app);
 
   React.useEffect(() => {
     const fetchOrganizers = async () => {
       try {
-        const usersRef = collection(db, "users");
-        const q = query(usersRef, limit(12));
-        const querySnapshot = await getDocs(q);
-        const usersList = querySnapshot.docs.map(
-          (doc) => ({ id: doc.id, ...doc.data() }) as UserProfile,
-        );
+        const sql = getSql();
+        const rows = (await sql`
+          SELECT id, uid, display_name, email, photo_url, cover_image_url,
+                 whatsapp, x, facebook, phone, discord, favorite_tournaments
+          FROM users
+          LIMIT 12
+        `) as any[];
+        const usersList = (rows ?? []).map((r: any) => ({
+          id: String(r.id),
+          uid: r.uid,
+          displayName: r.display_name,
+          email: r.email,
+          photoURL: r.photo_url,
+          coverImageURL: r.cover_image_url,
+          whatsapp: r.whatsapp,
+          x: r.x,
+          facebook: r.facebook,
+          phone: r.phone,
+          discord: r.discord,
+          favoriteTournaments: r.favorite_tournaments ?? [],
+        })) as UserProfile[];
         setOrganizers(usersList);
       } catch (error) {
         console.error("Error fetching organizers:", error);
@@ -45,7 +51,7 @@ export default function OrganizersGrid() {
     };
 
     fetchOrganizers();
-  }, [db]);
+  }, []);
 
   if (loading) {
     return <PulseLoader />;

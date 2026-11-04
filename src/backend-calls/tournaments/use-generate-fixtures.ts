@@ -1,18 +1,9 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { tournamentsQueryKeys } from "@/backend-calls";
 import { toast } from "@/hooks/use-toast";
 import { teamBody, Match, Fixture, tournamentBody } from "@/types/types";
 import { useTranslations } from "next-intl";
-import {
-  doc,
-  updateDoc,
-  getFirestore,
-  writeBatch,
-  collection,
-  getDocs,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { generateFixtures as generateRoundRobinFixtures } from "@/lib/fixtures-generator";
 import {
   generate48TeamGroupStage,
@@ -27,22 +18,19 @@ function generateKnockoutMatches(
 ): Omit<Match, "id">[] {
   const matches: Omit<Match, "id">[] = [];
 
-  // For hybrid format, teams are already sorted (G1W, G1R, G2W, G2R, ...)
-  // If teams are empty (pre-generation), it will create TBD matches.
   const participants = isGroupStageFollowup
-    ? [...teams].sort(() => Math.random() - 0.5) // Shuffle qualified teams
+    ? [...teams].sort(() => Math.random() - 0.5)
     : [...teams].sort(() => Math.random() - 0.5);
 
   const numParticipants = isGroupStageFollowup
     ? teams.length > 0
       ? teams.length
-      : numberOfTeams // For TBD generation, numberOfTeams is already the qualifier count
+      : numberOfTeams
     : numberOfTeams;
 
   if (numParticipants < 2) return [];
   const totalRounds = Math.ceil(Math.log2(numParticipants));
 
-  // Pad teams with "bye" placeholders if not a group stage followup and not a perfect power of 2
   const requiredByes =
     Math.pow(2, totalRounds) - numParticipants;
   if (!isGroupStageFollowup && requiredByes > 0) {
@@ -51,7 +39,6 @@ function generateKnockoutMatches(
     }
   }
 
-  // --- Round 1 ---
   const round1MatchesCount = Math.pow(2, totalRounds) / 2;
   for (let i = 0; i < round1MatchesCount; i++) {
     const team1 = participants[i * 2];
@@ -71,7 +58,6 @@ function generateKnockoutMatches(
     });
   }
 
-  // --- Subsequent rounds ---
   let matchesInCurrentRound = round1MatchesCount;
   for (let round = 2; round <= totalRounds; round++) {
     const matchesInNextRound = matchesInCurrentRound / 2;
@@ -79,8 +65,8 @@ function generateKnockoutMatches(
       matches.push({
         round: round,
         matchNumber: i + 1,
-        team1Id: null, // To be filled by winner of previous round
-        team2Id: null, // To be filled by winner of previous round
+        team1Id: null,
+        team2Id: null,
         score1_leg1: null,
         score2_leg1: null,
         score1_leg2: null,
@@ -95,11 +81,10 @@ function generateKnockoutMatches(
     matchesInCurrentRound = matchesInNextRound;
   }
 
-  // --- 3rd Place Match (Bronze Match) ---
   if (totalRounds > 1) {
     matches.push({
-      round: totalRounds, // Occurs at the same time as the final
-      matchNumber: 2, // Convention: final is match 1, bronze is match 2 of the final round
+      round: totalRounds,
+      matchNumber: 2,
       team1Id: null,
       team2Id: null,
       score1_leg1: null,
@@ -111,7 +96,6 @@ function generateKnockoutMatches(
       isBronzeMatch: true,
     });
   }
-
 
   return matches;
 }
@@ -139,52 +123,53 @@ export function useGenerateFixtures({
 }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const generateFixturesFn = async ({ teams, regenerateKnockoutOnly = false }: GenerateFixturesProps) => {
-    const batch = writeBatch(db);
-    const tournamentRef = doc(db, "tournaments", tournamentId);
+    const sql = getSql();
 
     // Clear existing matches if we are regenerating knockout
     if (regenerateKnockoutOnly) {
-        const matchesCollectionRef = collection(db, 'tournaments', tournamentId, 'matches');
-        // This is a simple way, but for large collections, a batched delete or a cloud function would be better.
-        // For this app's scale, it should be fine.
-        const existingMatches = await getDocs(matchesCollectionRef);
-        existingMatches.forEach(doc => batch.delete(doc.ref));
+      await sql`DELETE FROM matches WHERE tournament_id = ${tournamentId}`;
     }
-
 
     if (
       format === "group_then_knockout" &&
       numberOfTeams === 48
     ) {
       if (!regenerateKnockoutOnly) {
-        // Generate Group Stage for 48 teams
         const fixtures = generate48TeamGroupStage(teams, matchType);
-        batch.update(tournamentRef, {
-          fixtures: fixtures,
-          matches: [], // Clear any old knockout matches
-        });
+        await sql`
+          UPDATE tournaments
+          SET fixtures = ${JSON.stringify(fixtures)}, updated_at = now()
+          WHERE id = ${tournamentId}
+        `;
+        await sql`DELETE FROM matches WHERE tournament_id = ${tournamentId}`;
       } else {
-        // Regenerate Knockout Stage for 32 teams
         const matches = generate32TeamKnockout(teams, tournament);
-         matches.forEach((match) => {
+        for (const match of matches) {
           const matchId = match.isBronzeMatch
             ? `r${match.round}_m_bronze`
             : `r${match.round}_m${match.matchNumber}`;
-          const matchRef = doc(
-            db,
-            "tournaments",
-            tournamentId,
-            "matches",
-            matchId,
-          );
-          batch.set(matchRef, match);
-        });
+          await sql`
+            INSERT INTO matches (id, tournament_id, round, match_number, team1_id, team2_id, score1_leg1, score2_leg1, score1_leg2, score2_leg2, status, next_match_id, is_bronze_match)
+            VALUES (${matchId}, ${tournamentId}, ${match.round}, ${match.matchNumber}, ${match.team1Id}, ${match.team2Id}, ${match.score1_leg1}, ${match.score2_leg1}, ${match.score1_leg2}, ${match.score2_leg2}, ${match.status}, ${match.nextMatchId}, ${match.isBronzeMatch ?? false})
+            ON CONFLICT (id) DO UPDATE SET
+              tournament_id = EXCLUDED.tournament_id,
+              round = EXCLUDED.round,
+              match_number = EXCLUDED.match_number,
+              team1_id = EXCLUDED.team1_id,
+              team2_id = EXCLUDED.team2_id,
+              score1_leg1 = EXCLUDED.score1_leg1,
+              score2_leg1 = EXCLUDED.score2_leg1,
+              score1_leg2 = EXCLUDED.score1_leg2,
+              score2_leg2 = EXCLUDED.score2_leg2,
+              status = EXCLUDED.status,
+              next_match_id = EXCLUDED.next_match_id,
+              is_bronze_match = EXCLUDED.is_bronze_match
+          `;
+        }
       }
     } else if (format === "group_then_knockout") {
-      // Logic for generating group stage fixtures
       if (!regenerateKnockoutOnly) {
         if (teams.length < 8) {
           throw new Error(
@@ -213,60 +198,80 @@ export function useGenerateFixtures({
             })),
           ];
         }
-        batch.update(tournamentRef, {
-          fixtures: allFixtures,
-          matches: [], // Clear any old knockout matches
-        });
+        await sql`
+          UPDATE tournaments
+          SET fixtures = ${JSON.stringify(allFixtures)}, updated_at = now()
+          WHERE id = ${tournamentId}
+        `;
+        await sql`DELETE FROM matches WHERE tournament_id = ${tournamentId}`;
       } else {
-        // Logic for generating knockout stage from qualified teams or TBD
         const knockoutTeamsCount = (numberOfTeams ?? 0) / 2;
         const matches = generateKnockoutMatches(teams, knockoutTeamsCount, true);
-        matches.forEach((match) => {
+        for (const match of matches) {
           const matchId = match.isBronzeMatch
             ? `r${match.round}_m_bronze`
             : `r${match.round}_m${match.matchNumber}`;
-          const matchRef = doc(
-            db,
-            "tournaments",
-            tournamentId,
-            "matches",
-            matchId,
-          );
-          batch.set(matchRef, match);
-        });
+          await sql`
+            INSERT INTO matches (id, tournament_id, round, match_number, team1_id, team2_id, score1_leg1, score2_leg1, score1_leg2, score2_leg2, status, next_match_id, is_bronze_match)
+            VALUES (${matchId}, ${tournamentId}, ${match.round}, ${match.matchNumber}, ${match.team1Id}, ${match.team2Id}, ${match.score1_leg1}, ${match.score2_leg1}, ${match.score1_leg2}, ${match.score2_leg2}, ${match.status}, ${match.nextMatchId}, ${match.isBronzeMatch ?? false})
+            ON CONFLICT (id) DO UPDATE SET
+              tournament_id = EXCLUDED.tournament_id,
+              round = EXCLUDED.round,
+              match_number = EXCLUDED.match_number,
+              team1_id = EXCLUDED.team1_id,
+              team2_id = EXCLUDED.team2_id,
+              score1_leg1 = EXCLUDED.score1_leg1,
+              score2_leg1 = EXCLUDED.score2_leg1,
+              score1_leg2 = EXCLUDED.score1_leg2,
+              score2_leg2 = EXCLUDED.score2_leg2,
+              status = EXCLUDED.status,
+              next_match_id = EXCLUDED.next_match_id,
+              is_bronze_match = EXCLUDED.is_bronze_match
+          `;
+        }
       }
     } else if (format === "knockout") {
       if (!numberOfTeams || !teams)
         throw new Error("Number of teams not specified for knockout format.");
 
       const matches = generateKnockoutMatches(teams, numberOfTeams);
-      matches.forEach((match) => {
-        // Construct a unique ID
-         const matchId = match.isBronzeMatch
-            ? `r${match.round}_m_bronze`
-            : `r${match.round}_m${match.matchNumber}`;
-        const matchRef = doc(
-          db,
-          "tournaments",
-          tournamentId,
-          "matches",
-          matchId,
-        );
-        batch.set(matchRef, match);
-      });
-    } else { // round-robin
+      for (const match of matches) {
+        const matchId = match.isBronzeMatch
+          ? `r${match.round}_m_bronze`
+          : `r${match.round}_m${match.matchNumber}`;
+        await sql`
+          INSERT INTO matches (id, tournament_id, round, match_number, team1_id, team2_id, score1_leg1, score2_leg1, score1_leg2, score2_leg2, status, next_match_id, is_bronze_match)
+          VALUES (${matchId}, ${tournamentId}, ${match.round}, ${match.matchNumber}, ${match.team1Id}, ${match.team2Id}, ${match.score1_leg1}, ${match.score2_leg1}, ${match.score1_leg2}, ${match.score2_leg2}, ${match.status}, ${match.nextMatchId}, ${match.isBronzeMatch ?? false})
+          ON CONFLICT (id) DO UPDATE SET
+            tournament_id = EXCLUDED.tournament_id,
+            round = EXCLUDED.round,
+            match_number = EXCLUDED.match_number,
+            team1_id = EXCLUDED.team1_id,
+            team2_id = EXCLUDED.team2_id,
+            score1_leg1 = EXCLUDED.score1_leg1,
+            score2_leg1 = EXCLUDED.score2_leg1,
+            score1_leg2 = EXCLUDED.score1_leg2,
+            score2_leg2 = EXCLUDED.score2_leg2,
+            status = EXCLUDED.status,
+            next_match_id = EXCLUDED.next_match_id,
+            is_bronze_match = EXCLUDED.is_bronze_match
+        `;
+      }
+    } else {
       if (teams.length < 2) {
         throw new Error(
           "At least two teams are required to generate fixtures.",
         );
       }
       const fixtures = generateRoundRobinFixtures(teams, matchType);
-      batch.update(tournamentRef, {
-        fixtures,
-      });
+      await sql`
+        UPDATE tournaments
+        SET fixtures = ${JSON.stringify(fixtures)}, updated_at = now()
+        WHERE id = ${tournamentId}
+      `;
     }
 
-    return await batch.commit();
+    return;
   };
 
   return useMutation({
@@ -276,7 +281,6 @@ export function useGenerateFixtures({
         title: t("generate-fixtures-success.title"),
         description: t("generate-fixtures-success.description"),
       });
-      // Invalidate both queries since we might be writing to either fixtures array or matches subcollection
       queryClient.invalidateQueries({
         queryKey: tournamentsQueryKeys.tournament(tournamentId),
       });

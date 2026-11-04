@@ -1,14 +1,8 @@
-
 "use client";
 
 import React, { useRef } from "react";
 import { useParams } from "next/navigation";
-import {
-  collection,
-  getFirestore,
-  onSnapshot,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { useTournamentsById } from "@/backend-calls";
 import { Match, teamBody } from "@/types/types";
 import { transformMatchesToBracketData } from "@/lib/g-loot-transformer";
@@ -138,8 +132,6 @@ export default function BracketPage() {
   const tournamentId = Array.isArray(id) ? id[0] : id;
   const locale = useLocale();
   const t = useTranslations();
-  const db = getFirestore(app);
-
 
   const { data: tournament, isLoading: isLoadingTournament } =
     useTournamentsById({ id: tournamentId });
@@ -147,34 +139,71 @@ export default function BracketPage() {
   const [matches, setMatches] = React.useState<Match[]>([]);
   const [rounds, setRounds] = React.useState<any[]>([]);
 
+  const fetchTeams = React.useCallback(async () => {
+    if (!tournamentId) return;
+    try {
+      const sql = getSql();
+      const rows = (await sql`
+        SELECT id, tournament_id, name, color, roster, logo
+        FROM teams
+        WHERE tournament_id = ${tournamentId}
+      `) as any[];
+      setTeams(
+        rows.map((r) => ({
+          id: r.id,
+          name: r.name,
+          color: r.color,
+          roster: r.roster ?? [],
+          logo: r.logo,
+        })) as teamBody[],
+      );
+    } catch (e) {
+      console.error("Failed to fetch teams:", e);
+    }
+  }, [tournamentId]);
+
+  const fetchMatches = React.useCallback(async () => {
+    if (!tournamentId) return;
+    try {
+      const sql = getSql();
+      const rows = (await sql`
+        SELECT id, tournament_id, round, match_number, team1_id, team2_id,
+               score1_leg1, score2_leg1, score1_leg2, score2_leg2, status,
+               next_match_id, is_bronze_match
+        FROM matches
+        WHERE tournament_id = ${tournamentId}
+      `) as any[];
+      setMatches(
+        rows.map((r) => ({
+          id: r.id,
+          round: r.round,
+          matchNumber: r.match_number,
+          team1Id: r.team1_id,
+          team2Id: r.team2_id,
+          score1_leg1: r.score1_leg1,
+          score2_leg1: r.score2_leg1,
+          score1_leg2: r.score1_leg2,
+          score2_leg2: r.score2_leg2,
+          status: r.status,
+          nextMatchId: r.next_match_id,
+          isBronzeMatch: r.is_bronze_match,
+        })) as Match[],
+      );
+    } catch (e) {
+      console.error("Failed to fetch matches:", e);
+    }
+  }, [tournamentId]);
+
   React.useEffect(() => {
     if (!tournamentId) return;
-    const teamsUnsubscribe = onSnapshot(
-      collection(db, "tournaments", tournamentId, "teams"),
-      (snapshot) => {
-        setTeams(
-          snapshot.docs.map(
-            (doc) => ({ id: doc.id, ...doc.data() }) as teamBody,
-          ),
-        );
-      },
-    );
-
-    const matchesUnsubscribe = onSnapshot(
-      collection(db, "tournaments", tournamentId, "matches"),
-      (snapshot) => {
-        const matchesData = snapshot.docs.map(
-          (doc) => ({ id: doc.id, ...doc.data() }) as Match,
-        );
-        setMatches(matchesData);
-      },
-    );
-
-    return () => {
-      teamsUnsubscribe();
-      matchesUnsubscribe();
-    };
-  }, [db, tournamentId]);
+    fetchTeams();
+    fetchMatches();
+    const interval = setInterval(() => {
+      fetchTeams();
+      fetchMatches();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [tournamentId, fetchTeams, fetchMatches]);
 
   React.useEffect(() => {
     if (matches.length > 0 && tournament && teams.length > 0) {
@@ -244,7 +273,7 @@ export default function BracketPage() {
       </div>
     );
   }
-  
+
   const totalRounds = rounds.length;
 
   return (

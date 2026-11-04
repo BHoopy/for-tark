@@ -1,24 +1,40 @@
-
 import { useQuery } from "@tanstack/react-query";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { usersQueryKeys } from "./users-query-keys";
 import { UserProfile } from "@/types/types";
 
 export function useUserById(userId: string) {
-  const db = getFirestore(app);
-
   const fetchUser = async () => {
     if (!userId) throw new Error("User ID is required.");
 
-    const userDocRef = doc(db, "users", userId);
-    const userDoc = await getDoc(userDocRef);
+    const sql = getSql();
+    const rows = (await sql`
+      SELECT id, uid, display_name, email, photo_url, cover_image_url,
+             whatsapp, x, facebook, phone, discord, favorite_tournaments
+      FROM users
+      WHERE uid = ${userId} OR id = ${userId}
+      LIMIT 1
+    `) as any[];
 
-    if (!userDoc.exists()) {
+    if (!rows || rows.length === 0) {
       throw new Error("User not found.");
     }
 
-    return { id: userDoc.id, ...userDoc.data() } as UserProfile;
+    const r = rows[0];
+    return {
+      id: r.id,
+      uid: r.uid,
+      displayName: r.display_name,
+      email: r.email,
+      photoURL: r.photo_url,
+      coverImageURL: r.cover_image_url,
+      whatsapp: r.whatsapp,
+      x: r.x,
+      facebook: r.facebook,
+      phone: r.phone,
+      discord: r.discord,
+      favoriteTournaments: r.favorite_tournaments ?? [],
+    } as UserProfile;
   };
 
   return useQuery({

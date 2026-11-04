@@ -1,11 +1,9 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { tournamentsQueryKeys } from "@/backend-calls";
 import { toast } from "@/hooks/use-toast";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useTranslations } from "next-intl";
-import { doc, deleteDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 
 interface Props {
   router: AppRouterInstance;
@@ -16,11 +14,13 @@ interface Props {
 export function useDeleteTournament({ router, closeModal, locale }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations();
-  const db = getFirestore(app);
 
   const deleteTournamentFn = async (id: string) => {
-    const tournamentRef = doc(db, "tournaments", id);
-    return await deleteDoc(tournamentRef);
+    const sql = getSql();
+    await sql`
+      DELETE FROM tournaments
+      WHERE id = ${id}
+    `;
   };
 
   return useMutation({

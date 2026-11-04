@@ -1,12 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  writeBatch,
-  collection,
-  getFirestore,
-  doc,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { teamBody } from "@/types/types";
@@ -19,30 +12,25 @@ interface Props {
 export function useAddMultipleTeams({ tournamentId }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const addMultipleTeamsFn = async (teams: Omit<teamBody, "id">[]) => {
     if (!tournamentId) throw new Error("Tournament ID is missing.");
 
-    const batch = writeBatch(db);
-    const teamsCollectionRef = collection(
-      db,
-      "tournaments",
-      tournamentId,
-      "teams",
-    );
-
-    teams.forEach((team) => {
-      const newTeamRef = doc(teamsCollectionRef);
-      const teamData = {
-        name: team.name,
-        logo: team.logo || "/Play.png",
-        roster: [],
-      };
-      batch.set(newTeamRef, teamData);
-    });
-
-    return await batch.commit();
+    const sql = getSql();
+    for (const team of teams) {
+      const id = crypto.randomUUID();
+      await sql`
+        INSERT INTO teams (id, tournament_id, name, color, roster, logo)
+        VALUES (
+          ${id},
+          ${tournamentId},
+          ${team.name},
+          ${team.color ?? null},
+          ${team.roster ?? []},
+          ${team.logo || "/Play.png"}
+        )
+      `;
+    }
   };
 
   return useMutation({

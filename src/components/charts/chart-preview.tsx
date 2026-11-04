@@ -1,4 +1,3 @@
-
 "use client";
 import {
   Card,
@@ -13,12 +12,7 @@ import { tournamentBody } from "@/types/types";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import {
-  doc,
-  getDoc,
-  getFirestore,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { getTournamentPlaceholder } from "@/lib/tournament-placeholders";
@@ -37,19 +31,23 @@ export default function ChartPreview({ tournament, link }: ChartPreviewProps) {
     photoURL: string | null;
   }>({ name: null, photoURL: null });
 
-  const db = getFirestore(app);
-
   React.useEffect(() => {
     const fetchOrganizer = async () => {
       if (!tournament.createdBy) return;
       try {
-        const userDocRef = doc(db, "users", tournament.createdBy);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
+        const sql = getSql();
+        const rows = (await sql`
+          SELECT id, uid, display_name, email, photo_url
+          FROM users
+          WHERE uid = ${tournament.createdBy} OR id = ${tournament.createdBy}
+          LIMIT 1
+        `) as any[];
+
+        if (rows && rows.length > 0) {
+          const userData = rows[0];
           setOrganizer({
-            name: userData.displayName ?? userData.email ?? "Unknown",
-            photoURL: userData.photoURL ?? null,
+            name: userData.display_name ?? userData.email ?? "Unknown",
+            photoURL: userData.photo_url ?? null,
           });
         } else {
           setOrganizer({
@@ -66,7 +64,7 @@ export default function ChartPreview({ tournament, link }: ChartPreviewProps) {
       }
     };
     fetchOrganizer();
-  }, [tournament.createdBy, db]);
+  }, [tournament.createdBy]);
 
   return (
     <Card
@@ -80,7 +78,7 @@ export default function ChartPreview({ tournament, link }: ChartPreviewProps) {
           <Image
             src={
               tournament.coverImageUrl ??
-              getTournamentPlaceholder(tournament.id)
+              getTournamentPlaceholder(tournament.id ?? "")
             }
             alt={tournament.name}
             fill

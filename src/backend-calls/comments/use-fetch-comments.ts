@@ -1,65 +1,40 @@
-
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  collection,
-  getFirestore,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { useQuery } from "@tanstack/react-query";
+import { getSql } from "@/lib/neon";
 import { Comment } from "@/types/types";
-import { firestoreTimestampToDate } from "@/lib/firestore-helpers";
+import { commentsQueryKeys } from "./comments-query-keys";
 
 export function useFetchComments(tournamentId: string) {
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const db = getFirestore(app);
-
-  useEffect(() => {
+  const fetchComments = async (): Promise<Comment[]> => {
     if (!tournamentId) {
-      setIsLoading(false);
-      return;
+      return [];
     }
 
-    setIsLoading(true);
-    const commentsColRef = collection(
-      db,
-      "tournaments",
-      tournamentId,
-      "comments",
-    );
-    const q = query(commentsColRef, orderBy("createdAt", "desc"));
+    const sql = getSql();
+    const rows = (await sql`
+      SELECT id, tournament_id, text, created_by, author_name, author_photo_url, created_at
+      FROM comments
+      WHERE tournament_id = ${tournamentId}
+      ORDER BY created_at DESC
+    `) as any[];
 
-    const unsubscribe = onSnapshot(
-      q,
-      (querySnapshot) => {
-        const commentsData = querySnapshot.docs.map((doc) => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            ...data,
-            createdAt: firestoreTimestampToDate(
-              data.createdAt as any,
-            ).toISOString(),
-          } as Comment;
-        });
-        setComments(commentsData);
-        setIsLoading(false);
-        setIsError(false);
-      },
-      (error) => {
-        console.error("Error fetching comments:", error);
-        setIsError(true);
-        setIsLoading(false);
-      },
-    );
+    return rows.map((r) => ({
+      id: r.id,
+      text: r.text,
+      createdBy: r.created_by,
+      authorName: r.author_name,
+      authorPhotoURL: r.author_photo_url,
+      createdAt:
+        r.created_at instanceof Date
+          ? r.created_at.toISOString()
+          : r.created_at,
+    })) as Comment[];
+  };
 
-    return () => unsubscribe();
-  }, [db, tournamentId]);
-
-  return { data: comments, isLoading, isError };
+  return useQuery({
+    queryKey: commentsQueryKeys.comments(tournamentId),
+    queryFn: fetchComments,
+    enabled: !!tournamentId,
+  });
 }

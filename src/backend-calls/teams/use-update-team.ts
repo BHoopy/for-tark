@@ -1,7 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { doc, updateDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { teamBody } from "@/types/types";
@@ -14,27 +12,36 @@ interface Props {
 export function useUpdateTeam({ tournamentId }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const updateTeamFn = async (team: teamBody) => {
     if (!tournamentId || !team.id)
       throw new Error("Tournament ID or Team ID is missing.");
-    const teamDocRef = doc(db, "tournaments", tournamentId, "teams", team.id);
 
-    const dataToUpdate: Partial<teamBody> = {
-      name: team.name,
-      roster: team.roster,
-      logo: team.logo,
-    };
-
-    // Remove undefined fields
-    Object.keys(dataToUpdate).forEach(
-      (key) =>
-        (dataToUpdate as any)[key] === undefined &&
-        delete (dataToUpdate as any)[key],
-    );
-
-    return await updateDoc(teamDocRef, dataToUpdate);
+    const sql = getSql();
+    if (team.name !== undefined) {
+      await sql`
+        UPDATE teams SET name = ${team.name}
+        WHERE id = ${team.id} AND tournament_id = ${tournamentId}
+      `;
+    }
+    if (team.color !== undefined) {
+      await sql`
+        UPDATE teams SET color = ${team.color}
+        WHERE id = ${team.id} AND tournament_id = ${tournamentId}
+      `;
+    }
+    if (team.roster !== undefined) {
+      await sql`
+        UPDATE teams SET roster = ${team.roster}
+        WHERE id = ${team.id} AND tournament_id = ${tournamentId}
+      `;
+    }
+    if (team.logo !== undefined) {
+      await sql`
+        UPDATE teams SET logo = ${team.logo}
+        WHERE id = ${team.id} AND tournament_id = ${tournamentId}
+      `;
+    }
   };
 
   return useMutation({
@@ -58,5 +65,3 @@ export function useUpdateTeam({ tournamentId }: Props) {
     },
   });
 }
-
-    

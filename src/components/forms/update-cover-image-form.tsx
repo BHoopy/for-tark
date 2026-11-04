@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -16,7 +15,6 @@ import { useTranslations } from "next-intl";
 import { useUser } from "@/hooks/use-user";
 import axios from "axios";
 import { toast } from "@/hooks/use-toast";
-import { app } from "@/lib/firebase/firebase";
 import ReactCrop, {
   centerCrop,
   makeAspectCrop,
@@ -24,7 +22,7 @@ import ReactCrop, {
   PixelCrop,
 } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { getSql } from "@/lib/neon";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -97,7 +95,6 @@ interface UpdateCoverImageFormProps {
 export function UpdateCoverImageForm({ setOpen }: UpdateCoverImageFormProps) {
   const t = useTranslations();
   const { user } = useUser();
-  const db = getFirestore(app);
   const form = useForm();
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -154,9 +151,15 @@ export function UpdateCoverImageForm({ setOpen }: UpdateCoverImageFormProps) {
 
       const { secure_url } = response.data;
 
-      // Update Firestore user document
-      const userDocRef = doc(db, "users", user.uid);
-      await setDoc(userDocRef, { coverImageURL: secure_url }, { merge: true });
+      // Update Neon user document
+      const sql = getSql();
+      await sql`
+        INSERT INTO users (id, uid, cover_image_url)
+        VALUES (${user.uid}, ${user.uid}, ${secure_url})
+        ON CONFLICT (uid) DO UPDATE SET
+          cover_image_url = EXCLUDED.cover_image_url,
+          updated_at = NOW()
+      `;
 
       toast({
         title: t("toast.cover-image-update-success.title"),

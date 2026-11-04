@@ -1,7 +1,5 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { doc, updateDoc, arrayUnion, arrayRemove, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { tournamentsQueryKeys } from "../tournaments";
@@ -18,19 +16,28 @@ interface UpdateModeratorsParams {
 export function useUpdateModerators({ tournamentId }: UseUpdateModeratorsProps) {
   const queryClient = useQueryClient();
   const t = useTranslations("toast");
-  const db = getFirestore(app);
 
   const updateModeratorsFn = async ({ userId, action }: UpdateModeratorsParams) => {
-    const tournamentRef = doc(db, "tournaments", tournamentId);
-    
+    const sql = getSql();
+
     if (action === "add") {
-      return updateDoc(tournamentRef, {
-        moderators: arrayUnion(userId)
-      });
+      await sql`
+        UPDATE tournaments
+        SET moderators = CASE
+          WHEN ${userId} = ANY(COALESCE(moderators, '{}'))
+            THEN moderators
+          ELSE array_append(COALESCE(moderators, '{}'), ${userId})
+        END,
+            updated_at = NOW()
+        WHERE id = ${tournamentId}
+      `;
     } else {
-      return updateDoc(tournamentRef, {
-        moderators: arrayRemove(userId)
-      });
+      await sql`
+        UPDATE tournaments
+        SET moderators = array_remove(COALESCE(moderators, '{}'), ${userId}),
+            updated_at = NOW()
+        WHERE id = ${tournamentId}
+      `;
     }
   };
 

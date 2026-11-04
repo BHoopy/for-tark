@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { useUser } from "@/hooks/use-user";
@@ -7,14 +6,7 @@ import Footer from "@/components/ui/footer";
 import DonationBanner from "@/components/ui/donation-banner";
 import { useTournamentsById } from "@/backend-calls";
 import { useParams } from "next/navigation";
-import {
-  collection,
-  doc,
-  getDoc,
-  getFirestore,
-  onSnapshot,
-} from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 import { Match, teamBody, UserProfile } from "@/types/types";
 import { TournamentHeader } from "@/components/ui/tournament-header";
 import { TournamentTabsContent } from "@/components/ui/tournament-tabs-content";
@@ -24,7 +16,6 @@ export default function TournamentPage() {
   const { user } = useUser();
   const { id } = useParams();
   const tournamentId = Array.isArray(id) ? id[0] : id;
-  const db = getFirestore(app);
 
   const [activeTab, setActiveTab] = React.useState("overview");
   const [selectedStage, setSelectedStage] = React.useState("group_stage");
@@ -41,52 +32,100 @@ export default function TournamentPage() {
   const [organizer, setOrganizer] = React.useState<UserProfile | null>(null);
   const [matches, setMatches] = React.useState<Match[]>([]);
 
+  const fetchTeams = React.useCallback(async () => {
+    if (!tournamentId) return;
+    const sql = getSql();
+    const rows = (await sql`
+      SELECT id, name, color, roster, logo
+      FROM teams
+      WHERE tournament_id = ${tournamentId}
+    `) as any[];
+    setTeams(
+      (rows ?? []).map((r) => ({
+        id: r.id,
+        name: r.name,
+        color: r.color ?? undefined,
+        roster: r.roster ?? [],
+        logo: r.logo ?? undefined,
+      })) as teamBody[],
+    );
+  }, [tournamentId]);
+
+  const fetchMatches = React.useCallback(async () => {
+    if (!tournamentId) return;
+    const sql = getSql();
+    const rows = (await sql`
+      SELECT id, round, match_number, team1_id, team2_id,
+             score1_leg1, score2_leg1, score1_leg2, score2_leg2,
+             status, next_match_id, is_bronze_match
+      FROM matches
+      WHERE tournament_id = ${tournamentId}
+    `) as any[];
+    setMatches(
+      (rows ?? []).map((r) => ({
+        id: r.id,
+        round: r.round,
+        matchNumber: r.match_number,
+        team1Id: r.team1_id,
+        team2Id: r.team2_id,
+        score1_leg1: r.score1_leg1,
+        score2_leg1: r.score2_leg1,
+        score1_leg2: r.score1_leg2,
+        score2_leg2: r.score2_leg2,
+        status: r.status,
+        nextMatchId: r.next_match_id,
+        isBronzeMatch: r.is_bronze_match,
+      })) as Match[],
+    );
+  }, [tournamentId]);
+
   React.useEffect(() => {
     if (!tournamentId) return;
-    const teamsCol = collection(db, "tournaments", tournamentId, "teams");
-    const teamsUnsubscribe = onSnapshot(teamsCol, (snapshot) => {
-      const teamsList = snapshot.docs.map(
-        (doc) =>
-          ({
-            id: doc.id,
-            ...doc.data(),
-          }) as teamBody,
-      );
-      setTeams(teamsList);
-    });
-
-    if (
+    const isKnockout =
       tournament?.format === "knockout" ||
-      tournament?.format === "group_then_knockout"
-    ) {
-      const matchesCol = collection(db, "tournaments", tournamentId, "matches");
-      const matchesUnsubscribe = onSnapshot(matchesCol, (snapshot) => {
-        const matchesList = snapshot.docs.map(
-          (doc) => ({ id: doc.id, ...doc.data() }) as Match,
-        );
-        setMatches(matchesList);
-      });
-      return () => {
-        teamsUnsubscribe();
-        matchesUnsubscribe();
-      };
-    }
+      tournament?.format === "group_then_knockout";
 
-    return () => teamsUnsubscribe();
-  }, [tournamentId, db, tournament?.format]);
+    const load = () => {
+      fetchTeams();
+      if (isKnockout) fetchMatches();
+    };
+    load();
+    const interval = setInterval(load, 5000);
+    return () => clearInterval(interval);
+  }, [tournamentId, tournament?.format, fetchTeams, fetchMatches]);
 
   React.useEffect(() => {
     const fetchOrganizer = async () => {
       if (tournament?.createdBy) {
-        const userDocRef = doc(db, "users", tournament.createdBy);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          setOrganizer({ id: userDoc.id, ...userDoc.data() } as UserProfile);
+        const sql = getSql();
+        const rows = (await sql`
+          SELECT id, uid, display_name, email, photo_url, cover_image_url,
+                 whatsapp, x, facebook, phone, discord, favorite_tournaments
+          FROM users
+          WHERE uid = ${tournament.createdBy} OR id = ${tournament.createdBy}
+          LIMIT 1
+        `) as any[];
+        if (rows && rows.length > 0) {
+          const r = rows[0];
+          setOrganizer({
+            id: r.id,
+            uid: r.uid,
+            displayName: r.display_name,
+            email: r.email,
+            photoURL: r.photo_url,
+            coverImageURL: r.cover_image_url,
+            whatsapp: r.whatsapp,
+            x: r.x,
+            facebook: r.facebook,
+            phone: r.phone,
+            discord: r.discord,
+            favoriteTournaments: r.favorite_tournaments ?? [],
+          } as UserProfile);
         }
       }
     };
     fetchOrganizer();
-  }, [tournament?.createdBy, db]);
+  }, [tournament?.createdBy]);
 
   React.useEffect(() => {
     if (tournament?.format) {

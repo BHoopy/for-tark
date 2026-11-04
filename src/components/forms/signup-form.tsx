@@ -1,4 +1,3 @@
-
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -25,7 +24,6 @@ import {
   signInAnonymously,
   User,
 } from "firebase/auth";
-import { doc, setDoc, getFirestore, getDoc } from "firebase/firestore";
 import { app } from "@/lib/firebase/firebase";
 import {
   Card,
@@ -35,6 +33,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "../ui/separator";
+import { getSql } from "@/lib/neon";
 
 export function SignupForm() {
   const { toast } = useToast();
@@ -42,7 +41,6 @@ export function SignupForm() {
   const t = useTranslations();
   const locale = useLocale();
   const auth = getAuth(app);
-  const db = getFirestore(app);
 
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -54,15 +52,15 @@ export function SignupForm() {
   });
 
   const getOrCreateUserDocument = async (user: User) => {
-    const userDocRef = doc(db, "users", user.uid);
-    const userDoc = await getDoc(userDocRef);
-    if (!userDoc.exists()) {
-      await setDoc(userDocRef, {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-      });
+    const sql = getSql();
+    const rows = (await sql`
+      SELECT id FROM users WHERE uid = ${user.uid} LIMIT 1
+    `) as any[];
+    if (!rows || rows.length === 0) {
+      await sql`
+        INSERT INTO users (id, uid, email, display_name, photo_url)
+        VALUES (${user.uid}, ${user.uid}, ${user.email ?? null}, ${user.displayName ?? null}, ${user.photoURL ?? null})
+      `;
     }
   };
 

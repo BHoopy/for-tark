@@ -1,4 +1,3 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { tournamentBody } from "@/types/types";
 import { toast } from "@/hooks/use-toast";
@@ -7,15 +6,7 @@ import { tournamentsQueryKeys } from "@/backend-calls";
 import { useTranslations } from "next-intl";
 import { getAuth } from "firebase/auth";
 import { app } from "@/lib/firebase/firebase";
-import {
-  addDoc,
-  collection,
-  doc,
-  getFirestore,
-  arrayUnion,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { getSql } from "@/lib/neon";
 
 interface Props {
   router: AppRouterInstance;
@@ -28,39 +19,44 @@ export function useCreateTournament({ router, closeModal, locale }: Props) {
   const t = useTranslations();
   const auth = getAuth(app);
   const user = auth.currentUser;
-  const db = getFirestore(app);
 
   async function createTournamentFn(
     tournament: Omit<tournamentBody, "teams" | "fixtures">,
   ) {
     if (!user) throw new Error("User not authenticated.");
 
+    const sql = getSql();
+
     const tournamentToCreate = {
       ...tournament,
-      numberOfTeams: tournament.numberOfTeams || null, // Ensure it's not undefined
+      numberOfTeams: tournament.numberOfTeams || null,
       status: "draft",
       createdBy: user.uid,
-      createdAt: serverTimestamp(),
       coverImageUrl:
         "https://res.cloudinary.com/dwoklp9vo/image/upload/v1757560924/Screenshot_2025-09-08_152618_m86jwu.avif",
     };
 
-    const docRef = await addDoc(
-      collection(db, "tournaments"),
-      tournamentToCreate,
-    );
+    const rows = (await sql`
+      INSERT INTO tournaments (
+        id, name, description, rules, format, match_type, status,
+        created_by, cover_image_url, number_of_teams, moderators
+      ) VALUES (
+        gen_random_uuid()::text,
+        ${tournamentToCreate.name},
+        ${tournamentToCreate.description ?? null},
+        ${tournamentToCreate.rules ?? null},
+        ${tournamentToCreate.format},
+        ${tournamentToCreate.matchType ?? null},
+        ${tournamentToCreate.status},
+        ${tournamentToCreate.createdBy},
+        ${tournamentToCreate.coverImageUrl},
+        ${tournamentToCreate.numberOfTeams},
+        ${tournamentToCreate.moderators ?? []}
+      )
+      RETURNING id
+    `) as any[];
 
-    const userDocRef = doc(db, "users", user.uid);
-    // Add the user document if it doesn't exist, or update it.
-    await setDoc(
-      userDocRef,
-      {
-        tournamentsId: arrayUnion(docRef.id),
-      },
-      { merge: true },
-    );
-
-    return { id: docRef.id };
+    return { id: rows[0].id };
   }
 
   return useMutation({

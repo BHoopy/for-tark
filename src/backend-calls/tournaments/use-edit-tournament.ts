@@ -1,11 +1,9 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { tournamentsQueryKeys } from "@/backend-calls";
 import { toast } from "@/hooks/use-toast";
 import { tournamentBody } from "@/types/types";
 import { useTranslations } from "next-intl";
-import { doc, updateDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/lib/firebase/firebase";
+import { getSql } from "@/lib/neon";
 
 interface Props {
   id: string;
@@ -14,12 +12,11 @@ interface Props {
 export function useEditTournament({ id }: Props) {
   const queryClient = useQueryClient();
   const t = useTranslations();
-  const db = getFirestore(app);
 
   const editTournamentFn = async (
     updatedTournament: Partial<tournamentBody>,
   ) => {
-    const tournamentRef = doc(db, "tournaments", id);
+    const sql = getSql();
     const {
       name,
       description,
@@ -29,25 +26,25 @@ export function useEditTournament({ id }: Props) {
       coverImageUrl,
     } = updatedTournament;
 
-    const dataToUpdate: Partial<
-      Omit<tournamentBody, "fixtures" | "teams" | "format">
-    > = {
-      name,
-      description,
-      rules,
-      numberOfTeams,
-      matchType,
-      coverImageUrl,
-    };
+    const hasName = name !== undefined;
+    const hasDescription = description !== undefined;
+    const hasRules = rules !== undefined;
+    const hasNumberOfTeams = numberOfTeams !== undefined;
+    const hasMatchType = matchType !== undefined;
+    const hasCoverImageUrl = coverImageUrl !== undefined;
 
-    // Remove undefined fields to prevent Firestore errors
-    Object.keys(dataToUpdate).forEach(
-      (key) =>
-        (dataToUpdate as any)[key] === undefined &&
-        delete (dataToUpdate as any)[key],
-    );
-
-    return await updateDoc(tournamentRef, dataToUpdate);
+    await sql`
+      UPDATE tournaments
+      SET
+        name = CASE WHEN ${hasName} THEN ${name ?? null} ELSE name END,
+        description = CASE WHEN ${hasDescription} THEN ${description ?? null} ELSE description END,
+        rules = CASE WHEN ${hasRules} THEN ${rules ?? null} ELSE rules END,
+        number_of_teams = CASE WHEN ${hasNumberOfTeams} THEN ${numberOfTeams ?? null} ELSE number_of_teams END,
+        match_type = CASE WHEN ${hasMatchType} THEN ${matchType ?? null} ELSE match_type END,
+        cover_image_url = CASE WHEN ${hasCoverImageUrl} THEN ${coverImageUrl ?? null} ELSE cover_image_url END,
+        updated_at = NOW()
+      WHERE id = ${id}
+    `;
   };
 
   return useMutation({
