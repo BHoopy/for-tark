@@ -25,9 +25,12 @@ export function getSql(): NeonQueryFunction<false, false> {
   }
   if (!cached) {
     cached = neon(connectionString);
+    // Use psimply schema to avoid conflicts with other apps sharing same DB
+    cached`SET search_path TO psimply, public`.catch(() => {});
   }
   return cached;
 }
+
 
 export const sql = (strings: TemplateStringsArray, ...values: any[]) => {
   return getSql()(strings, ...values);
