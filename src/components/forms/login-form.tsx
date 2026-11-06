@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -153,9 +154,10 @@ export function LoginForm() {
                 <FormItem>
                   <FormLabel>{t("forms.login.password-label")}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
+                    <PasswordInput
                       placeholder={t("forms.login.password-placeholder")}
+                      showPasswordLabel={t("forms.login.show-password")}
+                      hidePasswordLabel={t("forms.login.hide-password")}
                       {...field}
                     />
                   </FormControl>

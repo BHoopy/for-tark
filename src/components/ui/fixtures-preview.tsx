@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -293,7 +292,11 @@ const FixtureMatch = ({
           {canUpdateScore && match.team2 && match.team2.name !== "bye" && (
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline" size="sm" className="h-auto p-1.5 text-xs">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-auto p-1.5 text-xs"
+                >
                   {t("forms.score.set-scores")}
                 </Button>
               </DialogTrigger>
@@ -360,7 +363,6 @@ export default function FixturesPreview({
     format: tournamentFormat,
     numberOfTeams,
     matchType,
-    tournament,
   });
 
   const [isLoadingMatches, setIsLoadingMatches] = React.useState(true);
@@ -418,10 +420,13 @@ export default function FixturesPreview({
 
   const handleGenerateKnockout = () => {
     let qualifiedTeams: teamBody[] = [];
-    
-    if (tournament.format === "group_then_knockout" && tournament.numberOfTeams === 48) {
-        generateFixturesMutation.mutate({ teams, regenerateKnockoutOnly: true });
-        return;
+
+    if (
+      tournament.format === "group_then_knockout" &&
+      tournament.numberOfTeams === 48
+    ) {
+      generateFixturesMutation.mutate({ teams, regenerateKnockoutOnly: true });
+      return;
     }
 
     if (isGroupStageComplete) {
@@ -461,7 +466,10 @@ export default function FixturesPreview({
           if (runnerUp) qualifiedTeams.push(runnerUp);
         });
     }
-    generateFixturesMutation.mutate({ teams: qualifiedTeams, regenerateKnockoutOnly: true });
+    generateFixturesMutation.mutate({
+      teams: qualifiedTeams,
+      regenerateKnockoutOnly: true,
+    });
   };
 
   const handleRegenerate = () => {
@@ -474,7 +482,6 @@ export default function FixturesPreview({
       generateFixturesMutation.mutate({ teams });
     }
   };
-
 
   const renderContent = () => {
     if (isLoadingMatches) return <PulseLoader />;
@@ -527,14 +534,15 @@ export default function FixturesPreview({
                 {t("tournament.add-more-teams")}
               </p>
             )}
-            {tournamentFormat === "group_then_knockout" && !canGenerateGroup && (
-              <p className="text-sm text-muted-foreground">
-                {t("forms.tournament.group-generation-notice", {
-                  required: 8,
-                  count: teams.length,
-                })}
-              </p>
-            )}
+            {tournamentFormat === "group_then_knockout" &&
+              !canGenerateGroup && (
+                <p className="text-sm text-muted-foreground">
+                  {t("forms.tournament.group-generation-notice", {
+                    required: 8,
+                    count: teams.length,
+                  })}
+                </p>
+              )}
           </CardContent>
         </Card>
       );
@@ -597,8 +605,7 @@ export default function FixturesPreview({
             matchType={matchType}
             tournamentName={tournament.name}
             tournamentLogoUrl={
-              tournament.coverImageUrl ||
-              "/favicon/android-chrome-512x512.png"
+              tournament.coverImageUrl || "/favicon/android-chrome-512x512.png"
             }
             isRoundFlipped={isRoundFlipped}
           />
@@ -629,7 +636,8 @@ export default function FixturesPreview({
   const canGenerate =
     (tournamentFormat === "round_robin" && canGenerateRoundRobin) ||
     (tournamentFormat === "knockout" && canGenerateKnockout) ||
-    (tournamentFormat === "group_then_knockout" && (canGenerateGroup || selectedStage === 'knockout'));
+    (tournamentFormat === "group_then_knockout" &&
+      (canGenerateGroup || selectedStage === "knockout"));
 
   return (
     <div className="w-full">

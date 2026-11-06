@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { teamBody } from "@/types/types";
 import { tournamentsQueryKeys } from "../tournaments";
+import { addTeam } from "@/lib/server-actions/teams";
 
 interface Props {
   tournamentId: string;
@@ -15,20 +15,7 @@ export function useAddTeam({ tournamentId }: Props) {
 
   const addTeamFn = async (team: Omit<teamBody, "id">) => {
     if (!tournamentId) throw new Error("Tournament ID is missing.");
-    const sql = getSql();
-    const id = crypto.randomUUID();
-    await sql`
-      INSERT INTO teams (id, tournament_id, name, color, roster, logo)
-      VALUES (
-        ${id},
-        ${tournamentId},
-        ${team.name},
-        ${team.color ?? null},
-        ${team.roster ?? []},
-        ${team.logo || "/Play.png"}
-      )
-    `;
-    return { id };
+    return addTeam(tournamentId, team);
   };
 
   return useMutation({

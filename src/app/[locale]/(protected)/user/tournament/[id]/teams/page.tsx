@@ -39,7 +39,7 @@ import {
   useDeleteTeamList,
 } from "@/backend-calls";
 import { useParams } from "next/navigation";
-import { getSql } from "@/lib/neon";
+import { getTournamentTeams } from "@/lib/server-actions/teams";
 import PulseLoader from "@/components/ui/pulse-loader";
 import { UserNav } from "@/components/navbar/user-nav";
 import Footer from "@/components/ui/footer";
@@ -107,19 +107,7 @@ export default function TeamsPage() {
     setLoading(true);
     const fetchTeams = async () => {
       try {
-        const sql = getSql();
-        const rows = (await sql`
-          SELECT id, tournament_id, name, color, roster, logo
-          FROM teams
-          WHERE tournament_id = ${tournamentId}
-        `) as any[];
-        const teamsList = rows.map((row) => ({
-          id: row.id,
-          name: row.name,
-          color: row.color,
-          roster: row.roster ?? [],
-          logo: row.logo,
-        })) as teamBody[];
+        const teamsList = await getTournamentTeams(tournamentId);
         setTeams(teamsList);
       } catch (e) {
         // ignore

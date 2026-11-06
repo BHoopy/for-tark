@@ -20,7 +20,7 @@
     "sign-up": "Sign Up",
     "login-or-signup": "Login or Sign Up",
     "login-signup-description": "Use a provider below to sign in or create your account.",
-    "signup-description": "Use a provider below to create your account.",
+    "signup-description": "",
     "login-google": "Continue with Google",
     "signup-google": "Sign up with Google",
     "login-email": "Continue with Email",
@@ -234,6 +234,8 @@
       "email-placeholder": "your@email.com",
       "password-label": "Password",
       "password-placeholder": "Your password",
+      "show-password": "Show password",
+      "hide-password": "Hide password",
       "username-label": "Username",
       "username-placeholder": "Your username"
     },

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { usersQueryKeys } from "./users-query-keys";
+import { updateUserFavorites } from "@/lib/server-actions/users";
 
 interface UseUpdateFavoritesProps {
   userId: string;
@@ -21,27 +21,7 @@ export function useUpdateFavorites({ userId }: UseUpdateFavoritesProps) {
     tournamentId,
     action,
   }: UpdateFavoritesParams) => {
-    const sql = getSql();
-
-    if (action === "add") {
-      await sql`
-        UPDATE users
-        SET favorite_tournaments = CASE
-          WHEN ${tournamentId} = ANY(COALESCE(favorite_tournaments, '{}'))
-            THEN favorite_tournaments
-          ELSE array_append(COALESCE(favorite_tournaments, '{}'), ${tournamentId})
-        END,
-            updated_at = NOW()
-        WHERE uid = ${userId} OR id = ${userId}
-      `;
-    } else {
-      await sql`
-        UPDATE users
-        SET favorite_tournaments = array_remove(COALESCE(favorite_tournaments, '{}'), ${tournamentId}),
-            updated_at = NOW()
-        WHERE uid = ${userId} OR id = ${userId}
-      `;
-    }
+    await updateUserFavorites(userId, tournamentId, action);
   };
 
   return useMutation({

@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
-import { useTranslations } from "next-intl";
 import { usersQueryKeys } from "../users";
+import { deleteTeamList } from "@/lib/server-actions/teams";
 
 interface DeleteTeamListProps {
   userId: string;
@@ -11,15 +10,10 @@ interface DeleteTeamListProps {
 
 export function useDeleteTeamList() {
   const queryClient = useQueryClient();
-  const t = useTranslations("toast");
 
   const deleteTeamListFn = async ({ userId, listId }: DeleteTeamListProps) => {
     if (!userId) throw new Error("User not authenticated.");
-    const sql = getSql();
-    await sql`
-      DELETE FROM team_lists
-      WHERE id = ${listId}
-    `;
+    await deleteTeamList(listId);
   };
 
   return useMutation({

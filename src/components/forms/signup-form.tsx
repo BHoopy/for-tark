@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -45,7 +46,6 @@ export function SignupForm() {
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
@@ -118,22 +118,6 @@ export function SignupForm() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("forms.login.username-label")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("forms.login.username-placeholder")}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
@@ -155,9 +139,10 @@ export function SignupForm() {
                 <FormItem>
                   <FormLabel>{t("forms.login.password-label")}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
+                    <PasswordInput
                       placeholder={t("forms.login.password-placeholder")}
+                      showPasswordLabel={t("forms.login.show-password")}
+                      hidePasswordLabel={t("forms.login.hide-password")}
                       {...field}
                     />
                   </FormControl>

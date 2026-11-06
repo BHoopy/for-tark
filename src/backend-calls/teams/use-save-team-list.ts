@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { usersQueryKeys } from "../users";
+import { saveTeamList } from "@/lib/server-actions/teams";
 
 interface SaveTeamListProps {
   userId: string;
@@ -20,14 +20,7 @@ export function useSaveTeamList() {
     teams,
   }: SaveTeamListProps) => {
     if (!userId) throw new Error("User not authenticated.");
-
-    const sql = getSql();
-    const id = crypto.randomUUID();
-    await sql`
-      INSERT INTO team_lists (id, name, teams)
-      VALUES (${id}, ${listName}, ${JSON.stringify(teams)}::jsonb)
-    `;
-    return { id };
+    return saveTeamList({ listName, teams });
   };
 
   return useMutation({

@@ -5,7 +5,11 @@ import Footer from "@/components/ui/footer";
 import DonationBanner from "@/components/ui/donation-banner";
 import { useTournamentsById } from "@/backend-calls";
 import { useParams } from "next/navigation";
-import { getSql } from "@/lib/neon";
+import {
+  getTournamentTeams,
+  getTournamentMatches,
+} from "@/lib/server-actions/teams";
+import { getUserByIdentifier } from "@/lib/server-actions/users";
 import { teamBody, Match, UserProfile } from "@/types/types";
 import { TournamentHeader } from "@/components/ui/tournament-header";
 import { TournamentTabsContent } from "@/components/ui/tournament-tabs-content";
@@ -33,21 +37,8 @@ export default function ShowTournamentPage() {
   const fetchTeams = React.useCallback(async () => {
     if (!tournamentId) return;
     try {
-      const sql = getSql();
-      const rows = (await sql`
-        SELECT id, tournament_id, name, color, roster, logo
-        FROM teams
-        WHERE tournament_id = ${tournamentId}
-      `) as any[];
-      setTeams(
-        rows.map((r) => ({
-          id: r.id,
-          name: r.name,
-          color: r.color,
-          roster: r.roster ?? [],
-          logo: r.logo,
-        })) as teamBody[],
-      );
+      const rows = await getTournamentTeams(tournamentId);
+      setTeams(rows);
     } catch (e) {
       console.error("Failed to fetch teams:", e);
     }
@@ -56,30 +47,8 @@ export default function ShowTournamentPage() {
   const fetchMatches = React.useCallback(async () => {
     if (!tournamentId) return;
     try {
-      const sql = getSql();
-      const rows = (await sql`
-        SELECT id, tournament_id, round, match_number, team1_id, team2_id,
-               score1_leg1, score2_leg1, score1_leg2, score2_leg2, status,
-               next_match_id, is_bronze_match
-        FROM matches
-        WHERE tournament_id = ${tournamentId}
-      `) as any[];
-      setMatches(
-        rows.map((r) => ({
-          id: r.id,
-          round: r.round,
-          matchNumber: r.match_number,
-          team1Id: r.team1_id,
-          team2Id: r.team2_id,
-          score1_leg1: r.score1_leg1,
-          score2_leg1: r.score2_leg1,
-          score1_leg2: r.score1_leg2,
-          score2_leg2: r.score2_leg2,
-          status: r.status,
-          nextMatchId: r.next_match_id,
-          isBronzeMatch: r.is_bronze_match,
-        })) as Match[],
-      );
+      const rows = await getTournamentMatches(tournamentId);
+      setMatches(rows);
     } catch (e) {
       console.error("Failed to fetch matches:", e);
     }
@@ -109,30 +78,9 @@ export default function ShowTournamentPage() {
     const fetchOrganizer = async () => {
       if (tournament?.createdBy) {
         try {
-          const sql = getSql();
-          const rows = (await sql`
-            SELECT id, uid, display_name, email, photo_url, cover_image_url,
-                   whatsapp, x, facebook, phone, discord, favorite_tournaments
-            FROM users
-            WHERE uid = ${tournament.createdBy}
-            LIMIT 1
-          `) as any[];
-          if (rows && rows.length > 0) {
-            const r = rows[0];
-            setOrganizer({
-              id: r.id,
-              uid: r.uid,
-              displayName: r.display_name,
-              email: r.email,
-              photoURL: r.photo_url,
-              coverImageURL: r.cover_image_url,
-              whatsapp: r.whatsapp,
-              x: r.x,
-              facebook: r.facebook,
-              phone: r.phone,
-              discord: r.discord,
-              favoriteTournaments: r.favorite_tournaments ?? [],
-            } as UserProfile);
+          const userData = await getUserByIdentifier(tournament.createdBy);
+          if (userData) {
+            setOrganizer(userData);
           }
         } catch (e) {
           console.error("Failed to fetch organizer:", e);
@@ -148,8 +96,8 @@ export default function ShowTournamentPage() {
         tournament.format === "group_then_knockout"
           ? "group_stage"
           : tournament.format === "knockout"
-          ? "knockout"
-          : "group_stage",
+            ? "knockout"
+            : "group_stage",
       );
     }
   }, [tournament?.format]);
@@ -172,11 +120,7 @@ export default function ShowTournamentPage() {
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <Tabs
-        value={activeTab}
-        onValueChange={setActiveTab}
-        className="relative"
-      >
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="relative">
         <TournamentHeader
           tournament={tournament}
           teams={teams}
@@ -207,7 +151,8 @@ export default function ShowTournamentPage() {
           />
         </main>
       </Tabs>
-      <DonationBanner /><Footer />
+      <DonationBanner />
+      <Footer />
     </div>
   );
 }

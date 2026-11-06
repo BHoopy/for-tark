@@ -20,7 +20,7 @@
     "sign-up": "S'inscrire",
     "login-or-signup": "Connexion ou Inscription",
     "login-signup-description": "Utilisez un fournisseur ci-dessous pour vous connecter ou créer votre compte.",
-    "signup-description": "Utilisez un fournisseur ci-dessous pour créer votre compte.",
+    "signup-description": "",
     "login-google": "Continuer avec Google",
     "signup-google": "S'inscrire avec Google",
     "login-email": "Continuer avec un Email",
@@ -225,6 +225,8 @@
       "email-placeholder": "votre@email.com",
       "password-label": "Mot de passe",
       "password-placeholder": "Votre mot de passe",
+      "show-password": "Afficher le mot de passe",
+      "hide-password": "Masquer le mot de passe",
       "username-label": "Nom d'utilisateur",
       "username-placeholder": "Votre nom d'utilisateur"
     },

@@ -3,13 +3,13 @@
 import { useTranslations } from "next-intl";
 import { Card, CardContent } from "./card";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import { getSql } from "@/lib/neon";
 import React from "react";
 import { UserProfile } from "@/types/types";
 import PulseLoader from "./pulse-loader";
 import { Button } from "./button";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
+import { listUsers } from "@/lib/server-actions/users";
 
 export default function OrganizersGrid() {
   const t = useTranslations();
@@ -21,27 +21,7 @@ export default function OrganizersGrid() {
   React.useEffect(() => {
     const fetchOrganizers = async () => {
       try {
-        const sql = getSql();
-        const rows = (await sql`
-          SELECT id, uid, display_name, email, photo_url, cover_image_url,
-                 whatsapp, x, facebook, phone, discord, favorite_tournaments
-          FROM users
-          LIMIT 12
-        `) as any[];
-        const usersList = (rows ?? []).map((r: any) => ({
-          id: String(r.id),
-          uid: r.uid,
-          displayName: r.display_name,
-          email: r.email,
-          photoURL: r.photo_url,
-          coverImageURL: r.cover_image_url,
-          whatsapp: r.whatsapp,
-          x: r.x,
-          facebook: r.facebook,
-          phone: r.phone,
-          discord: r.discord,
-          favoriteTournaments: r.favorite_tournaments ?? [],
-        })) as UserProfile[];
+        const usersList = await listUsers(12);
         setOrganizers(usersList);
       } catch (error) {
         console.error("Error fetching organizers:", error);

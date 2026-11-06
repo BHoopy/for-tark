@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { ThemeToggle } from "@/components/navbar/theme-toggle";
 import { ChevronLeft, Heart, Home, LogOut, User } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { LanguageToggle } from "@/components/navbar/language-toggle";
 import { useUser } from "@/hooks/use-user";
 import { notifyAuthChange } from "@/lib/auth-client";
 import {
@@ -217,12 +216,6 @@ export function UserNav({
                         {t("theme.span")}
                       </span>
                       <ThemeToggle />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">
-                        {t("language.title")}
-                      </span>
-                      <LanguageToggle />
                     </div>
                     {user && <Separator />}
                     {user && (

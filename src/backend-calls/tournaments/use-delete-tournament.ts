@@ -3,7 +3,7 @@ import { tournamentsQueryKeys } from "@/backend-calls";
 import { toast } from "@/hooks/use-toast";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useTranslations } from "next-intl";
-import { getSql } from "@/lib/neon";
+import { deleteTournament } from "@/lib/server-actions/tournaments";
 
 interface Props {
   router: AppRouterInstance;
@@ -16,11 +16,7 @@ export function useDeleteTournament({ router, closeModal, locale }: Props) {
   const t = useTranslations();
 
   const deleteTournamentFn = async (id: string) => {
-    const sql = getSql();
-    await sql`
-      DELETE FROM tournaments
-      WHERE id = ${id}
-    `;
+    await deleteTournament(id);
   };
 
   return useMutation({

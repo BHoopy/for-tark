@@ -2,7 +2,10 @@
 
 import React, { useRef } from "react";
 import { useParams } from "next/navigation";
-import { getSql } from "@/lib/neon";
+import {
+  getTournamentTeams,
+  getTournamentMatches,
+} from "@/lib/server-actions/teams";
 import { useTournamentsById } from "@/backend-calls";
 import { Match, teamBody } from "@/types/types";
 import { transformMatchesToBracketData } from "@/lib/g-loot-transformer";
@@ -28,7 +31,7 @@ const Seed = ({ match }: SeedProps) => {
       <div
         className={cn(
           "relative z-10 flex w-56 flex-col justify-center rounded-md border bg-card shadow-sm",
-          match.isBronzeMatch && "border-amber-700/60"
+          match.isBronzeMatch && "border-amber-700/60",
         )}
       >
         <div className="flex items-center justify-between p-2">
@@ -73,18 +76,18 @@ interface RoundProps {
 }
 
 const Round = ({ title, seeds }: RoundProps) => {
-    return (
-      <div className="flex h-full flex-col items-center justify-around gap-8">
-        <h3 className="text-lg font-semibold text-muted-foreground">{title}</h3>
-        <div className="flex h-full flex-col items-center justify-around gap-12">
-          {seeds.map((seed) => (
-            <div key={seed.id} className="relative">
-              <Seed match={seed} />
-            </div>
-          ))}
-        </div>
+  return (
+    <div className="flex h-full flex-col items-center justify-around gap-8">
+      <h3 className="text-lg font-semibold text-muted-foreground">{title}</h3>
+      <div className="flex h-full flex-col items-center justify-around gap-12">
+        {seeds.map((seed) => (
+          <div key={seed.id} className="relative">
+            <Seed match={seed} />
+          </div>
+        ))}
       </div>
-    );
+    </div>
+  );
 };
 
 const FinalRound = ({ title, seeds }: RoundProps) => {
@@ -96,15 +99,17 @@ const FinalRound = ({ title, seeds }: RoundProps) => {
       <h3 className="text-lg font-semibold text-muted-foreground">{title}</h3>
       <div className="flex h-full flex-col items-center justify-around gap-12">
         {finalMatch && (
-            <div key={finalMatch.id} className="relative">
-                <Seed match={finalMatch} />
-            </div>
+          <div key={finalMatch.id} className="relative">
+            <Seed match={finalMatch} />
+          </div>
         )}
         {bronzeMatch && (
           <>
-            <h4 className="mt-8 text-md font-semibold text-muted-foreground">3rd Place Finalist</h4>
+            <h4 className="mt-8 text-md font-semibold text-muted-foreground">
+              3rd Place Finalist
+            </h4>
             <div key={bronzeMatch.id} className="relative">
-                <Seed match={bronzeMatch} />
+              <Seed match={bronzeMatch} />
             </div>
           </>
         )}
@@ -112,7 +117,6 @@ const FinalRound = ({ title, seeds }: RoundProps) => {
     </div>
   );
 };
-
 
 const getRoundLabel = (
   roundIndex: number, // 0-based index of the round
@@ -142,21 +146,8 @@ export default function BracketPage() {
   const fetchTeams = React.useCallback(async () => {
     if (!tournamentId) return;
     try {
-      const sql = getSql();
-      const rows = (await sql`
-        SELECT id, tournament_id, name, color, roster, logo
-        FROM teams
-        WHERE tournament_id = ${tournamentId}
-      `) as any[];
-      setTeams(
-        rows.map((r) => ({
-          id: r.id,
-          name: r.name,
-          color: r.color,
-          roster: r.roster ?? [],
-          logo: r.logo,
-        })) as teamBody[],
-      );
+      const rows = await getTournamentTeams(tournamentId);
+      setTeams(rows);
     } catch (e) {
       console.error("Failed to fetch teams:", e);
     }
@@ -165,30 +156,8 @@ export default function BracketPage() {
   const fetchMatches = React.useCallback(async () => {
     if (!tournamentId) return;
     try {
-      const sql = getSql();
-      const rows = (await sql`
-        SELECT id, tournament_id, round, match_number, team1_id, team2_id,
-               score1_leg1, score2_leg1, score1_leg2, score2_leg2, status,
-               next_match_id, is_bronze_match
-        FROM matches
-        WHERE tournament_id = ${tournamentId}
-      `) as any[];
-      setMatches(
-        rows.map((r) => ({
-          id: r.id,
-          round: r.round,
-          matchNumber: r.match_number,
-          team1Id: r.team1_id,
-          team2Id: r.team2_id,
-          score1_leg1: r.score1_leg1,
-          score2_leg1: r.score2_leg1,
-          score1_leg2: r.score1_leg2,
-          score2_leg2: r.score2_leg2,
-          status: r.status,
-          nextMatchId: r.next_match_id,
-          isBronzeMatch: r.is_bronze_match,
-        })) as Match[],
-      );
+      const rows = await getTournamentMatches(tournamentId);
+      setMatches(rows);
     } catch (e) {
       console.error("Failed to fetch matches:", e);
     }
@@ -292,23 +261,23 @@ export default function BracketPage() {
       <main className="flex flex-1 overflow-x-auto p-4">
         <div className="mx-auto my-8 flex min-w-max items-start justify-center gap-16">
           {rounds.map((round, idx) => {
-             const isFinalRound = idx === totalRounds - 1;
-             if (isFinalRound) {
-                 return (
-                    <FinalRound
-                        key={round.title}
-                        title={getRoundLabel(idx, rounds.length, t)}
-                        seeds={round.seeds}
-                    />
-                 )
-             }
-            return (
-                <Round
-                    key={round.title}
-                    title={getRoundLabel(idx, rounds.length, t)}
-                    seeds={round.seeds}
+            const isFinalRound = idx === totalRounds - 1;
+            if (isFinalRound) {
+              return (
+                <FinalRound
+                  key={round.title}
+                  title={getRoundLabel(idx, rounds.length, t)}
+                  seeds={round.seeds}
                 />
-            )
+              );
+            }
+            return (
+              <Round
+                key={round.title}
+                title={getRoundLabel(idx, rounds.length, t)}
+                seeds={round.seeds}
+              />
+            );
           })}
         </div>
       </main>

@@ -12,7 +12,7 @@ import { tournamentBody } from "@/types/types";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { getSql } from "@/lib/neon";
+import { getUserByIdentifier } from "@/lib/server-actions/users";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { getTournamentPlaceholder } from "@/lib/tournament-placeholders";
@@ -35,19 +35,12 @@ export default function ChartPreview({ tournament, link }: ChartPreviewProps) {
     const fetchOrganizer = async () => {
       if (!tournament.createdBy) return;
       try {
-        const sql = getSql();
-        const rows = (await sql`
-          SELECT id, uid, display_name, email, photo_url
-          FROM users
-          WHERE uid = ${tournament.createdBy} OR id = ${tournament.createdBy}
-          LIMIT 1
-        `) as any[];
+        const userData = await getUserByIdentifier(tournament.createdBy);
 
-        if (rows && rows.length > 0) {
-          const userData = rows[0];
+        if (userData) {
           setOrganizer({
-            name: userData.display_name ?? userData.email ?? "Unknown",
-            photoURL: userData.photo_url ?? null,
+            name: userData.displayName ?? userData.email ?? "Unknown",
+            photoURL: userData.photoURL ?? null,
           });
         } else {
           setOrganizer({
@@ -93,7 +86,9 @@ export default function ChartPreview({ tournament, link }: ChartPreviewProps) {
       <CardContent className="p-4">
         <CardDescription>
           {t("tournament.format")}:{" "}
-          <span className="font-semibold text-foreground">{t(`forms.tournament.${tournament.format}`)}</span>
+          <span className="font-semibold text-foreground">
+            {t(`forms.tournament.${tournament.format}`)}
+          </span>
         </CardDescription>
       </CardContent>
       <Separator />
@@ -109,7 +104,9 @@ export default function ChartPreview({ tournament, link }: ChartPreviewProps) {
             <span className="text-sm font-medium">
               {organizer.name ?? "..."}
             </span>
-            <span className="text-xs text-muted-foreground">{t("tournament.organizer")}</span>
+            <span className="text-xs text-muted-foreground">
+              {t("tournament.organizer")}
+            </span>
           </div>
         </div>
       </CardFooter>

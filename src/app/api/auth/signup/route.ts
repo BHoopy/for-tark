@@ -15,18 +15,10 @@ export async function POST(req: Request): Promise<Response> {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const username =
-    typeof body.username === "string" ? body.username.trim() : "";
   const email =
     typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body.password === "string" ? body.password : "";
 
-  if (username.length < 2) {
-    return NextResponse.json(
-      { error: "Username must be at least 2 characters long." },
-      { status: 400 },
-    );
-  }
   if (!EMAIL_PATTERN.test(email)) {
     return NextResponse.json(
       { error: "Please enter a valid email address." },
@@ -57,9 +49,10 @@ export async function POST(req: Request): Promise<Response> {
     const uid = randomUUID();
     const passwordHash = await hashPassword(password);
 
+    const displayName = email.split("@")[0] || "User";
     const rows = (await sql`
       INSERT INTO psimply.users (id, uid, email, display_name, password_hash, is_guest)
-      VALUES (${uid}, ${uid}, ${email}, ${username}, ${passwordHash}, false)
+      VALUES (${uid}, ${uid}, ${email}, ${displayName}, ${passwordHash}, false)
       RETURNING id, uid, email, display_name, photo_url, cover_image_url, is_guest
     `) as Record<string, any>[];
 

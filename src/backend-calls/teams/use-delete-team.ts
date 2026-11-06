@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSql } from "@/lib/neon";
 import { toast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { tournamentsQueryKeys } from "../tournaments";
+import { deleteTeam } from "@/lib/server-actions/teams";
 
 interface Props {
   tournamentId: string;
@@ -14,11 +14,7 @@ export function useDeleteTeam({ tournamentId }: Props) {
 
   const deleteTeamFn = async (teamId: string) => {
     if (!tournamentId) throw new Error("Tournament ID is missing.");
-    const sql = getSql();
-    await sql`
-      DELETE FROM teams
-      WHERE id = ${teamId} AND tournament_id = ${tournamentId}
-    `;
+    await deleteTeam(tournamentId, teamId);
   };
 
   return useMutation({
