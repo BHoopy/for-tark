@@ -15,8 +15,7 @@ import { useTranslations } from "next-intl";
 import { useUser } from "@/hooks/use-user";
 import axios from "axios";
 import { toast } from "@/hooks/use-toast";
-import { getAuth, updateProfile } from "firebase/auth";
-import { app } from "@/lib/firebase/firebase";
+import { notifyAuthChange } from "@/lib/auth-client";
 import ReactCrop, {
   centerCrop,
   makeAspectCrop,
@@ -24,7 +23,6 @@ import ReactCrop, {
   PixelCrop,
 } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { getSql } from "@/lib/neon";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -97,7 +95,6 @@ interface UpdateProfileFormProps {
 export function UpdateProfileForm({ setOpen }: UpdateProfileFormProps) {
   const t = useTranslations();
   const { user } = useUser();
-  const auth = getAuth(app);
   const form = useForm();
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -152,18 +149,17 @@ export function UpdateProfileForm({ setOpen }: UpdateProfileFormProps) {
 
       const { secure_url } = response.data;
 
-      // Update Firebase Auth profile
-      await updateProfile(user, { photoURL: secure_url });
+      const profileResponse = await fetch("/api/auth/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ photoURL: secure_url }),
+      });
 
-      // Update Neon user document
-      const sql = getSql();
-      await sql`
-        INSERT INTO users (id, uid, photo_url)
-        VALUES (${user.uid}, ${user.uid}, ${secure_url})
-        ON CONFLICT (uid) DO UPDATE SET
-          photo_url = EXCLUDED.photo_url,
-          updated_at = NOW()
-      `;
+      if (!profileResponse.ok) {
+        throw new Error("Could not update your profile picture.");
+      }
+
+      notifyAuthChange();
 
       toast({
         title: t("toast.profile-update-success.title"),

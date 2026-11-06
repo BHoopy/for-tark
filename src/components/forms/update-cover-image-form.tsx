@@ -22,7 +22,7 @@ import ReactCrop, {
   PixelCrop,
 } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import { getSql } from "@/lib/neon";
+import { notifyAuthChange } from "@/lib/auth-client";
 
 function centerAspectCrop(
   mediaWidth: number,
@@ -151,15 +151,17 @@ export function UpdateCoverImageForm({ setOpen }: UpdateCoverImageFormProps) {
 
       const { secure_url } = response.data;
 
-      // Update Neon user document
-      const sql = getSql();
-      await sql`
-        INSERT INTO users (id, uid, cover_image_url)
-        VALUES (${user.uid}, ${user.uid}, ${secure_url})
-        ON CONFLICT (uid) DO UPDATE SET
-          cover_image_url = EXCLUDED.cover_image_url,
-          updated_at = NOW()
-      `;
+      const profileResponse = await fetch("/api/auth/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ coverImageURL: secure_url }),
+      });
+
+      if (!profileResponse.ok) {
+        throw new Error("Could not update your cover image.");
+      }
+
+      notifyAuthChange();
 
       toast({
         title: t("toast.cover-image-update-success.title"),

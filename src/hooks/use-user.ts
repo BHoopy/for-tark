@@ -1,22 +1,44 @@
-
 "use client";
-import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-import { app } from "@/lib/firebase/firebase";
+import { useCallback, useEffect, useState } from "react";
+import { AUTH_CHANGED_EVENT } from "@/lib/auth-client";
+import type { AuthUser } from "@/types/auth";
 
 export function useUser() {
-  const auth = getAuth(app);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+  const refresh = useCallback(async () => {
+    try {
+      const response = await fetch("/api/auth/session", {
+        cache: "no-store",
+      });
+
+      if (!response.ok) {
+        setUser(null);
+        return;
+      }
+
+      const data = (await response.json()) as { user: AuthUser | null };
+      setUser(data.user ?? null);
+    } catch {
+      setUser(null);
+    } finally {
       setLoading(false);
-    });
+    }
+  }, []);
 
-    return () => unsubscribe();
-  }, [auth]);
+  useEffect(() => {
+    refresh();
 
-  return { user, loading };
+    const handleAuthChange = () => {
+      refresh();
+    };
+
+    window.addEventListener(AUTH_CHANGED_EVENT, handleAuthChange);
+    return () => {
+      window.removeEventListener(AUTH_CHANGED_EVENT, handleAuthChange);
+    };
+  }, [refresh]);
+
+  return { user, loading, refresh };
 }

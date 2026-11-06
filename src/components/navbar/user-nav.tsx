@@ -8,8 +8,8 @@ import { ThemeToggle } from "@/components/navbar/theme-toggle";
 import { ChevronLeft, Heart, Home, LogOut, User } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { LanguageToggle } from "@/components/navbar/language-toggle";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { app } from "@/lib/firebase/firebase";
+import { useUser } from "@/hooks/use-user";
+import { notifyAuthChange } from "@/lib/auth-client";
 import {
   Sheet,
   SheetContent,
@@ -44,25 +44,18 @@ export function UserNav({
   const router = useRouter();
   const t = useTranslations();
   const locale = useLocale();
-  const auth = getAuth(app);
-  const [user, setUser] = React.useState(auth.currentUser);
-  const [loading, setLoading] = React.useState(true);
+  const { user, loading } = useUser();
   const { toast } = useToast();
-
-  React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [auth]);
 
   async function handleSignOut(e: React.FormEvent) {
     e.preventDefault();
 
     try {
-      await signOut(auth);
+      const response = await fetch("/api/auth/logout", { method: "POST" });
+      if (!response.ok) {
+        throw new Error("Could not sign out.");
+      }
+      notifyAuthChange();
       toast({
         title: t("toast.logout-success.title"),
         description: t("toast.logout-success.description"),

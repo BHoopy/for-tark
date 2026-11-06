@@ -18,14 +18,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signInAnonymously,
-  User,
-} from "firebase/auth";
-import { app } from "@/lib/firebase/firebase";
-import {
   Card,
   CardContent,
   CardDescription,
@@ -33,14 +25,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "../ui/separator";
-import { getSql } from "@/lib/neon";
+import { notifyAuthChange } from "@/lib/auth-client";
+
+async function readError(response: Response, fallback: string): Promise<string> {
+  try {
+    const data = (await response.json()) as { error?: string };
+    return data.error || fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 export function SignupForm() {
   const { toast } = useToast();
   const router = useRouter();
   const t = useTranslations();
   const locale = useLocale();
-  const auth = getAuth(app);
 
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -51,30 +51,21 @@ export function SignupForm() {
     },
   });
 
-  const getOrCreateUserDocument = async (user: User) => {
-    const sql = getSql();
-    const rows = (await sql`
-      SELECT id FROM users WHERE uid = ${user.uid} LIMIT 1
-    `) as any[];
-    if (!rows || rows.length === 0) {
-      await sql`
-        INSERT INTO users (id, uid, email, display_name, photo_url)
-        VALUES (${user.uid}, ${user.uid}, ${user.email ?? null}, ${user.displayName ?? null}, ${user.photoURL ?? null})
-      `;
-    }
-  };
-
   async function onSubmit(values: z.infer<typeof signupSchema>) {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password,
-      );
-      const user = userCredential.user;
-      await updateProfile(user, { displayName: values.username });
-      await getOrCreateUserDocument(user);
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
 
+      if (!response.ok) {
+        throw new Error(
+          await readError(response, "Could not create your account."),
+        );
+      }
+
+      notifyAuthChange();
       toast({
         title: t("toast.signup-success.title"),
         description: t("toast.signup-success.description"),
@@ -82,8 +73,8 @@ export function SignupForm() {
       router.push(`/${locale}/user`);
     } catch (e: any) {
       toast({
-        title: t("toast.login-fail.title") + e.message,
-        description: t("toast.login-fail.description"),
+        title: t("toast.login-fail.title"),
+        description: e.message || t("toast.login-fail.description"),
         variant: "destructive",
       });
     }
@@ -91,8 +82,17 @@ export function SignupForm() {
 
   async function handleAnonymousSignIn() {
     try {
-      const userCredential = await signInAnonymously(auth);
-      await getOrCreateUserDocument(userCredential.user);
+      const response = await fetch("/api/auth/guest", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          await readError(response, "Could not start a guest session."),
+        );
+      }
+
+      notifyAuthChange();
       toast({
         title: t("toast.login-success.title"),
         description: t("toast.login-success.description"),
@@ -100,8 +100,8 @@ export function SignupForm() {
       router.push(`/${locale}/user`);
     } catch (e: any) {
       toast({
-        title: t("toast.login-fail.title") + e.message,
-        description: t("toast.login-fail.description"),
+        title: t("toast.login-fail.title"),
+        description: e.message || t("toast.login-fail.description"),
         variant: "destructive",
       });
     }
@@ -165,7 +165,11 @@ export function SignupForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
               {t("navbar.signup-email")}
             </Button>
           </form>

@@ -25,8 +25,10 @@ export function getSql(): NeonQueryFunction<false, false> {
   }
   if (!cached) {
     cached = neon(connectionString);
-    // Use psimply schema to avoid conflicts with other apps sharing same DB
-    cached`SET search_path TO psimply, public`.catch(() => {});
+    // The Neon HTTP driver runs each query in its own connection, so
+    // `SET search_path` does not persist. Qualify tables explicitly
+    // (e.g. `psimply.tournaments`) to avoid conflicts with other apps
+    // that share this database.
   }
   return cached;
 }

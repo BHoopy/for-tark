@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import AppProvider from "@/providers/app-provider";
 import "@/styles/globals.css";
-import "@/lib/firebase/firebase"; // init firebase
 import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = localFont({

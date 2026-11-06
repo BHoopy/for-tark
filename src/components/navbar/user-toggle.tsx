@@ -14,21 +14,24 @@ import { BookLock, LifeBuoy, LogOut, Swords, User as UserIcon } from "lucide-rea
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { useLocale, useTranslations } from "next-intl";
-import { getAuth, signOut, User } from "firebase/auth";
-import { app } from "@/lib/firebase/firebase";
+import { notifyAuthChange } from "@/lib/auth-client";
+import type { AuthUser } from "@/types/auth";
 
-export function UserToggle({ user }: { user: User }) {
+export function UserToggle({ user }: { user: AuthUser }) {
   const { toast } = useToast();
   const router = useRouter();
   const t = useTranslations();
   const locale = useLocale();
-  const auth = getAuth(app);
 
   async function handleSignOut(e: React.FormEvent) {
     e.preventDefault();
 
     try {
-      await signOut(auth);
+      const response = await fetch("/api/auth/logout", { method: "POST" });
+      if (!response.ok) {
+        throw new Error("Could not sign out.");
+      }
+      notifyAuthChange();
       toast({
         title: t("toast.logout-success.title"),
         description: t("toast.logout-success.description"),

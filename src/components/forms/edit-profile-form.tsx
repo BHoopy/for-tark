@@ -14,9 +14,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { useUser } from "@/hooks/use-user";
 import { toast } from "@/hooks/use-toast";
-import { getAuth, updateProfile } from "firebase/auth";
-import { app } from "@/lib/firebase/firebase";
-import { getSql } from "@/lib/neon";
+import { notifyAuthChange } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useUserById } from "@/backend-calls/users/use-user-by-id";
@@ -35,7 +33,6 @@ type ProfileFormValues = z.infer<typeof profileSchema>;
 export function EditProfileForm() {
   const t = useTranslations();
   const { user } = useUser();
-  const auth = getAuth(app);
 
   const { data: userProfile, refetch } = useUserById(user?.uid ?? "");
 
@@ -72,28 +69,27 @@ export function EditProfileForm() {
     if (!user) return;
 
     try {
-      // Update Firebase Auth profile
-      if (data.displayName && data.displayName !== user.displayName) {
-        await updateProfile(user, { displayName: data.displayName });
+      const response = await fetch("/api/auth/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          displayName: data.displayName,
+          whatsapp: data.whatsapp,
+          x: data.x,
+          facebook: data.facebook,
+          phone: data.phone,
+          discord: data.discord,
+        }),
+      });
+
+      if (!response.ok) {
+        const result = (await response.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        throw new Error(result.error || "Could not update your profile.");
       }
 
-      // Update Neon user document
-      const sql = getSql();
-      await sql`
-        INSERT INTO users (id, uid, email, display_name, photo_url, whatsapp, x, facebook, phone, discord)
-        VALUES (${user.uid}, ${user.uid}, ${user.email}, ${data.displayName ?? null}, ${user.photoURL ?? null}, ${data.whatsapp ?? null}, ${data.x ?? null}, ${data.facebook ?? null}, ${data.phone ?? null}, ${data.discord ?? null})
-        ON CONFLICT (uid) DO UPDATE SET
-          email = EXCLUDED.email,
-          display_name = EXCLUDED.display_name,
-          photo_url = EXCLUDED.photo_url,
-          whatsapp = EXCLUDED.whatsapp,
-          x = EXCLUDED.x,
-          facebook = EXCLUDED.facebook,
-          phone = EXCLUDED.phone,
-          discord = EXCLUDED.discord,
-          updated_at = NOW()
-      `;
-
+      notifyAuthChange();
       refetch();
 
       toast({
