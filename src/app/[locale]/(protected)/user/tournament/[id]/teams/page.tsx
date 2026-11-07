@@ -26,6 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { EditTeamDialog } from "@/components/forms/edit-team-dialog";
+import { TeamLogo } from "@/components/ui/team-logo";
 import { UpdateTeamLogoForm } from "@/components/forms/update-team-logo-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { teamBody } from "@/types/types";
@@ -141,7 +142,7 @@ export default function TeamsPage() {
 
   const onAddCustomTeam = (values: z.infer<typeof addTeamSchema>) => {
     addTeamMutation.mutate(
-      { name: values.name, logo: "/Play.png" },
+      { name: values.name },
       {
         onSuccess: (data) => {
           addTeamForm.reset({ name: "" });
@@ -416,14 +417,7 @@ export default function TeamsPage() {
                             <Card className="w-full transition-colors hover:bg-muted">
                               <CardContent className="p-4">
                                 <div className="mb-2 flex items-center gap-2">
-                                  <Image
-                                    src={team.logo ?? "/Play.png"}
-                                    alt={team.name}
-                                    width={24}
-                                    height={24}
-                                    unoptimized
-                                    className="h-6 w-6 object-contain"
-                                  />
+                                  <TeamLogo logo={team.logo} alt={team.name} size={24} className="h-6 w-6" />
                                   <CardTitle className="text-lg">
                                     {team.name}
                                   </CardTitle>

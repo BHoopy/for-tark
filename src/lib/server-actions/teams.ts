@@ -78,7 +78,7 @@ export async function addTeam(
       ${team.name},
       ${team.color ?? null},
       ${team.roster ?? []},
-      ${team.logo || "/Play.png"}
+      ${team.logo || null}
     )
   `;
 
@@ -103,7 +103,7 @@ export async function addTeams(
         ${team.name},
         ${team.color ?? null},
         ${team.roster ?? []},
-        ${team.logo || "/Play.png"}
+        ${team.logo || null}
       )
     `;
   }
