@@ -326,7 +326,38 @@ export default function TeamsPage() {
           </div>
         ) : (
           <div className="space-y-6">
-            {/* ... rest of component same as before ... */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t("forms.tournament.add-team")}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Form {...addTeamForm}>
+                  <form
+                    onSubmit={addTeamForm.handleSubmit(onAddCustomTeam)}
+                    className="flex gap-2"
+                  >
+                    <FormField
+                      control={addTeamForm.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormControl>
+                            <Input
+                              placeholder={t("forms.tournament.team-name")}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button type="submit" disabled={addTeamMutation.isPending}>
+                      {t("forms.tournament.add-team")}
+                    </Button>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle>
