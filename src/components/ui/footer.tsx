@@ -2,7 +2,12 @@ import { Copyright } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
+// HIDDEN: Play Champ footer is disabled.
+// To restore it later, remove the early `return null;` below
+// (and re-add <DonationBanner /> usage in the pages where needed).
 export default function Footer() {
+  return null; // <- remove this line to re-enable the footer
+
   return (
     <footer className="row-start-3 flex h-fit flex-wrap items-center justify-center gap-2 p-4">
       <Button

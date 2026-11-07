@@ -1,6 +1,5 @@
 "use server";
 
-import { randomUUID } from "crypto";
 import { getSql } from "@/lib/neon";
 import { getSessionUser } from "@/lib/auth";
 import type { Match, TeamList, teamBody } from "@/types/types";
@@ -70,7 +69,7 @@ export async function addTeam(
   if (!tournamentId) throw new Error("Tournament ID is missing.");
 
   const sql = getSql();
-  const id = randomUUID();
+  const id = crypto.randomUUID();
   await sql`
     INSERT INTO psimply.teams (id, tournament_id, name, color, roster, logo)
     VALUES (
@@ -95,7 +94,7 @@ export async function addTeams(
 
   const sql = getSql();
   for (const team of teams) {
-    const id = randomUUID();
+    const id = crypto.randomUUID();
     await sql`
       INSERT INTO psimply.teams (id, tournament_id, name, color, roster, logo)
       VALUES (
@@ -183,7 +182,7 @@ export async function saveTeamList(input: {
   await requireSession();
 
   const sql = getSql();
-  const id = randomUUID();
+  const id = crypto.randomUUID();
   await sql`
     INSERT INTO psimply.team_lists (id, name, teams)
     VALUES (${id}, ${input.listName}, ${JSON.stringify(input.teams)}::jsonb)

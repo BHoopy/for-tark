@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 
 const DONATION_URL = "https://selar.com/showlove/playchamp";
 
+// HIDDEN: "Support Play Champ — Show Love" banner is disabled.
+// To restore it later, remove the early `return null;` below.
 export default function DonationBanner() {
+  return null; // <- remove this line to re-enable the banner
+
   return (
     <div className="flex w-full items-center justify-center gap-2 p-3 pt-6">
       <Button
