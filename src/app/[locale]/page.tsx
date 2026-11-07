@@ -15,7 +15,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useState, useMemo } from "react";
 import Footer from "@/components/ui/footer";
 import DonationBanner from "@/components/ui/donation-banner";
-import OrganizersGrid from "@/components/ui/organizers-grid";
+
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -65,12 +65,9 @@ export default function Home() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-1">
                 <TabsTrigger value="tournaments">
                   {t("tournament.tabs.tournaments")}
-                </TabsTrigger>
-                <TabsTrigger value="organizers">
-                  {t("tournament.tabs.organizers")}
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -140,11 +137,6 @@ export default function Home() {
                     )}
                   </>
                 )}
-              </div>
-            </TabsContent>
-            <TabsContent value="organizers">
-              <div className="p-4 md:p-6">
-                <OrganizersGrid />
               </div>
             </TabsContent>
           </div>
