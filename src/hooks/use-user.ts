@@ -1,39 +1,38 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+
+import { useCallback } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AUTH_CHANGED_EVENT } from "@/lib/auth-client";
 import type { AuthUser } from "@/types/auth";
+import { useEffect } from "react";
+
+async function fetchSession(): Promise<AuthUser | null> {
+  const response = await fetch("/api/auth/session", { cache: "no-store" });
+  if (!response.ok) return null;
+  const data = (await response.json()) as { user: AuthUser | null };
+  return data.user ?? null;
+}
 
 export function useUser() {
-  const [user, setUser] = useState<AuthUser | null>(null);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
+
+  const { data: user = null, isLoading: loading, refetch } = useQuery({
+    queryKey: ["auth", "session"],
+    queryFn: fetchSession,
+    staleTime: 60_000,
+    gcTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
 
   const refresh = useCallback(async () => {
-    try {
-      const response = await fetch("/api/auth/session", {
-        cache: "no-store",
-      });
-
-      if (!response.ok) {
-        setUser(null);
-        return;
-      }
-
-      const data = (await response.json()) as { user: AuthUser | null };
-      setUser(data.user ?? null);
-    } catch {
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    await queryClient.invalidateQueries({ queryKey: ["auth", "session"] });
+  }, [queryClient]);
 
   useEffect(() => {
-    refresh();
-
     const handleAuthChange = () => {
       refresh();
     };
-
     window.addEventListener(AUTH_CHANGED_EVENT, handleAuthChange);
     return () => {
       window.removeEventListener(AUTH_CHANGED_EVENT, handleAuthChange);
