@@ -23,6 +23,11 @@ export default function Footer() {
           <span>2025</span>
         </a>
       </Button>
+      <p className="w-full text-center text-xs text-muted-foreground">
+        Disclaimer: This is a fun, non-official tournament tool. Tournament names,
+        logos and teams (e.g. EPL clubs) belong to their respective owners and
+        are used here only for personal/fun use.
+      </p>
     </footer>
   );
 }
