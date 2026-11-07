@@ -1,7 +1,9 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { getSql } from "@/lib/neon";
 import { getSessionUser } from "@/lib/auth";
+import { TOURNAMENTS_CACHE_TAG } from "@/lib/tournaments-cache";
 import type { tournamentBody } from "@/types/types";
 
 const DEFAULT_COVER_IMAGE =
@@ -103,6 +105,8 @@ export async function createTournament(input: {
     RETURNING id
   `) as Record<string, any>[];
 
+  revalidateTag(TOURNAMENTS_CACHE_TAG);
+
   return { id: rows[0].id };
 }
 
@@ -135,6 +139,8 @@ export async function updateTournament(
       updated_at = NOW()
     WHERE id = ${id}
   `;
+
+  revalidateTag(TOURNAMENTS_CACHE_TAG);
 }
 
 export async function deleteTournament(id: string): Promise<void> {
@@ -145,6 +151,8 @@ export async function deleteTournament(id: string): Promise<void> {
     DELETE FROM psimply.tournaments
     WHERE id = ${id}
   `;
+
+  revalidateTag(TOURNAMENTS_CACHE_TAG);
 }
 
 export async function updateTournamentModerators(
@@ -175,4 +183,6 @@ export async function updateTournamentModerators(
       WHERE id = ${tournamentId}
     `;
   }
+
+  revalidateTag(TOURNAMENTS_CACHE_TAG);
 }

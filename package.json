@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "next lint --fix && prettier --write ."
+    "format": "next lint --fix && prettier --write .",
+    "delete-tournaments": "node scripts/delete-all-tournaments.mjs",
+    "db:delete-tournaments": "node scripts/delete-all-tournaments.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

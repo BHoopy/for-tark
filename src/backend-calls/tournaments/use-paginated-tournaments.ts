@@ -21,7 +21,9 @@ export function usePaginatedTournaments({ page, pageLimit }: Props) {
       pageLimit: String(pageLimit),
     });
 
-    const response = await fetch(`/api/tournaments?${params.toString()}`);
+    const response = await fetch(`/api/tournaments?${params.toString()}`, {
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to load tournaments (${response.status})`);
@@ -48,7 +50,9 @@ export function usePaginatedTournaments({ page, pageLimit }: Props) {
     queryKey: [...tournamentsQueryKeys.pagination(page), pageLimit],
     queryFn: () => getPaginatedTournamentsFn(page),
     refetchOnWindowFocus: false,
-    staleTime: 5 * 60 * 1000,
+    // The API itself is cached server-side and invalidated by tag after any
+    // tournament mutation, so clients should always revalidate on mount.
+    staleTime: 0,
     placeholderData: keepPreviousData,
   });
 }

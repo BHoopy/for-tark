@@ -1,7 +1,9 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { getSql } from "@/lib/neon";
 import { getSessionUser } from "@/lib/auth";
+import { TOURNAMENTS_CACHE_TAG } from "@/lib/tournaments-cache";
 import type { Fixture, Match, teamBody, tournamentBody } from "@/types/types";
 import { generateFixtures as generateRoundRobinFixtures } from "@/lib/fixtures-generator";
 import {
@@ -242,4 +244,6 @@ export async function generateTournamentFixtures(input: {
       WHERE id = ${tournamentId}
     `;
   }
+
+  revalidateTag(TOURNAMENTS_CACHE_TAG);
 }
