@@ -1,5 +1,5 @@
 import { tournamentsQueryKeys } from "@/backend-calls";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { tournamentBody } from "@/types/types";
 
 type Props = {
@@ -49,5 +49,6 @@ export function usePaginatedTournaments({ page, pageLimit }: Props) {
     queryFn: () => getPaginatedTournamentsFn(page),
     refetchOnWindowFocus: false,
     staleTime: 5 * 60 * 1000,
+    placeholderData: keepPreviousData,
   });
 }

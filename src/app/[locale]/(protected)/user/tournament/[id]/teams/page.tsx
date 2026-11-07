@@ -83,6 +83,7 @@ export default function TeamsPage() {
 
   const [teams, setTeams] = useState<teamBody[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [addMode, setAddMode] = useState<"preset" | "custom">("preset");
   const [searchQuery, setSearchQuery] = useState("");
   const [editDialogOpen, setEditDialogOpen] = useState(false);
@@ -104,7 +105,6 @@ export default function TeamsPage() {
 
   useEffect(() => {
     if (!tournamentId) return;
-    setLoading(true);
     const fetchTeams = async () => {
       try {
         const teamsList = await getTournamentTeams(tournamentId);
@@ -116,9 +116,7 @@ export default function TeamsPage() {
       }
     };
     fetchTeams();
-    const interval = setInterval(fetchTeams, 3000);
-    return () => clearInterval(interval);
-  }, [tournamentId]);
+  }, [tournamentId, refreshKey]);
 
   const addTeamForm = useForm({
     resolver: zodResolver(addTeamSchema),
@@ -141,8 +139,7 @@ export default function TeamsPage() {
   const onAddCustomTeam = (values: z.infer<typeof addTeamSchema>) => {
     addTeamMutation.mutate(
       { name: values.name, logo: "/Play.png" },
-      { onSuccess: () => addTeamForm.reset({ name: "" }) },
-    );
+      { onSuccess: () => { addTeamForm.reset({ name: "" }); setRefreshKey((k) => k + 1); } },    );
   };
 
   const onAddPresetTeam = (team: {
@@ -150,7 +147,9 @@ export default function TeamsPage() {
     name: string;
     logo: string;
   }) => {
-    addTeamMutation.mutate({ name: team.name, logo: team.logo });
+    addTeamMutation.mutate({ name: team.name, logo: team.logo }, {
+      onSuccess: () => setRefreshKey((k) => k + 1),
+    });
   };
 
   const onUpdateTeam = (values: any) => {
@@ -162,13 +161,13 @@ export default function TeamsPage() {
           : [],
     };
     updateTeamMutation.mutate(teamToUpdate, {
-      onSuccess: () => setEditingTeam(null),
+      onSuccess: () => { setEditingTeam(null); setRefreshKey((k) => k + 1); },
     });
   };
 
   const onDeleteTeam = (teamId: string) => {
     deleteTeamMutation.mutate(teamId, {
-      onSuccess: () => setEditingTeam(null),
+      onSuccess: () => { setEditingTeam(null); setRefreshKey((k) => k + 1); },
     });
   };
 
@@ -190,6 +189,7 @@ export default function TeamsPage() {
     addMultipleTeamsMutation.mutate(teamList.teams, {
       onSuccess: () => {
         setLoadListDialogOpen(false);
+        setRefreshKey((k) => k + 1);
       },
     });
   };
