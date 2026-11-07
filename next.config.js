@@ -2,8 +2,8 @@
 
 function getStorageHostname() {
   try {
-    if (!process.env.AWS_ENDPOINT_URL_S3) return null;
-    return new URL(process.env.AWS_ENDPOINT_URL_S3).hostname;
+    if (!process.env.S3_ENDPOINT_URL) return null;
+    return new URL(process.env.S3_ENDPOINT_URL).hostname;
   } catch {
     return null;
   }

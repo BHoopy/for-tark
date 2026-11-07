@@ -3,17 +3,13 @@ import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
 /**
  * Neon (Postgres) client for the eFut tournament app.
  *
- * The connection string is read from `DATABASE_URL` (server-side) or
- * `NEXT_PUBLIC_DATABASE_URL` (client-side). Configure it in `.dev.vars` /
- * `.env.local`:
- *
- *   DATABASE_URL=postgresql://neondb_owner:npg_F9PQpr2ndchE@ep-purple-frost-aqfn5755-pooler.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+ * The connection string is read from the server-only `DATABASE_URL`
+ * environment variable. Configure it in `.env.local` (local development)
+ * or in Netlify's environment variables (marked as a secret).
  */
 
 const connectionString =
-  (typeof process !== "undefined" && process.env?.DATABASE_URL) ||
-  (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_DATABASE_URL) ||
-  "";
+  (typeof process !== "undefined" && process.env?.DATABASE_URL) || "";
 
 let cached: NeonQueryFunction<false, false> | null = null;
 
