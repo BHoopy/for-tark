@@ -394,6 +394,7 @@ export default function TeamsPage() {
                                     alt={team.name}
                                     width={24}
                                     height={24}
+                                    unoptimized
                                     className="h-6 w-6 object-contain"
                                   />
                                   <CardTitle className="text-lg">
