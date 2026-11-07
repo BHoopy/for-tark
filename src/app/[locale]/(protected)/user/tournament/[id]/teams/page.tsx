@@ -315,7 +315,7 @@ export default function TeamsPage() {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <UserNav
-        title={t("tournament.tabs.teams")}
+        title="tournament.tabs.teams"
         isBack
         backPath={`/${locale}/user/tournament/${tournamentId}`}
       />
@@ -427,6 +427,11 @@ export default function TeamsPage() {
                             isDeleting={deleteTeamMutation.isPending}
                             tournamentId={tournamentId}
                             setOpen={setEditDialogOpen}
+                            onLogoUpdated={() => {
+                              setEditDialogOpen(false);
+                              setEditingTeam(null);
+                              setRefreshKey((k) => k + 1);
+                            }}
                           />
                         )}
                       </Dialog>

@@ -112,7 +112,7 @@ export function UserNav({
     }
     return (
       <h1 className="text-center text-xl font-bold tracking-tight md:text-3xl">
-        {t(title)} {username && username}
+        {title.includes(".") ? t(title) : title} {username && username}
       </h1>
     );
   };

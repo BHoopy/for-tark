@@ -46,6 +46,7 @@ export const EditTeamDialog = ({
   isDeleting,
   tournamentId,
   setOpen: setParentOpen,
+  onLogoUpdated,
 }: {
   team: teamBody;
   onSave: (values: z.infer<typeof editTeamSchema>) => void;
@@ -54,6 +55,7 @@ export const EditTeamDialog = ({
   isDeleting: boolean;
   tournamentId: string;
   setOpen: (open: boolean) => void;
+  onLogoUpdated?: () => void;
 }) => {
   const t = useTranslations();
   const [openLogoUpload, setOpenLogoUpload] = useState(false);
@@ -108,6 +110,7 @@ export const EditTeamDialog = ({
               setOpen={setOpenLogoUpload}
               tournamentId={tournamentId}
               team={team}
+              onSuccess={onLogoUpdated}
             />
           </DialogContent>
         </Dialog>

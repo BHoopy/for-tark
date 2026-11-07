@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { PasswordInput } from "@/components/ui/password-input";
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -180,6 +181,9 @@ export function LoginForm() {
               className="w-full"
               disabled={form.formState.isSubmitting}
             >
+              {form.formState.isSubmitting ? (
+                <Spinner className="mr-2" />
+              ) : null}
               {t("navbar.login-email")}
             </Button>
           </form>
