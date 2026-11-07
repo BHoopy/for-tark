@@ -26,6 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { EditTeamDialog } from "@/components/forms/edit-team-dialog";
+import { UpdateTeamLogoForm } from "@/components/forms/update-team-logo-form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { teamBody } from "@/types/types";
 import {
@@ -88,6 +89,8 @@ export default function TeamsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editingTeam, setEditingTeam] = useState<teamBody | null>(null);
+  const [logoDialogOpen, setLogoDialogOpen] = useState(false);
+  const [logoDialogTeam, setLogoDialogTeam] = useState<teamBody | null>(null);
   const [saveListDialogOpen, setSaveListDialogOpen] = useState(false);
   const [loadListDialogOpen, setLoadListDialogOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
@@ -139,7 +142,21 @@ export default function TeamsPage() {
   const onAddCustomTeam = (values: z.infer<typeof addTeamSchema>) => {
     addTeamMutation.mutate(
       { name: values.name, logo: "/Play.png" },
-      { onSuccess: () => { addTeamForm.reset({ name: "" }); setRefreshKey((k) => k + 1); } },    );
+      {
+        onSuccess: (data) => {
+          addTeamForm.reset({ name: "" });
+          setRefreshKey((k) => k + 1);
+          if (data?.id) {
+            setLogoDialogTeam({
+              id: data.id,
+              name: values.name,
+              logo: "/Play.png",
+            } as teamBody);
+            setLogoDialogOpen(true);
+          }
+        },
+      },
+    );
   };
 
   const onAddPresetTeam = (team: {
@@ -148,7 +165,17 @@ export default function TeamsPage() {
     logo: string;
   }) => {
     addTeamMutation.mutate({ name: team.name, logo: team.logo }, {
-      onSuccess: () => setRefreshKey((k) => k + 1),
+      onSuccess: (data) => {
+        setRefreshKey((k) => k + 1);
+        if (data?.id) {
+          setLogoDialogTeam({
+            id: data.id,
+            name: team.name,
+            logo: team.logo,
+          } as teamBody);
+          setLogoDialogOpen(true);
+        }
+      },
     });
   };
 
@@ -447,6 +474,28 @@ export default function TeamsPage() {
             </Card>
           </div>
         )}
+      {logoDialogOpen && logoDialogTeam && (
+        <Dialog open={logoDialogOpen} onOpenChange={setLogoDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{logoDialogTeam.name}</DialogTitle>
+              <DialogDescription>
+                Update the team logo
+              </DialogDescription>
+            </DialogHeader>
+            <UpdateTeamLogoForm
+              setOpen={setLogoDialogOpen}
+              tournamentId={tournamentId}
+              team={logoDialogTeam}
+              onSuccess={() => {
+                setLogoDialogOpen(false);
+                setLogoDialogTeam(null);
+                setRefreshKey((k) => k + 1);
+              }}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
       </main>
       <DonationBanner />
       <Footer />
