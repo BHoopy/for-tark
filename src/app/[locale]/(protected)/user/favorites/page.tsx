@@ -1,7 +1,8 @@
-
 "use client";
 import React, { Suspense } from "react";
+import Link from "next/link";
 import { UserNav } from "@/components/navbar/user-nav";
+import { Button } from "@/components/ui/button";
 import { useUser } from "@/hooks/use-user";
 import { useLocale, useTranslations } from "next-intl";
 import PulseLoader from "@/components/ui/pulse-loader";
@@ -36,6 +37,7 @@ function FavoriteTournament({ tournamentId }: { tournamentId: string }) {
 function FavoritesList() {
   const { user } = useUser();
   const t = useTranslations();
+  const locale = useLocale();
   const { data: userProfile, isLoading } = useUserById(user?.uid ?? "");
 
   const favoriteIds = userProfile?.favoriteTournaments ?? [];
@@ -55,6 +57,9 @@ function FavoritesList() {
         <p className="mt-2 text-muted-foreground">
           {t("tournament.add-some-favorites")}
         </p>
+        <Button asChild className="mt-6">
+          <Link href={`/${locale}`}>{t("pages.browse-tournaments")}</Link>
+        </Button>
       </div>
     );
   }
@@ -70,10 +75,16 @@ function FavoritesList() {
 
 export default function UserFavoritesPage() {
   const t = useTranslations();
+  const locale = useLocale();
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <UserNav title={"pages.my-favorites"} isBack={false} avatar={true} />
+      <UserNav
+        title={"pages.my-favorites"}
+        isBack={true}
+        backPath={`/${locale}`}
+        avatar={true}
+      />
       <main className="container mx-auto flex-1 px-4 py-8 md:px-6">
         <Suspense
           fallback={
@@ -85,7 +96,8 @@ export default function UserFavoritesPage() {
           <FavoritesList />
         </Suspense>
       </main>
-      <DonationBanner /><Footer />
+      <DonationBanner />
+      <Footer />
     </div>
   );
 }

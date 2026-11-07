@@ -1,4 +1,3 @@
-
 "use client";
 import {
   Pagination,
@@ -18,14 +17,12 @@ import DonationBanner from "@/components/ui/donation-banner";
 
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ChartPreview from "@/components/charts/chart-preview";
 import { useUser } from "@/hooks/use-user";
 
 export default function Home() {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("tournaments");
   const { data, isLoading, isError } = usePaginatedTournaments({
     page: page,
     pageLimit: 9,
@@ -51,98 +48,88 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <UserNav title={"navbar.welcome"} avatar={true} />
-          <div className="container flex justify-center p-2">
-            <div className="w-full max-w-2xl space-y-2">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  placeholder={t("tournament.search-pool")}
-                  className="w-full pl-10"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              <TabsList className="grid w-full grid-cols-1">
-                <TabsTrigger value="tournaments">
-                  {t("tournament.tabs.tournaments")}
-                </TabsTrigger>
-              </TabsList>
+      <div className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <UserNav title={"navbar.welcome"} avatar={true} />
+        <div className="container flex justify-center p-2">
+          <div className="w-full max-w-2xl">
+            <div className="relative w-full">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder={t("tournament.search-pool")}
+                className="w-full pl-10"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
           </div>
         </div>
+      </div>
 
-        <main className="flex flex-1 flex-col items-center">
-          <div className="w-full max-w-5xl">
-            <TabsContent value="tournaments">
-              <div className="p-4 md:p-6">
-                {isLoading ? (
-                  <div className="flex h-full items-center justify-center pt-8">
-                    <PulseLoader />
-                  </div>
-                ) : isError ? (
-                  <div className="pt-8 text-center text-red-500">
-                    Error loading tournaments. Please try again later.
+      <main className="flex flex-1 flex-col items-center">
+        <div className="w-full max-w-5xl">
+          <div className="p-4 md:p-6">
+            {isLoading ? (
+              <div className="flex h-full items-center justify-center pt-8">
+                <PulseLoader />
+              </div>
+            ) : isError ? (
+              <div className="pt-8 text-center text-red-500">
+                Error loading tournaments. Please try again later.
+              </div>
+            ) : (
+              <>
+                {filteredTournaments.length > 0 ? (
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {filteredTournaments.map((tournament) => (
+                      <ChartPreview
+                        key={tournament.id}
+                        tournament={tournament}
+                        link={linkPath}
+                      />
+                    ))}
                   </div>
                 ) : (
-                  <>
-                    {filteredTournaments.length > 0 ? (
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {filteredTournaments.map((tournament) => (
-                          <ChartPreview
-                            key={tournament.id}
-                            tournament={tournament}
-                            link={linkPath}
-                          />
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center gap-8 pt-8 text-center">
-                        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
-                          {searchQuery
-                            ? "No results found"
-                            : t("no.yet")}
-                        </h1>
-                      </div>
-                    )}
-                    {data && data.totalPages > 1 && !searchQuery && (
-                      <Pagination className="pt-8">
-                        <PaginationContent>
-                          <PaginationItem>
-                            <PaginationPrevious
-                              onClick={() => handlePageChange(page - 1)}
-                              disabled={page === 1}
-                            />
-                          </PaginationItem>
-                          {Array.from({ length: data.totalPages }, (_, i) => (
-                            <PaginationItem key={i}>
-                              <PaginationLink
-                                onClick={() => handlePageChange(i + 1)}
-                                isActive={page === i + 1}
-                              >
-                                {i + 1}
-                              </PaginationLink>
-                            </PaginationItem>
-                          ))}
-                          <PaginationItem>
-                            <PaginationNext
-                              onClick={() => handlePageChange(page + 1)}
-                              disabled={page === data.totalPages}
-                            />
-                          </PaginationItem>
-                        </PaginationContent>
-                      </Pagination>
-                    )}
-                  </>
+                  <div className="flex flex-col items-center gap-8 pt-8 text-center">
+                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
+                      {searchQuery ? "No results found" : t("no.yet")}
+                    </h1>
+                  </div>
                 )}
-              </div>
-            </TabsContent>
+                {data && data.totalPages > 1 && !searchQuery && (
+                  <Pagination className="pt-8">
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious
+                          onClick={() => handlePageChange(page - 1)}
+                          disabled={page === 1}
+                        />
+                      </PaginationItem>
+                      {Array.from({ length: data.totalPages }, (_, i) => (
+                        <PaginationItem key={i}>
+                          <PaginationLink
+                            onClick={() => handlePageChange(i + 1)}
+                            isActive={page === i + 1}
+                          >
+                            {i + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ))}
+                      <PaginationItem>
+                        <PaginationNext
+                          onClick={() => handlePageChange(page + 1)}
+                          disabled={page === data.totalPages}
+                        />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                )}
+              </>
+            )}
           </div>
-        </main>
-      </Tabs>
-      <DonationBanner /><Footer />
+        </div>
+      </main>
+      <DonationBanner />
+      <Footer />
     </div>
   );
 }

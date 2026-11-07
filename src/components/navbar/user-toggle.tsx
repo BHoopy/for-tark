@@ -10,7 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
-import { BookLock, LifeBuoy, LogOut, Swords, User as UserIcon } from "lucide-react";
+import {
+  BookLock,
+  LifeBuoy,
+  LogOut,
+  Swords,
+  User as UserIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { useLocale, useTranslations } from "next-intl";
@@ -54,15 +60,14 @@ export function UserToggle({ user }: { user: AuthUser }) {
           className="relative h-4 w-4 rounded-full sm:h-8 sm:w-8 md:h-10 md:w-10"
         >
           <Avatar>
-            <AvatarImage
-              src={
-                user?.photoURL ??
-                "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNpcmNsZS11c2VyIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTAiIHI9IjMiLz48cGF0aCBkPSJNNyAyMC42NjJWMTlhMiAyIDAgMCAxIDItMmg2YTIgMiAwIDAgMSAyIDJ2MS42NjIiLz48L3N2Zz4="
-              }
-              alt={user?.displayName ?? "UN"}
-            />
+            {user?.photoURL ? (
+              <AvatarImage
+                src={user.photoURL}
+                alt={user?.displayName ?? "UN"}
+              />
+            ) : null}
             <AvatarFallback>
-              {user?.displayName?.charAt(0) ?? user?.email?.charAt(0)}
+              <UserIcon className="h-1/2 w-1/2" />
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -79,11 +84,17 @@ export function UserToggle({ user }: { user: AuthUser }) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push(`/${locale}/user/tournaments`)}>
+        <DropdownMenuItem
+          onClick={() => router.push(`/${locale}/user/tournaments`)}
+        >
           <Swords className="mr-2 size-3 md:size-4" />
-          <span className="text-xs md:text-sm">{t("pages.my-tournaments")}</span>
+          <span className="text-xs md:text-sm">
+            {t("pages.my-tournaments")}
+          </span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push(`/${locale}/user/profile`)}>
+        <DropdownMenuItem
+          onClick={() => router.push(`/${locale}/user/profile`)}
+        >
           <UserIcon className="mr-2 size-3 md:size-4" />
           <span className="text-xs md:text-sm">{t("pages.profile")}</span>
         </DropdownMenuItem>
