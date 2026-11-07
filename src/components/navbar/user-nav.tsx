@@ -20,7 +20,6 @@ import { MenuIcon } from "@/components/ui/menu-icon";
 import { Swords } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { useToast } from "@/hooks/use-toast";
-import Image from "next/image";
 
 interface UserNavProps {
   title: string;
@@ -168,26 +167,6 @@ export function UserNav({
                       {t("pages.profile")}
                     </Button>
                   )}
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start"
-                    asChild
-                  >
-                    <a
-                      href="https://web.facebook.com/PlaychampApp/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Image
-                        src="/facebook.avif"
-                        alt="Facebook Logo"
-                        width={16}
-                        height={16}
-                        className="mr-2 h-4 w-4"
-                      />
-                      Follow Us
-                    </a>
-                  </Button>
                   <Separator />
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">
